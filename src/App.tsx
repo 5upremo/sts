@@ -37,7 +37,7 @@ export default function App() {
       syncChannelRef.current = new BroadcastChannel("presentation_sync_modern");
       syncChannelRef.current.onmessage = (event) => {
         const data = event.data;
-        if (!isPresenter && data.timestamp > lastSyncTime) {
+        if (!isPresenter) {
           applySync(data);
         }
       };
@@ -50,7 +50,7 @@ export default function App() {
       if (event.key === "presentation_sync_data" && event.newValue) {
         try {
           const data = JSON.parse(event.newValue);
-          if (!isPresenter && data.timestamp > lastSyncTime) {
+          if (!isPresenter) {
             applySync(data);
           }
         } catch (e) {
@@ -60,15 +60,23 @@ export default function App() {
     };
 
     function applySync(data: any) {
-      isIncomingChange.current = true;
-      setCurrentLessonIndex(data.lesson);
-      setCurrentSlideIndex(data.slide);
-      setShowEngagement(data.engagement);
-      setIsAnswerRevealed(data.answerRevealed || false);
-      setLastSyncTime(data.timestamp);
-      setTimeout(() => {
-        isIncomingChange.current = false;
-      }, 50);
+      // Use ref to avoid stale state in the event listener if needed, 
+      // but here we just need to compare timestamps
+      setLastSyncTime(prev => {
+        if (data.timestamp > prev) {
+          isIncomingChange.current = true;
+          setCurrentLessonIndex(data.lesson);
+          setCurrentSlideIndex(data.slide);
+          setShowEngagement(data.engagement);
+          setIsAnswerRevealed(data.answerRevealed || false);
+          
+          setTimeout(() => {
+            isIncomingChange.current = false;
+          }, 50);
+          return data.timestamp;
+        }
+        return prev;
+      });
     }
 
     window.addEventListener("storage", handleSync);
@@ -76,7 +84,7 @@ export default function App() {
       window.removeEventListener("storage", handleSync);
       syncChannelRef.current?.close();
     };
-  }, [isPresenter, lastSyncTime]);
+  }, [isPresenter]); // Only depend on isPresenter status
 
   useEffect(() => {
     if (isPresenter && !isIncomingChange.current) {
