@@ -32,21 +32,25 @@ export default function App() {
   useEffect(() => {
     const handleSync = (event: StorageEvent) => {
       if (event.key === "presentation_sync_data" && event.newValue) {
-        const data = JSON.parse(event.newValue);
-        
-        // Only update if the message is newer and we aren't the presenter 
-        // (audience follows presenter)
-        if (!isPresenter && data.timestamp > lastSyncTime) {
-          isIncomingChange.current = true;
-          setCurrentLessonIndex(data.lesson);
-          setCurrentSlideIndex(data.slide);
-          setShowEngagement(data.engagement);
-          setLastSyncTime(data.timestamp);
+        try {
+          const data = JSON.parse(event.newValue);
           
-          // Reset the flag after a short delay to allow React to process
-          setTimeout(() => {
-            isIncomingChange.current = false;
-          }, 50);
+          // Only update if the message is newer and we aren't the presenter 
+          // (audience follows presenter)
+          if (!isPresenter && data.timestamp > lastSyncTime) {
+            isIncomingChange.current = true;
+            setCurrentLessonIndex(data.lesson);
+            setCurrentSlideIndex(data.slide);
+            setShowEngagement(data.engagement);
+            setLastSyncTime(data.timestamp);
+            
+            // Reset the flag after a short delay to allow React to process
+            setTimeout(() => {
+              isIncomingChange.current = false;
+            }, 50);
+          }
+        } catch (e) {
+          console.error("Sync data parsing failed", e);
         }
       }
     };
@@ -75,8 +79,12 @@ export default function App() {
     window.open(url.toString(), "PresenterWindow", "width=1000,height=800");
   };
 
-  const currentLesson = LESSONS[currentLessonIndex];
-  const currentSlide = currentLesson.slides[currentSlideIndex];
+  const currentLesson = LESSONS[currentLessonIndex] || LESSONS[0];
+  const currentSlide = currentLesson?.slides?.[currentSlideIndex] || currentLesson?.slides?.[0];
+
+  if (!currentSlide) {
+    return <div className="bg-slate-900 text-white p-8">Loading or error in slide data...</div>;
+  }
 
   const nextSlide = () => {
     if (currentSlideIndex < currentLesson.slides.length - 1) {
