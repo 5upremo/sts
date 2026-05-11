@@ -8,6 +8,11 @@ export interface Slide {
     question: string;
     answer: string;
   };
+  exampleImage?: {
+    url: string;
+    caption: string;
+    description: string;
+  };
 }
 
 export interface Lesson {
@@ -37,6 +42,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Without looking yet, what are the three main categories of WMD you've heard of?",
           answer: "Usually Nuclear, Biological, and Chemical."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1518107594022-a510bf513e70?auto=format&fit=crop&q=80&w=1200",
+          caption: "Mushroom Cloud Silhouette",
+          description: "Representing the global impact and devastating scale of Weapons of Mass Destruction."
         }
       },
       {
@@ -108,6 +118,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What was the name of the chemical agent used by Nazis in concentration camp gas chambers?",
           answer: "Zyklon B (hydrogen cyanide)."
+        },
+        exampleImage: {
+          url: "https://upload.wikimedia.org/wikipedia/commons/5/54/Atomic_bombing_of_Japan.jpg",
+          caption: "Mushroom Cloud over Hiroshima (1945)",
+          description: "A historical image capturing the moment of the atomic bombing, illustrating the unparalleled power of nuclear weapons."
         }
       },
       {
@@ -146,6 +161,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "When was Smallpox officially declared eradicated worldwide?",
           answer: "1977 (following the 1967 WHO vaccination campaign)."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1579154235828-40198282c939?auto=format&fit=crop&q=80&w=1200",
+          caption: "Microscopic Pathogens",
+          description: "Biological agents like Anthrax and Smallpox require high-security labs and specialized study to prevent catastrophic outbreaks."
         }
       },
       {
@@ -220,6 +240,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Which chemical agent is described as being 100 times more deadly than Sarin?",
           answer: "VX."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=1200",
+          caption: "Chemical Laboratory Safety",
+          description: "Modern chemical weapons like VX are extremely lethal nerve agents that require advanced protective gear for any level of handling."
         }
       },
       {
@@ -335,6 +360,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What does the prefix 'nano-' usually imply in terms of size?",
           answer: "Extremely small (one-billionth)."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&q=80&w=1200",
+          caption: "DNA and Molecular Scale",
+          description: "Nanotechnology operates at the level of individual molecules, which is the foundational scale of life and matter."
         }
       },
       {
@@ -424,6 +454,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What can nanorobots do to assist people with genetic deficiencies?",
           answer: "They can help correct genetic deficiencies by altering or replacing DNA molecules."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200",
+          caption: "Advanced Nanorobotics (Concept)",
+          description: "Conceptual visualization of a nanorobot navigating the circulatory system to deliver targeted medical treatments."
         }
       },
       {

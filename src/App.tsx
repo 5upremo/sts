@@ -10,6 +10,7 @@ import {
   Settings,
   X,
   MonitorPlay,
+  Image as ImageIcon,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
@@ -21,7 +22,8 @@ export default function App() {
     lessonIndex: 0,
     slideIndex: 0,
     engagement: false,
-    answerRevealed: false
+    answerRevealed: false,
+    imagePopup: false
   });
   const [showSelector, setShowSelector] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -32,6 +34,7 @@ export default function App() {
   const currentSlideIndex = navState.slideIndex;
   const showEngagement = navState.engagement;
   const isAnswerRevealed = navState.answerRevealed;
+  const showImagePopup = navState.imagePopup;
 
   // Sync logic
   const isPresenter = new URLSearchParams(window.location.search).get("view") === "presenter";
@@ -50,7 +53,8 @@ export default function App() {
           lessonIndex: data.lesson ?? 0,
           slideIndex: data.slide ?? 0,
           engagement: !!data.engagement,
-          answerRevealed: !!data.answerRevealed
+          answerRevealed: !!data.answerRevealed,
+          imagePopup: !!data.imagePopup
         });
         
         if (data.scrollRatio !== undefined && contentScrollRef.current) {
@@ -112,6 +116,7 @@ export default function App() {
         slide: currentSlideIndex,
         engagement: showEngagement,
         answerRevealed: isAnswerRevealed,
+        imagePopup: showImagePopup,
         scrollRatio: scrollRatio,
         timestamp: now,
       };
@@ -126,7 +131,7 @@ export default function App() {
         console.warn("Storage quota exceeded or unavailable", e);
       }
     }
-  }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed]);
+  }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed, showImagePopup]);
 
   const launchPresenter = () => {
     try {
@@ -157,7 +162,8 @@ export default function App() {
         ...prev,
         slideIndex: prev.slideIndex + 1,
         engagement: false,
-        answerRevealed: false
+        answerRevealed: false,
+        imagePopup: false
       }));
     } else if (currentLessonIndex < LESSONS.length - 1) {
       // Prompt to go to next lesson?
@@ -170,7 +176,8 @@ export default function App() {
         ...prev,
         slideIndex: prev.slideIndex - 1,
         engagement: false,
-        answerRevealed: false
+        answerRevealed: false,
+        imagePopup: false
       }));
     }
   };
@@ -273,6 +280,7 @@ export default function App() {
                           slide: currentSlideIndex,
                           engagement: showEngagement,
                           answerRevealed: isAnswerRevealed,
+                          imagePopup: showImagePopup,
                           scrollRatio: scrollRatio,
                           timestamp: Date.now(),
                         };
@@ -405,6 +413,15 @@ export default function App() {
                     >
                       <HelpCircle className="w-5 h-5" />
                       Trigger "Ask the Class"
+                    </button>
+
+                    <button
+                      onClick={() => setNavState(prev => ({ ...prev, imagePopup: true }))}
+                      disabled={!currentSlide.exampleImage}
+                      className="w-full py-4 bg-amber-600 hover:bg-amber-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-amber-900/40 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-30 disabled:hover:scale-100"
+                    >
+                      <ImageIcon className="w-5 h-5" />
+                      Show Real-World Example
                     </button>
                     
                     <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2">
@@ -569,6 +586,62 @@ export default function App() {
                 className="mt-12 w-full py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors"
               >
                 Close Question
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Image Example Modal */}
+      <AnimatePresence>
+        {showImagePopup && currentSlide.exampleImage && (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
+              className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 30 }}
+              className="relative bg-slate-900 border border-white/10 overflow-hidden rounded-[2rem] max-w-4xl w-full shadow-2xl flex flex-col md:flex-row"
+            >
+              <div className="w-full md:w-2/3 aspect-video md:aspect-auto overflow-hidden bg-black">
+                 <img 
+                   src={currentSlide.exampleImage.url} 
+                   alt={currentSlide.exampleImage.caption}
+                   className="w-full h-full object-cover"
+                   referrerPolicy="no-referrer"
+                 />
+              </div>
+              <div className="w-full md:w-1/3 p-8 md:p-10 flex flex-col justify-center">
+                 <div className="flex items-center gap-2 mb-4">
+                   <div className="p-2 rounded-lg bg-amber-500/20 text-amber-500">
+                     <ImageIcon className="w-5 h-5" />
+                   </div>
+                   <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500">Real-World Context</span>
+                 </div>
+                 <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
+                   {currentSlide.exampleImage.caption}
+                 </h3>
+                 <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                   {currentSlide.exampleImage.description}
+                 </p>
+                 <button
+                   onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
+                   className="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all"
+                 >
+                   Return to Lesson
+                 </button>
+              </div>
+              <button 
+                onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
+                className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white/50 hover:text-white"
+              >
+                <X className="w-5 h-5" />
               </button>
             </motion.div>
           </div>
