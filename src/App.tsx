@@ -17,14 +17,21 @@ import { LESSONS, Lesson, Slide as SlideType } from "./data/lessons";
 import { SlideVisual } from "./components/PresentationVisuals";
 
 export default function App() {
-  const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [showNotes, setShowNotes] = useState(false);
-  const [showEngagement, setShowEngagement] = useState(false);
-  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
+  const [navState, setNavState] = useState({
+    lessonIndex: 0,
+    slideIndex: 0,
+    engagement: false,
+    answerRevealed: false
+  });
   const [showSelector, setShowSelector] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
   const contentScrollRef = useRef<HTMLDivElement>(null);
+
+  const currentLessonIndex = navState.lessonIndex;
+  const currentSlideIndex = navState.slideIndex;
+  const showEngagement = navState.engagement;
+  const isAnswerRevealed = navState.answerRevealed;
 
   // Sync logic
   const isPresenter = new URLSearchParams(window.location.search).get("view") === "presenter";
@@ -33,17 +40,41 @@ export default function App() {
   const isIncomingChange = useRef(false);
 
   useEffect(() => {
-    // 1. Setup BroadcastChannel (preferred for modern browsers)
+    const applySync = (data: any) => {
+      if (!data || typeof data !== 'object') return;
+      if (data.timestamp > syncTimestampRef.current) {
+        isIncomingChange.current = true;
+        syncTimestampRef.current = data.timestamp;
+        
+        setNavState({
+          lessonIndex: data.lesson ?? 0,
+          slideIndex: data.slide ?? 0,
+          engagement: !!data.engagement,
+          answerRevealed: !!data.answerRevealed
+        });
+        
+        if (data.scrollRatio !== undefined && contentScrollRef.current) {
+          const element = contentScrollRef.current;
+          element.scrollTop = data.scrollRatio * (element.scrollHeight - element.clientHeight);
+        }
+
+        setTimeout(() => {
+          isIncomingChange.current = false;
+        }, 50);
+      }
+    };
+
+    // 1. Setup BroadcastChannel
     try {
-      syncChannelRef.current = new BroadcastChannel("presentation_sync_modern");
+      syncChannelRef.current = new BroadcastChannel("presentation_sync_stable");
       syncChannelRef.current.onmessage = (event) => {
         applySync(event.data);
       };
     } catch (e) {
-      console.warn("BroadcastChannel not supported, falling back to storage events", e);
+      console.warn("BroadcastChannel not supported", e);
     }
 
-    // 2. Setup Storage Events (fallback for older browsers or cross-tab sync)
+    // 2. Setup Storage Events
     const handleSync = (event: StorageEvent) => {
       if (event.key === "presentation_sync_data" && event.newValue) {
         try {
@@ -53,31 +84,14 @@ export default function App() {
         }
       }
       if (event.key === "answer_reveal_event") {
-         const stored = localStorage.getItem("presentation_sync_data");
-         if (stored) applySync(JSON.parse(stored));
+        try {
+          const stored = localStorage.getItem("presentation_sync_data");
+          if (stored) applySync(JSON.parse(stored));
+        } catch (e) {
+          console.error("Answer reveal sync failed", e);
+        }
       }
     };
-
-    function applySync(data: any) {
-      if (data.timestamp > syncTimestampRef.current) {
-        isIncomingChange.current = true;
-        syncTimestampRef.current = data.timestamp;
-        
-        setCurrentLessonIndex(data.lesson);
-        setCurrentSlideIndex(data.slide);
-        setShowEngagement(data.engagement);
-        setIsAnswerRevealed(data.answerRevealed || false);
-        
-        if (data.scrollRatio !== undefined && contentScrollRef.current) {
-          const element = contentScrollRef.current;
-          element.scrollTop = data.scrollRatio * (element.scrollHeight - element.clientHeight);
-        }
-
-        setTimeout(() => {
-          isIncomingChange.current = false;
-        }, 100);
-      }
-    }
 
     window.addEventListener("storage", handleSync);
     return () => {
@@ -103,18 +117,25 @@ export default function App() {
       };
       
       syncChannelRef.current?.postMessage(syncData);
-      localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
-      
-      if (isAnswerRevealed) {
-        localStorage.setItem("answer_reveal_event", now.toString());
+      try {
+        localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
+        if (isAnswerRevealed) {
+          localStorage.setItem("answer_reveal_event", now.toString());
+        }
+      } catch (e) {
+        console.warn("Storage quota exceeded or unavailable", e);
       }
     }
   }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed]);
 
   const launchPresenter = () => {
-    const url = new URL(window.location.href);
-    url.searchParams.set("view", "presenter");
-    window.open(url.toString(), "PresenterWindow", "width=1000,height=800");
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set("view", "presenter");
+      window.open(url.toString(), "PresenterWindow", "width=1000,height=800");
+    } catch (e) {
+      console.error("Failed to launch presenter window", e);
+    }
   };
 
   useEffect(() => {
@@ -132,9 +153,12 @@ export default function App() {
 
   const nextSlide = () => {
     if (currentSlideIndex < currentLesson.slides.length - 1) {
-      setCurrentSlideIndex(currentSlideIndex + 1);
-      setShowEngagement(false);
-      setIsAnswerRevealed(false);
+      setNavState(prev => ({
+        ...prev,
+        slideIndex: prev.slideIndex + 1,
+        engagement: false,
+        answerRevealed: false
+      }));
     } else if (currentLessonIndex < LESSONS.length - 1) {
       // Prompt to go to next lesson?
     }
@@ -142,9 +166,12 @@ export default function App() {
 
   const prevSlide = () => {
     if (currentSlideIndex > 0) {
-      setCurrentSlideIndex(currentSlideIndex - 1);
-      setShowEngagement(false);
-      setIsAnswerRevealed(false);
+      setNavState(prev => ({
+        ...prev,
+        slideIndex: prev.slideIndex - 1,
+        engagement: false,
+        answerRevealed: false
+      }));
     }
   };
 
@@ -331,7 +358,7 @@ export default function App() {
           {!isPresenter && (
             <div className="fixed bottom-28 right-6 md:bottom-32 md:right-10 z-30">
               <button
-                onClick={() => setShowEngagement(true)}
+                onClick={() => setNavState(prev => ({ ...prev, engagement: true }))}
                 className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white p-4 md:px-5 md:py-3 rounded-full shadow-2xl shadow-blue-900/50 transition-all hover:scale-105 active:scale-95 border border-white/20"
               >
                 <HelpCircle className="w-6 h-6" />
@@ -372,8 +399,16 @@ export default function App() {
               <div className="flex-1 p-6 overflow-y-auto space-y-6">
                 {isPresenter && (
                   <div className="space-y-4">
+                    <button
+                      onClick={() => setNavState(prev => ({ ...prev, engagement: true }))}
+                      className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/40 hover:scale-[1.02] active:scale-[0.98]"
+                    >
+                      <HelpCircle className="w-5 h-5" />
+                      Trigger "Ask the Class"
+                    </button>
+                    
                     <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2">
-                      <div className="flex items-center gap-2 text-blue-400">
+                       <div className="flex items-center gap-2 text-blue-400">
                         <HelpCircle className="w-4 h-4" />
                         <span className="text-xs font-bold uppercase tracking-widest">Pro Tip: Sharing</span>
                       </div>
@@ -381,17 +416,8 @@ export default function App() {
                         Share your <span className="text-blue-400 font-semibold">Audience Tab</span> to students, while keeping this <span className="text-amber-400 font-semibold">Presenter Window</span> on your private screen.
                       </p>
                     </div>
-
-                    <button
-                      onClick={() => setShowEngagement(true)}
-                      className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/40 hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      <HelpCircle className="w-5 h-5" />
-                      Trigger "Ask the Class"
-                    </button>
                   </div>
                 )}
-
                 <div>
                   <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Key Discussion Points</h4>
                   <ul className="text-xs text-slate-400 space-y-1 mb-6 list-disc pl-4">
@@ -478,7 +504,7 @@ export default function App() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setShowEngagement(false)}
+              onClick={() => setNavState(prev => ({ ...prev, engagement: false }))}
               className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
             />
             <motion.div
@@ -513,7 +539,7 @@ export default function App() {
                   <button 
                     onClick={() => {
                       if (isPresenter) {
-                        setIsAnswerRevealed(!isAnswerRevealed);
+                        setNavState(prev => ({ ...prev, answerRevealed: !prev.answerRevealed }));
                       }
                     }}
                     className={`w-full text-left p-6 flex items-center justify-between transition-colors group ${isPresenter ? 'hover:bg-white/5' : 'cursor-default opacity-50'}`}
@@ -539,7 +565,7 @@ export default function App() {
               </div>
 
               <button
-                onClick={() => setShowEngagement(false)}
+                onClick={() => setNavState(prev => ({ ...prev, engagement: false }))}
                 className="mt-12 w-full py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors"
               >
                 Close Question
@@ -572,10 +598,13 @@ export default function App() {
                   <button
                     key={lesson.id}
                     onClick={() => {
-                      setCurrentLessonIndex(idx);
-                      setCurrentSlideIndex(0);
+                      setNavState({
+                        lessonIndex: idx,
+                        slideIndex: 0,
+                        engagement: false,
+                        answerRevealed: false
+                      });
                       setShowSelector(false);
-                      setShowEngagement(false);
                     }}
                     className={`w-full text-left p-6 rounded-2xl border transition-all flex items-center justify-between group ${
                       currentLessonIndex === idx
