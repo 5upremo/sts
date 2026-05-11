@@ -25,29 +25,30 @@ export default function App() {
   // Sync logic
   const isPresenter = new URLSearchParams(window.location.search).get("view") === "presenter";
   const [lastSyncTime, setLastSyncTime] = useState(0);
-  
-  // Use a ref to track if a state change was caused by an incoming sync message
+  const syncChannelRef = useRef<BroadcastChannel | null>(null);
   const isIncomingChange = useRef(false);
 
   useEffect(() => {
+    // 1. Setup BroadcastChannel (preferred for modern browsers)
+    try {
+      syncChannelRef.current = new BroadcastChannel("presentation_sync_modern");
+      syncChannelRef.current.onmessage = (event) => {
+        const data = event.data;
+        if (!isPresenter && data.timestamp > lastSyncTime) {
+          applySync(data);
+        }
+      };
+    } catch (e) {
+      console.warn("BroadcastChannel not supported, falling back to storage events", e);
+    }
+
+    // 2. Setup Storage Events (fallback for older browsers or cross-tab sync)
     const handleSync = (event: StorageEvent) => {
       if (event.key === "presentation_sync_data" && event.newValue) {
         try {
           const data = JSON.parse(event.newValue);
-          
-          // Only update if the message is newer and we aren't the presenter 
-          // (audience follows presenter)
           if (!isPresenter && data.timestamp > lastSyncTime) {
-            isIncomingChange.current = true;
-            setCurrentLessonIndex(data.lesson);
-            setCurrentSlideIndex(data.slide);
-            setShowEngagement(data.engagement);
-            setLastSyncTime(data.timestamp);
-            
-            // Reset the flag after a short delay to allow React to process
-            setTimeout(() => {
-              isIncomingChange.current = false;
-            }, 50);
+            applySync(data);
           }
         } catch (e) {
           console.error("Sync data parsing failed", e);
@@ -55,13 +56,25 @@ export default function App() {
       }
     };
 
+    function applySync(data: any) {
+      isIncomingChange.current = true;
+      setCurrentLessonIndex(data.lesson);
+      setCurrentSlideIndex(data.slide);
+      setShowEngagement(data.engagement);
+      setLastSyncTime(data.timestamp);
+      setTimeout(() => {
+        isIncomingChange.current = false;
+      }, 50);
+    }
+
     window.addEventListener("storage", handleSync);
-    return () => window.removeEventListener("storage", handleSync);
+    return () => {
+      window.removeEventListener("storage", handleSync);
+      syncChannelRef.current?.close();
+    };
   }, [isPresenter, lastSyncTime]);
 
   useEffect(() => {
-    // Only the presenter BROADCASTS changes
-    // And only if the change wasn't triggered by an incoming message
     if (isPresenter && !isIncomingChange.current) {
       const syncData = {
         lesson: currentLessonIndex,
@@ -69,6 +82,11 @@ export default function App() {
         engagement: showEngagement,
         timestamp: Date.now(),
       };
+      
+      // Broadcast via channel
+      syncChannelRef.current?.postMessage(syncData);
+      
+      // Broadcast via localStorage (for other listeners)
       localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
     }
   }, [currentLessonIndex, currentSlideIndex, showEngagement, isPresenter]);
