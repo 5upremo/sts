@@ -228,6 +228,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Which biological agent is known as one of the most poisonous substances on Earth?",
           answer: "Botulinum toxin."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1579154235828-40198282c939?q=80&w=1200&auto=format&fit=crop",
+          caption: "Microscopic Research",
+          description: "Protecting against toxins like Botulinum requires isolating and studying their molecular structure safely in controlled laboratory settings."
         }
       },
       {
@@ -292,6 +297,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Where does sulfur mustard gas tend to settle since it is heavier than air?",
           answer: "In low-lying areas."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1549467231-13a86971936e?q=80&w=1200&auto=format&fit=crop",
+          caption: "Chemical Hazard Training",
+          description: "Understanding the unique properties of chemical agents—like how mustard gas settles in low-lying areas—is vital for survival and protection."
         }
       },
       {
@@ -354,6 +364,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What is the primary goal of a radiological weapon?",
           answer: "To spread toxic radiation and cause mass disruption/terror."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1519067786448-469a7b7d1421?q=80&w=1200&auto=format&fit=crop",
+          caption: "Radiological Hazard Symbol",
+          description: "Radiological weapons prioritize psychological terror and long-term economic disruption over immediate blast lethality."
         }
       },
       {
@@ -375,6 +390,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Why are WMDs considered 'indiscriminate'?",
           answer: "Because they cannot be limited to military targets and inevitably affect civilians on a large scale."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=1200&auto=format&fit=crop",
+          caption: "Global Responsibility",
+          description: "Understanding WMDs leads us to one conclusion: the imperative to regulate these tools of destruction to protect our collective future."
         }
       }
     ]
@@ -424,6 +444,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "How many nanometers wide is the average human hair?",
           answer: "About 25,000 nanometers."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1583946099379-f9c9cb8bc030?q=80&w=1200&auto=format&fit=crop",
+          caption: "Microscopic Scale Comparison",
+          description: "To grasp the nanoworld, one must imagine slicing a single human hair 25,000 times. We are building at the level of the smallest building blocks of life."
         }
       },
       {
@@ -443,6 +468,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Who coined the term 'nanotechnology' and in what year?",
           answer: "Norio Taniguchi in 1974."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1582719471327-593551c1c013?q=80&w=1200&auto=format&fit=crop",
+          caption: "The Birth of a Scientific Field",
+          description: "From a theoretical vision in 1959 to a named discipline in 1974, nanotechnology has become the pinnacle of modern applied science."
         }
       },
       {
@@ -480,6 +510,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "How many times can an Atomic Force Microscope (AFM) magnify a surface?",
           answer: "Up to 100,000,000 times."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1628595304645-83bc3919953f?q=80&w=1200&auto=format&fit=crop",
+          caption: "Atomic Level Visualization",
+          description: "Tools like the AFM don't use light; they use 'probes' to feel atoms, generating 3D maps of the invisible architectures that make up our world."
         }
       },
       {
@@ -600,6 +635,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Which US president significantly funded nanotech research with $500M in the year 2000?",
           answer: "President Bill Clinton."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+          caption: "Shaping the Global Future",
+          description: "The choices we make today about nano-regulation will determine whether this technology builds a utopia of health and energy or creates new global security challenges."
         }
       }
     ]

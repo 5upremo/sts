@@ -95,10 +95,6 @@ export default function App() {
           const element = contentScrollRef.current;
           element.scrollTop = data.scrollRatio * (element.scrollHeight - element.clientHeight);
         }
-
-        setTimeout(() => {
-          isIncomingChange.current = false;
-        }, 50);
       }
     };
 
@@ -139,31 +135,34 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!isIncomingChange.current) {
-      const element = contentScrollRef.current;
-      const scrollRatio = element ? (element.scrollTop / (element.scrollHeight - element.clientHeight || 1)) : 0;
-      const now = Date.now();
-      syncTimestampRef.current = now;
+    if (isIncomingChange.current) {
+      isIncomingChange.current = false;
+      return;
+    }
 
-      const syncData = {
-        lesson: currentLessonIndex,
-        slide: currentSlideIndex,
-        engagement: showEngagement,
-        answerRevealed: isAnswerRevealed,
-        imagePopup: showImagePopup,
-        scrollRatio: scrollRatio,
-        timestamp: now,
-      };
-      
-      syncChannelRef.current?.postMessage(syncData);
-      try {
-        localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
-        if (isAnswerRevealed) {
-          localStorage.setItem("answer_reveal_event", now.toString());
-        }
-      } catch (e) {
-        console.warn("Storage quota exceeded or unavailable", e);
+    const element = contentScrollRef.current;
+    const scrollRatio = element ? (element.scrollTop / (element.scrollHeight - element.clientHeight || 1)) : 0;
+    const now = Date.now();
+    syncTimestampRef.current = now;
+
+    const syncData = {
+      lesson: currentLessonIndex,
+      slide: currentSlideIndex,
+      engagement: showEngagement,
+      answerRevealed: isAnswerRevealed,
+      imagePopup: showImagePopup,
+      scrollRatio: scrollRatio,
+      timestamp: now,
+    };
+    
+    syncChannelRef.current?.postMessage(syncData);
+    try {
+      localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
+      if (isAnswerRevealed) {
+        localStorage.setItem("answer_reveal_event", now.toString());
       }
+    } catch (e) {
+      console.warn("Storage quota exceeded or unavailable", e);
     }
   }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed, showImagePopup]);
 
