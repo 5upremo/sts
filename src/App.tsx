@@ -17,6 +17,40 @@ import { useState, useEffect, useRef } from "react";
 import { LESSONS, Lesson, Slide as SlideType } from "./data/lessons";
 import { SlideVisual } from "./components/PresentationVisuals";
 
+function ImageWithLoader({ src, alt }: { src: string; alt: string }) {
+  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
+
+  return (
+    <div className="w-full h-full relative flex items-center justify-center">
+      {status === "loading" && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900">
+          <div className="w-10 h-10 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin mb-4" />
+          <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">Loading Visual...</p>
+        </div>
+      )}
+      {status === "error" && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 p-8 text-center">
+          <div className="p-4 rounded-2xl bg-red-500/10 text-red-500 mb-4">
+             <ImageIcon className="w-8 h-8 opacity-50" />
+          </div>
+          <p className="text-slate-400 font-medium mb-2">Image Failed to Load</p>
+          <p className="text-[10px] text-slate-600 uppercase tracking-widest">Connection might be blocked or URL expired</p>
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        onLoad={() => setStatus("loaded")}
+        onError={() => setStatus("error")}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${
+          status === "loaded" ? "opacity-100" : "opacity-0"
+        }`}
+        referrerPolicy="no-referrer"
+      />
+    </div>
+  );
+}
+
 export default function App() {
   const [navState, setNavState] = useState({
     lessonIndex: 0,
@@ -609,12 +643,10 @@ export default function App() {
               exit={{ opacity: 0, scale: 0.9, y: 30 }}
               className="relative bg-slate-900 border border-white/10 overflow-hidden rounded-[2rem] max-w-4xl w-full shadow-2xl flex flex-col md:flex-row"
             >
-              <div className="w-full md:w-2/3 aspect-video md:aspect-auto overflow-hidden bg-black">
-                 <img 
+              <div className="w-full md:w-2/3 aspect-video md:aspect-auto overflow-hidden bg-slate-950 relative flex items-center justify-center">
+                 <ImageWithLoader 
                    src={currentSlide.exampleImage.url} 
                    alt={currentSlide.exampleImage.caption}
-                   className="w-full h-full object-cover"
-                   referrerPolicy="no-referrer"
                  />
               </div>
               <div className="w-full md:w-1/3 p-8 md:p-10 flex flex-col justify-center">

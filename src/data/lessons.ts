@@ -44,9 +44,9 @@ export const LESSONS: Lesson[] = [
           answer: "Usually Nuclear, Biological, and Chemical."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1518107594022-a510bf513e70?auto=format&fit=crop&q=80&w=1200",
-          caption: "Mushroom Cloud Silhouette",
-          description: "Representing the global impact and devastating scale of Weapons of Mass Destruction."
+          url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+          caption: "Global Security Perspective",
+          description: "Weapons of Mass Destruction represent a global challenge that transcends borders, requiring international cooperation and stringent policy to ensure the safety of our planet."
         }
       },
       {
@@ -66,6 +66,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What is the primary difference between a conventional weapon and a WMD according to the text?",
           answer: "WMDs produce large-scale destruction and do not choose their targets (affecting civilians)."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=1200&auto=format&fit=crop",
+          caption: "Modern Defense Systems",
+          description: "Comparing traditional defense to WMDs highlights the terrifying difference in scale and the indiscriminate nature of modern mass-destruction tools."
         }
       },
       {
@@ -82,6 +87,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Which type of WMD is often referred to as a 'dirty bomb'?",
           answer: "Radiological weapon of mass destruction."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1548691905-57c36cc8d935?q=80&w=1200&auto=format&fit=crop",
+          caption: "Hazardous Materials Warning",
+          description: "Radiological materials are used in many civilian industries, but if misused in a 'dirty bomb', they pose a significant risk of long-term contamination."
         }
       },
       {
@@ -101,6 +111,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "How did the Mongols use biological warfare in 1346?",
           answer: "By catapulting plague-contaminated corpses over the walls of Caffa."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1599739291060-4578e77dac5a?q=80&w=1200&auto=format&fit=crop",
+          caption: "Historical Fortifications",
+          description: "Ancient sieges, like the Mongol attack on Caffa, were early examples of biological warfare, using disease to break the defenses of fortified cities."
         }
       },
       {
@@ -120,9 +135,9 @@ export const LESSONS: Lesson[] = [
           answer: "Zyklon B (hydrogen cyanide)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/5/54/Atomic_bombing_of_Japan.jpg",
-          caption: "Mushroom Cloud over Hiroshima (1945)",
-          description: "A historical image capturing the moment of the atomic bombing, illustrating the unparalleled power of nuclear weapons."
+          url: "https://images.unsplash.com/photo-1520038411769-701314bdc16c?q=80&w=1200&auto=format&fit=crop",
+          caption: "Remnants of History",
+          description: "The 20th century saw the peak of architectural and scientific tools being turned into engines of mass destruction, marking a dark chapter in human history."
         }
       },
       {
@@ -140,6 +155,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What chemical defoliant was used during the Vietnam War?",
           answer: "Agent Orange."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1200&auto=format&fit=crop",
+          caption: "Environmental Impact",
+          description: "Chemical defoliants like Agent Orange used in Vietnam caused long-term ecological damage and severe health issues for generations."
         }
       },
       {
@@ -163,9 +183,9 @@ export const LESSONS: Lesson[] = [
           answer: "1977 (following the 1967 WHO vaccination campaign)."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1579154235828-40198282c939?auto=format&fit=crop&q=80&w=1200",
-          caption: "Microscopic Pathogens",
-          description: "Biological agents like Anthrax and Smallpox require high-security labs and specialized study to prevent catastrophic outbreaks."
+          url: "https://images.unsplash.com/photo-1583324113626-70df0f43aa2b?q=80&w=1200&auto=format&fit=crop",
+          caption: "High-Security Biolabs",
+          description: "Biological agents like Anthrax and Smallpox require high-security laboratories (BSL-4) and specialized study to prevent and prepare for catastrophic outbreaks."
         }
       },
       {
@@ -185,6 +205,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Which form of plague is more dangerous as a bioweapon because it spreads through the air?",
           answer: "Pneumonic plague."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop",
+          caption: "Public Health Preparedness",
+          description: "Monitoring and responding to outbreaks of pathogens like Ebola or the Plague is a cornerstone of global health security."
         }
       },
       {
@@ -222,6 +247,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What determines the effectiveness of a chemical weapon during deployment?",
           answer: "Freshness, purity, weather conditions, wind direction, and dissemination means."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=1200&auto=format&fit=crop",
+          caption: "Industrial Chemical Safety",
+          description: "Modern chemical security focuses on preventing industrial chemicals from being diverted into weapons programs."
         }
       },
       {
@@ -242,9 +272,9 @@ export const LESSONS: Lesson[] = [
           answer: "VX."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&q=80&w=1200",
-          caption: "Chemical Laboratory Safety",
-          description: "Modern chemical weapons like VX are extremely lethal nerve agents that require advanced protective gear for any level of handling."
+          url: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=1200&auto=format&fit=crop",
+          caption: "Chemical Protective Gear",
+          description: "Handling extremely lethal nerve agents like VX requires full-body chemical protection and advanced filtration systems to prevent fatal exposure."
         }
       },
       {
@@ -281,6 +311,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "Which type of nuclear reaction is more powerful: Fission or Fusion?",
           answer: "Fusion (often 10 to 100 times more explosive)."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1563206767-5b18f218e0de?q=80&w=1200&auto=format&fit=crop",
+          caption: "Atomic Energy Engineering",
+          description: "Harnessing the power of fission and fusion requires some of the most complex engineering ever developed by humanity."
         }
       },
       {
@@ -297,6 +332,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What do we call the radioactive particles that fall back to Earth after a nuclear explosion?",
           answer: "Fallout."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1517089596392-db9a5e93a6f6?q=80&w=1200&auto=format&fit=crop",
+          caption: "Containment of the Atom",
+          description: "While nuclear energy can power cities, its misuse creates fallout—radioactive particles that contaminate the environment for generations."
         }
       },
       {
@@ -419,6 +459,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What is the name of the book written by Eric Drexler in 1991/1992?",
           answer: "Nanosystems: Molecular Machinery Manufacturing and Computation."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+          caption: "Nanoscale Architecture",
+          description: "Building machines at the atomic level requires a complete rethink of engineering principles, moving from macro-assembly to molecular self-construction."
         }
       },
       {
@@ -456,9 +501,9 @@ export const LESSONS: Lesson[] = [
           answer: "They can help correct genetic deficiencies by altering or replacing DNA molecules."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200",
-          caption: "Advanced Nanorobotics (Concept)",
-          description: "Conceptual visualization of a nanorobot navigating the circulatory system to deliver targeted medical treatments."
+          url: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1200&auto=format&fit=crop",
+          caption: "Future of Precision Medicine",
+          description: "Conceptualization of nanotechnology in medicine, where miniature robots could navigate the human body at the molecular level to repair defects."
         }
       },
       {
@@ -480,6 +525,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "How are nanotubes used to improve wind energy?",
           answer: "They are mixed with epoxy to produce lighter but stronger windmill blades for greater electricity output."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1466611653911-954ff21770d1?q=80&w=1200&auto=format&fit=crop",
+          caption: "Nanotech in Green Energy",
+          description: "Nanotechnology is revolutionizing renewable energy by creating lighter, stronger components for wind turbines and higher-efficiency solar panels."
         }
       },
       {
@@ -501,6 +551,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What is the purpose of silver nanoparticles in clothing fabrics?",
           answer: "To help destroy odor-causing bacteria, making the clothes odor-resistant."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200&auto=format&fit=crop",
+          caption: "Smart Textiles",
+          description: "Nano-coatings on fabrics can provide everything from antibacterial properties to extreme water and stain resistance (hydrophobicity)."
         }
       },
       {
@@ -518,6 +573,11 @@ export const LESSONS: Lesson[] = [
         engagementElement: {
           question: "What is the 'Gray Goo' scenario?",
           answer: "A hypothetical scenario where self-replicating nanomachines go out of control and consume all living matter on Earth."
+        },
+        exampleImage: {
+          url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+          caption: "Technological Ethics & Risk",
+          description: "The 'Gray Goo' theory serves as a cautionary tale for runaway technology, emphasizing the critical need for global regulation in nanoscience."
         }
       },
       {
