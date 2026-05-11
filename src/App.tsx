@@ -57,26 +57,28 @@ export default function App() {
           console.error("Sync data parsing failed", e);
         }
       }
+      if (event.key === "answer_reveal_event" && !isPresenter) {
+         // Force reveal check
+         const stored = localStorage.getItem("presentation_sync_data");
+         if (stored) {
+           applySync(JSON.parse(stored));
+         }
+      }
     };
 
     function applySync(data: any) {
-      // Use ref to avoid stale state in the event listener if needed, 
-      // but here we just need to compare timestamps
-      setLastSyncTime(prev => {
-        if (data.timestamp > prev) {
-          isIncomingChange.current = true;
-          setCurrentLessonIndex(data.lesson);
-          setCurrentSlideIndex(data.slide);
-          setShowEngagement(data.engagement);
-          setIsAnswerRevealed(data.answerRevealed || false);
-          
-          setTimeout(() => {
-            isIncomingChange.current = false;
-          }, 50);
-          return data.timestamp;
-        }
-        return prev;
-      });
+      if (data.timestamp > lastSyncTime) {
+        isIncomingChange.current = true;
+        setLastSyncTime(data.timestamp);
+        setCurrentLessonIndex(data.lesson);
+        setCurrentSlideIndex(data.slide);
+        setShowEngagement(data.engagement);
+        setIsAnswerRevealed(data.answerRevealed || false);
+        
+        setTimeout(() => {
+          isIncomingChange.current = false;
+        }, 100);
+      }
     }
 
     window.addEventListener("storage", handleSync);
@@ -101,6 +103,11 @@ export default function App() {
       
       // Broadcast via localStorage (for other listeners)
       localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
+      
+      // Also broadcast a specific "answer_reveal" event if needed
+      if (isAnswerRevealed) {
+        localStorage.setItem("answer_reveal_event", Date.now().toString());
+      }
     }
   }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed, isPresenter]);
 
@@ -338,7 +345,14 @@ export default function App() {
                 )}
 
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Current Context</h4>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Key Discussion Points</h4>
+                  <ul className="text-xs text-slate-400 space-y-1 mb-6 list-disc pl-4">
+                    <li>Ask students for real-world examples.</li>
+                    <li>Emphasize the human impact of the technology.</li>
+                    <li>Connect the slide to previous lessons.</li>
+                  </ul>
+                  
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Current Context & Script</h4>
                   <p className="text-slate-200 leading-relaxed text-sm md:text-lg font-medium font-serif">
                     {currentSlide.speakerNotes}
                   </p>
