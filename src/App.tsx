@@ -94,7 +94,7 @@ export default function App() {
       // Broadcast via localStorage (for other listeners)
       localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
     }
-  }, [currentLessonIndex, currentSlideIndex, showEngagement, isPresenter]);
+  }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed, isPresenter]);
 
   const launchPresenter = () => {
     const url = new URL(window.location.href);
@@ -212,8 +212,8 @@ export default function App() {
               </div>
 
               <div className="flex-1 flex flex-col md:flex-row gap-8 overflow-hidden">
-                <div className="flex-1 slide-content-scroll overflow-y-auto pr-4">
-                  <ul className="space-y-4">
+                <div className="flex-1 slide-content-scroll overflow-y-auto pr-4 flex flex-col">
+                  <ul className="space-y-4 mb-8">
                     {currentSlide.onSlideText.map((text, i) => (
                       <motion.li
                         key={i}
@@ -227,6 +227,38 @@ export default function App() {
                       </motion.li>
                     ))}
                   </ul>
+
+                  {/* On-Slide Engagement (Visible to All) */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.6 }}
+                    className="mt-auto pt-6 border-t border-white/10"
+                  >
+                    <div className="bg-blue-500/5 rounded-2xl border border-blue-500/10 p-5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <HelpCircle className="w-4 h-4 text-blue-400" />
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-blue-400/60">Quick Check</span>
+                      </div>
+                      <p className="text-slate-300 font-medium mb-4">{currentSlide.engagementElement.question}</p>
+                      
+                      <div className="relative">
+                        {!isAnswerRevealed ? (
+                          <div className="h-10 flex items-center justify-center bg-slate-900/50 rounded-xl border border-dashed border-white/10 text-slate-500 text-xs italic">
+                            Waiting for presenter to reveal...
+                          </div>
+                        ) : (
+                          <motion.div
+                            initial={{ scale: 0.95, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="p-3 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 font-bold text-center"
+                          >
+                            {currentSlide.engagementElement.answer}
+                          </motion.div>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
 
                 <div className="w-full md:w-1/2 flex flex-col gap-4">
@@ -409,8 +441,12 @@ export default function App() {
 
                 <div className="rounded-2xl border border-white/5 bg-slate-950/50">
                   <button 
-                    onClick={() => setIsAnswerRevealed(!isAnswerRevealed)}
-                    className="w-full text-left p-6 flex items-center justify-between hover:bg-white/5 transition-colors group"
+                    onClick={() => {
+                      if (isPresenter) {
+                        setIsAnswerRevealed(!isAnswerRevealed);
+                      }
+                    }}
+                    className={`w-full text-left p-6 flex items-center justify-between transition-colors group ${isPresenter ? 'hover:bg-white/5' : 'cursor-default opacity-50'}`}
                   >
                     <span className={`${isAnswerRevealed ? 'text-blue-400' : 'text-slate-500'} font-medium transition-colors`}>
                       {isAnswerRevealed ? "Answer Revealed" : "Reveal Answer"}
