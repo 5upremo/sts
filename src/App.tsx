@@ -24,7 +24,7 @@ export default function App() {
   const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [showSelector, setShowSelector] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const mainScrollRef = useRef<HTMLDivElement>(null);
+  const contentScrollRef = useRef<HTMLDivElement>(null);
 
   // Sync logic
   const isPresenter = new URLSearchParams(window.location.search).get("view") === "presenter";
@@ -68,8 +68,8 @@ export default function App() {
         setShowEngagement(data.engagement);
         setIsAnswerRevealed(data.answerRevealed || false);
         
-        if (data.scrollRatio !== undefined && mainScrollRef.current) {
-          const element = mainScrollRef.current;
+        if (data.scrollRatio !== undefined && contentScrollRef.current) {
+          const element = contentScrollRef.current;
           element.scrollTop = data.scrollRatio * (element.scrollHeight - element.clientHeight);
         }
 
@@ -88,7 +88,7 @@ export default function App() {
 
   useEffect(() => {
     if (!isIncomingChange.current) {
-      const element = mainScrollRef.current;
+      const element = contentScrollRef.current;
       const scrollRatio = element ? (element.scrollTop / (element.scrollHeight - element.clientHeight || 1)) : 0;
       const now = Date.now();
       syncTimestampRef.current = now;
@@ -118,8 +118,8 @@ export default function App() {
   };
 
   useEffect(() => {
-    if (mainScrollRef.current) {
-      mainScrollRef.current.scrollTop = 0;
+    if (contentScrollRef.current) {
+      contentScrollRef.current.scrollTop = 0;
     }
   }, [currentSlideIndex, currentLessonIndex]);
 
@@ -216,28 +216,7 @@ export default function App() {
       </header>
 
       {/* Main Slide Area */}
-      <main 
-        ref={mainScrollRef}
-        onScroll={() => {
-          if (!isIncomingChange.current) {
-            const element = mainScrollRef.current;
-            if (element) {
-              const scrollRatio = element.scrollTop / (element.scrollHeight - element.clientHeight || 1);
-              const syncData = {
-                lesson: currentLessonIndex,
-                slide: currentSlideIndex,
-                engagement: showEngagement,
-                answerRevealed: isAnswerRevealed,
-                scrollRatio: scrollRatio,
-                timestamp: Date.now(),
-              };
-              syncChannelRef.current?.postMessage(syncData);
-              localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
-            }
-          }
-        }}
-        className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-y-auto bg-slate-900"
-      >
+      <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-slate-900">
         <div className="flex-1 relative flex flex-col items-center p-6 md:p-12">
           <AnimatePresence mode="wait">
             <motion.div
@@ -254,8 +233,29 @@ export default function App() {
                 </h2>
               </div>
 
-              <div className="flex-1 flex flex-col md:flex-row gap-6 md:gap-10">
-                <div className="flex-1 flex flex-col">
+              <div className="flex-1 flex flex-col md:flex-row gap-6 md:gap-10 overflow-hidden">
+                <div 
+                  ref={contentScrollRef}
+                  onScroll={() => {
+                    if (!isIncomingChange.current) {
+                      const element = contentScrollRef.current;
+                      if (element) {
+                        const scrollRatio = element.scrollTop / (element.scrollHeight - element.clientHeight || 1);
+                        const syncData = {
+                          lesson: currentLessonIndex,
+                          slide: currentSlideIndex,
+                          engagement: showEngagement,
+                          answerRevealed: isAnswerRevealed,
+                          scrollRatio: scrollRatio,
+                          timestamp: Date.now(),
+                        };
+                        syncChannelRef.current?.postMessage(syncData);
+                        localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
+                      }
+                    }
+                  }}
+                  className="flex-1 flex flex-col overflow-y-auto pr-2 no-scrollbar"
+                >
                   <ul className="space-y-4 mb-6 md:mb-10">
                     {currentSlide.onSlideText.map((text, i) => (
                       <motion.li
@@ -327,16 +327,18 @@ export default function App() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Floating Engagement Trigger */}
-          <div className="fixed bottom-24 right-4 md:bottom-32 md:right-10 z-30">
-            <button
-              onClick={() => setShowEngagement(true)}
-              className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white p-3 md:px-5 md:py-3 rounded-full shadow-xl shadow-blue-900/40 transition-all hover:scale-105 active:scale-95"
-            >
-              <HelpCircle className="w-5 h-5 md:w-6 md:h-6" />
-              <span className="hidden md:inline font-bold">Ask the Class</span>
-            </button>
-          </div>
+          {/* Floating Engagement Trigger (Hidden in Presenter Mode to avoid blocking) */}
+          {!isPresenter && (
+            <div className="fixed bottom-24 right-4 md:bottom-32 md:right-10 z-30">
+              <button
+                onClick={() => setShowEngagement(true)}
+                className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white p-3 md:px-5 md:py-3 rounded-full shadow-xl shadow-blue-900/40 transition-all hover:scale-105 active:scale-95"
+              >
+                <HelpCircle className="w-5 h-5 md:w-6 md:h-6" />
+                <span className="hidden md:inline font-bold">Ask the Class</span>
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Sidebar / Speaker Notes (Only show if not in presenter mode, or if user explicitly toggles it in standard view) */}
@@ -366,14 +368,24 @@ export default function App() {
               </div>
               <div className="flex-1 p-6 overflow-y-auto space-y-6">
                 {isPresenter && (
-                  <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2">
-                    <div className="flex items-center gap-2 text-blue-400">
-                      <HelpCircle className="w-4 h-4" />
-                      <span className="text-xs font-bold uppercase">Pro Tip: Google Meet</span>
+                  <div className="space-y-4">
+                    <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2">
+                      <div className="flex items-center gap-2 text-blue-400">
+                        <HelpCircle className="w-4 h-4" />
+                        <span className="text-xs font-bold uppercase">Pro Tip: Google Meet</span>
+                      </div>
+                      <p className="text-[11px] text-slate-400 leading-tight">
+                        To hide these notes from your audience, share the <strong>original tab</strong> in Google Meet, not this window. These windows will stay synced!
+                      </p>
                     </div>
-                    <p className="text-[11px] text-slate-400 leading-tight">
-                      To hide these notes from your audience, share the <strong>original tab</strong> in Google Meet, not this window. These windows will stay synced!
-                    </p>
+
+                    <button
+                      onClick={() => setShowEngagement(true)}
+                      className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/20"
+                    >
+                      <HelpCircle className="w-5 h-5" />
+                      Trigger "Ask the Class"
+                    </button>
                   </div>
                 )}
 
