@@ -32,7 +32,7 @@ export const LESSONS: Lesson[] = [
           "3. Propose actions/policies to regulate WMD use.",
           "Word Bank: biowarfare, chemical weapon of mass destruction."
         ],
-        speakerNotes: "Welcome to Lesson 4. Today we'll define and analyze Weapons of Mass Destruction. Our goal is to understand not just what they are, but their devastating impacts on both humanity and our global environment. By the end, you'll be challenged to think about policy and regulation.",
+        speakerNotes: "Good morning/afternoon class. Today we are diving into one of the most serious topics in modern security: Weapons of Mass Destruction, or WMDs. These aren't just powerful bombs; they represent a fundamental shift in how humanity can destroy itself. We'll explore the four main types—Biological, Chemical, Nuclear, and Radiological—and look at the devastating footprint they leave on both human lives and the planet. I want you to pay close attention to the word bank on the slide: biowarfare and chemical weapons. By the end of this session, I expect you to be able to argue for specific policies to keep our world safe from these threats.",
         visualSuggestion: "A title slide with a somber, high-contrast silhouette of a mushroom cloud or a biohazard symbol to set the tone.",
         engagementElement: {
           question: "Without looking yet, what are the three main categories of WMD you've heard of?",
@@ -51,7 +51,7 @@ export const LESSONS: Lesson[] = [
           "Major Types: Nuclear, Chemical warfare agents, Biological warfare agents.",
           "Other components: Radiological materials, missile technology, delivery systems (aircraft, ballistic missiles)."
         ],
-        speakerNotes: "According to Cambridge University Press, a weapon is for harm or defense. However, WMDs are a distinct class. Laura Reed emphasizes two factors: the scale of destruction and their indiscriminate nature. Unlike precision strikes, WMDs often devastate civilian populations. We also must consider how they are delivered—using missiles or aircraft.",
+        speakerNotes: "Before we look at the 'Types,' let's define our terms. A weapon is generally a tool for fighting or defense. But according to Laura Reed, a WMD is different because it is 'indiscriminate.' Think about that word. It means it doesn't choose its target. A sniper rifle hits a specific person; a WMD destroys an entire city—soldiers, children, and environment alike. It creates a scale of destruction that standard military force simply cannot match. It’s also important to note that a WMD isn’t just the 'stuff' inside; it’s also the 'delivery system'—the planes or missiles needed to get that payload to its target.",
         visualSuggestion: "A diagram showing a standard weapon vs. the wide-reaching impact area of a WMD to illustrate 'indiscriminate attack'.",
         engagementElement: {
           question: "What is the primary difference between a conventional weapon and a WMD according to the text?",
@@ -67,7 +67,7 @@ export const LESSONS: Lesson[] = [
           "3. Nuclear WMD: Releases massive energy by splitting atoms (fission) of highly enriched uranium or plutonium.",
           "4. Radiological WMD: 'Dirty bombs' that spread dangerous radioactive materials using conventional explosives."
         ],
-        speakerNotes: "We categorize WMDs into four distinct groups. Biological weapons use living organisms or their toxins. Chemical weapons use synthetic or natural chemical agents. Nuclear weapons are the most powerful ever created, relying on fission. Radiological weapons don't use nuclear fusion/fission but rather spread radioactive particles via regular explosions.",
+        speakerNotes: "We generally group WMDs into four categories, often remembered by the acronym CBRN. First, Biological—using 'living' pathogens like viruses or bacteria. Second, Chemical—using toxic 'man-made' substances like mustard gas. Third, Nuclear—the big one, using the power of the atom itself through fission. And fourth, Radiological—often called 'dirty bombs.' They don't explode with nuclear force, but they use regular explosives to spray radioactive 'trash' everywhere, poisoning the area for years. Each has a different 'signature' of destruction, which we will explore one by one.",
         visualSuggestion: "A 2x2 grid with icons for each: a DNA helix (Bio), a gas mask (Chemical), an atom (Nuclear), and a 'caution' symbol with particles spreading (Radiological).",
         engagementElement: {
           question: "Which type of WMD is often referred to as a 'dirty bomb'?",
@@ -86,7 +86,7 @@ export const LESSONS: Lesson[] = [
           "1710 (Russia): Plague-infected corpses hurled over Reval walls (Biological).",
           "1754-1767 (Britain): Smallpox-contaminated blankets given to native tribes (Biological)."
         ],
-        speakerNotes: "WMDs are not modern inventions. As early as 429 BC, Spartans used chemical fumes. The Mongols used 'biological warfare' by literally throwing diseased bodies over city walls during the Siege of Caffa. Perhaps most infamously, the use of smallpox-infected blankets during the French-Indian Wars showed an early, brutal understanding of contagion as a weapon.",
+        speakerNotes: "WMDs are not modern inventions. As early as 429 BC, the Spartans were essentially using 'chemical warfare' by burning sulfur to create toxic fumes. In the Middle Ages, the Mongols famously catapulted plague-ridden corpses over the walls of Caffa—a clear use of a biological agent to win a siege. And even in more recent history, during the colonization of the Americas, smallpox-infected blankets were given to native tribes, proving that microbes can be deadlier than any sword or bullet.",
         visualSuggestion: "A timeline graphic mapping these events from BC to the 18th century.",
         engagementElement: {
           question: "How did the Mongols use biological warfare in 1346?",
@@ -103,7 +103,7 @@ export const LESSONS: Lesson[] = [
           "1942 (Germany): Nazis use Zyklon B (hydrogen cyanide) in gas chambers for mass murder.",
           "1945 (Germany): Sewage-poisoning of reservoirs; (US): Atomic bombs dropped on Hiroshima and Nagasaki."
         ],
-        speakerNotes: "The 20th century saw a massive escalation. WWI was 'the chemist's war' with widespread gas use. Japan's 'Unit 731' conducted horrific biological experiments on human prisoners. The Holocaust utilized Zyklon B for industrial-scale murder. Finally, 1945 marked the only combat use of nuclear weapons in history, changing global politics forever.",
+        speakerNotes: "The 20th century turned WMDs into industrial-scale slaughter. World War I was arguably the 'Chemist's War,' where soldiers were introduced to the horrors of chlorine and mustard gas. During World War II, we saw the absolute dark side of science: Japan's Unit 731 conducted horrific biological trials on human subjects, and the Nazi regime used Zyklon B gas to commit genocide in concentration camps. This era ended with the 1945 atomic bombings of Hiroshima and Nagasaki, which forced the world to realize that we had finally invented a way to erase cities in seconds.",
         visualSuggestion: "Black and white archival-style photos of a WWI gas mask and the Hiroshima mushroom cloud.",
         engagementElement: {
           question: "What was the name of the chemical agent used by Nazis in concentration camp gas chambers?",
@@ -120,7 +120,7 @@ export const LESSONS: Lesson[] = [
           "1975-1983 (Cold War): Alleged use of 'Yellow Rain' (mycotoxins) in Laos/Kampuchea by Soviet-backed forces.",
           "1983-1988 (Iraq): Mustard gas, hydrogen cyanide, and Tabun used against Iran and the Kurds."
         ],
-        speakerNotes: "Even after the horrors of WWII, WMD use continued. The Vietnam War saw massive use of chemical defoliants like Agent Orange, which had long-term ecological and health effects. In the 80s, the Iran-Iraq war saw some of the most concentrated use of chemical weapons, including against civilian Kurdish populations.",
+        speakerNotes: "Even after the horrors of WWII, WMD use continued. The Vietnam War saw massive use of chemical defoliants like Agent Orange, which had long-term ecological and health effects. In the 80s, the world watched in horror as Iraq used deadly nerve agents against Iran, and even against its own Kurdish civilian population in Halabja. These events led to international outcries and the push for global bans like the Chemical Weapons Convention, which over 80 nations have now agreed to.",
         visualSuggestion: "A map highlighting chemical warfare hotspots in Yemen, SE Asia, Rhodesia, and the Middle East.",
         engagementElement: {
           question: "What chemical defoliant was used during the Vietnam War?",
@@ -141,7 +141,7 @@ export const LESSONS: Lesson[] = [
           "   - Potency: 100kg can kill over 3M people; death within 7 days.",
           "   - History: 2001 US Senate/media mail attacks."
         ],
-        speakerNotes: "Biological weapons are particularly terrifying because they can spread invisibly. Smallpox, now eradicated in the wild but kept in labs, is a Category A threat. Anthrax is even more resilient; its spores can survive for decades in soil. A small amount of anthrax powder can have a catastrophic death toll if dispersed correctly.",
+        speakerNotes: "Let's look closer at Biological threats. Smallpox is the 'classic' bioweapon. It’s a Category A threat because it spreads through the air and kills a high percentage of those it infects. Although declared eradicated in 1977, samples are kept in high-security labs because the risk of someone 're-releasing' it is a major security concern. Then there's Anthrax. Its 'spores' are like armored seeds—they stay alive in soil for decades. If inhaled, anthrax is incredibly lethal; just 100 kilograms could theoretically kill millions of people in a large city.",
         visualSuggestion: "Microscope imagery of Variola virus and Bacillus anthracis.",
         engagementElement: {
           question: "When was Smallpox officially declared eradicated worldwide?",
@@ -160,7 +160,7 @@ export const LESSONS: Lesson[] = [
           "   - Severity: Pneumonic plague mortality is 50-90% if untreated.",
           "   - Symptoms: Swollen glands (buboes), fever, chills, bloody mucus."
         ],
-        speakerNotes: "Ebola is known for its high mortality rate and the 'hemorrhagic' nature of the disease. The Plague, which killed half of Europe in the 14th century, remains a bioweapon threat today, especially the pneumonic version which spreads through the air and can kill nearly everyone infected if not treated immediately.",
+        speakerNotes: "Ebola and the Plague represent two different types of biological terror. Ebola causes hemorrhagic fever—essentially making a person bleed internally and externally. It has a terrifyingly high death rate but requires direct contact with bodily fluids to spread. On the other hand, the Plague—the 'Black Death' of the 1300s—can be spread through the air in its 'pneumonic' form. This makes it a perfect bioweapon candidate for someone wanting to cause mass casualties quickly without needing much technology.",
         visualSuggestion: "A diagram of the plague transmission cycle: Rats -> Fleas -> Humans.",
         engagementElement: {
           question: "Which form of plague is more dangerous as a bioweapon because it spreads through the air?",
@@ -178,7 +178,7 @@ export const LESSONS: Lesson[] = [
           "8. Rinderpest (Cattle Plague): Virus affecting ruminant animals; leads to dehydration and death.",
           "9. Nipah Virus: 1999 Malaysia outbreak; 50% mortality rate; neurological symptoms."
         ],
-        speakerNotes: "Beyond human pathogens, bioweapons can target food supplies. Rice Blast and Rinderpest are 'agricultural weapons' designed to cause famine and economic collapse. Meanwhile, Botulinum toxin is so potent that it can cause total paralysis and death from respiratory failure within 24 to 72 hours.",
+        speakerNotes: "Biology can be weaponized in even more subtle ways. Botulinum toxin is arguably the most poisonous substance known to man—it blocks nerve signals, causing total paralysis. But we must also consider 'Agricultural Warfare.' Imagine a country's rice supply destroyed by a engineered fungus like Rice Blast, or cattle wiped out by Rinderpest. You wouldn't need to kill a single person directly to destroy a nation; you just have to starve them. This is why bio-security covers both human and environmental health.",
         visualSuggestion: "Photos of rice plants with grayish lesions and a diseased cattle specimen.",
         engagementElement: {
           question: "Which biological agent is known as one of the most poisonous substances on Earth?",
@@ -197,7 +197,7 @@ export const LESSONS: Lesson[] = [
           " - Choking agents, blister agents, nerve agents.",
           " - Headaches, palpitations, vomiting, convulsions."
         ],
-        speakerNotes: "Chemical weapons are often weather-dependent. Wind direction and purity levels determine their lethality. We distinguish them by their effects: nerve agents attack the nervous system, blister agents burn the skin and lungs, and choking agents prevent breathing. The 1997 treaty was a landmark in trying to eliminate these from global arsenals.",
+        speakerNotes: "Chemical weapons are 'synthetic' agents. Their effectiveness depends heavily on physics—wind direction, temperature, and how they are turned into a mist or gas. We group them by how they attack the body. Choking agents attack the lungs; Blister agents burn the skin and internal airways; and Nerve agents—the deadliest—attack the electrical wiring of the brain. The 1997 global ban was a huge step, but as we’ve seen in recent conflicts, countries or terror groups still find ways to manufacture these toxic compounds.",
         visualSuggestion: "A graphic of a gas mask with labels for the different types of agents (Nerve, Blister, Choking).",
         engagementElement: {
           question: "What determines the effectiveness of a chemical weapon during deployment?",
@@ -215,7 +215,7 @@ export const LESSONS: Lesson[] = [
           "   - 100 times more deadly than Sarin.",
           "   - Causes paralysis and respiratory failure."
         ],
-        speakerNotes: "Nerve agents like Sarin and VX are the pinnacle of chemical lethality. VX is 100 times more deadly than Sarin; even a tiny drop on the skin can be fatal. These substances are designed to overstimulate the nervous system until the body's muscles—including those for breathing—simply stop working.",
+        speakerNotes: "Modern nerve agents like Sarin and VX are the stuff of nightmares. Sarin is colorless and odorless—you wouldn't even know it was there until you started suffocating because your chest muscles stopped working. Soman is even more persistent. But the 'king' of chemical lethality is VX. It's a sticky liquid that doesn't evaporate easily. It's 100 times more deadly than Sarin. A drop on your skin is enough to cause total paralysis and death within minutes because it shuts down the enzyme that tells your muscles to relax.",
         visualSuggestion: "A table comparing the toxicity levels of Sarin vs. VX.",
         engagementElement: {
           question: "Which chemical agent is described as being 100 times more deadly than Sarin?",
@@ -232,7 +232,7 @@ export const LESSONS: Lesson[] = [
           "   - Odors: Garlic, onions, or mustard.",
           "   - Sulfur mustard is heavier than air and settles in low-lying areas."
         ],
-        speakerNotes: "Mustard agents were infamous in WWI. They are 'persistent,' meaning they stay in the environment for a long time. They are heavier than air, so they settle in trenches and low ground. Zyklon B, while used as a 'weapon' by the Nazis, was technically a pesticide repurposed for mass execution.",
+        speakerNotes: "History has seen many variations of these chemicals. Tabun was the first nerve gas ever manufactured. Zyklon B, though a pesticide, became the primary tool of the Holocaust because it is a hydrogen cyanide crystalline structure that releases gas when it hits the air. And we can't forget Mustard Agents from WWI. They aren't always designed to kill instantly; they are designed to incapacitate. They cause massive, painful chemical burns and blisters, filling the lungs with fluid and making soldiers unable to fight or move for weeks.",
         visualSuggestion: "Archival drawing of soldiers in a trench showing how heavy gases sink.",
         engagementElement: {
           question: "Where does sulfur mustard gas tend to settle since it is heavier than air?",
@@ -251,7 +251,7 @@ export const LESSONS: Lesson[] = [
           "   - Occurs in the sun; requires extreme heat/pressure.",
           "   - 10 to 100 times more explosive than fission bombs."
         ],
-        speakerNotes: "Nuclear weapons are in a class of their own. Fission bombs (A-bombs) split heavy atoms. Fusion bombs (H-bombs) fuse light atoms together, replicating the engine of the sun. H-bombs are significantly more powerful, and theoretical physics suggests there is no upper limit to how large a fusion explosion can be.",
+        speakerNotes: "Nuclear weapons are the ultimate WMD. There are two ways to get this energy: Fission, which is splitting a heavy atom like Uranium or Plutonium, and Fusion, which is forcing light atoms together—the same process that powers the sun. Fusion bombs, or H-bombs, are significantly more powerful than the A-bombs dropped in 1945. To put it in perspective, a fusion bomb is usually 10 to 100 times more explosive than a fission bomb. Today, about 30,000 of these weapons exist globally, enough to destroy civilization many times over.",
         visualSuggestion: "A diagram showing the difference between an atom splitting (Fission) and atoms joining (Fusion).",
         engagementElement: {
           question: "Which type of nuclear reaction is more powerful: Fission or Fusion?",
@@ -267,7 +267,7 @@ export const LESSONS: Lesson[] = [
           "3. Direct Radiation: Gamma, alpha, beta particles, and neutrons. Can pass through solid objects.",
           "4. Fallout: Radioactive particles propelled into the blast cloud that fall back to earth, contaminated by radiation. Carried by wind for miles."
         ],
-        speakerNotes: "The damage from a nuclear bomb comes in four waves. First, the blast wave literally crushes structures. Next, the thermal radiation burns everything within sight of the explosion. Third, the immediate radiation penetrates deep into cells. Finally, 'fallout'—radioactive dust—can travel hundreds of miles, poisoning land and water long after the blast is over.",
+        speakerNotes: "The damage from a nuclear bomb comes in four waves. First, the blast wave literally crushes structures. Next, the thermal radiation burns everything within sight of the explosion. Third, the immediate radiation penetrates deep into cells. Finally, 'fallout'—radioactive dust—can travel hundreds of miles, poisoning land and water long after the blast is over. Long after the war is over, the fallout continues to kill.",
         visualSuggestion: "A sequence of four icons illustrating Blast, Heat, Radiation, and Dust clouds.",
         engagementElement: {
           question: "What do we call the radioactive particles that fall back to Earth after a nuclear explosion?",
@@ -284,7 +284,7 @@ export const LESSONS: Lesson[] = [
           "Comparison: Much smaller scale than a nuclear detonation; intended for mass disruption rather than mass killings.",
           "Historical Note: Workers licking radium brushes for watch faces suffered bone cancer (example of radiation danger)."
         ],
-        speakerNotes: "It is important to distinguish 'Dirty Bombs' from Nuclear Bombs. A dirty bomb doesn't cause a nuclear explosion; it uses dynamite to spray radioactive waste. While the initial blast might only kill a few people, the radiation creates a long-term 'exclusion zone' and massive public panic, which is why they are called weapons of mass disruption.",
+        speakerNotes: "Don't confuse a Radiological weapon with a Nuclear bomb. A 'Dirty Bomb' is basically a regular explosive—like a car bomb—surrounded by radioactive hospital or industrial waste. It doesn't create a nuclear explosion. Instead, it uses the blast to scatter radiation over several city blocks. The goal here isn't mass killing—it’s 'Mass Disruption.' It creates terror, shuts down the economy, and makes a city center uninhabitable for years because the cleanup is so difficult and dangerous.",
         visualSuggestion: "An illustration of a 'Dirty Bomb' showing radioactive material dispersed by a regular explosive vs. a nuclear mushroom cloud.",
         engagementElement: {
           question: "What is the primary goal of a radiological weapon?",
@@ -305,7 +305,7 @@ export const LESSONS: Lesson[] = [
           " 2. Compare the lethality of Sarin vs VX.",
           " 3. Explain the long-term impact of Fallout."
         ],
-        speakerNotes: "We've covered the dark history and technical details of these weapons. From plague-infested corpses to the hydrogen bomb, the scale of destruction has only grown. The international community continues to struggle with the regulation and total elimination of these stocks to ensure human survival.",
+        speakerNotes: "To wrap up Lesson 4, remember that WMDs are defined by their scale and their inability to distinguish between a soldier and a civilian. We’ve seen how they have evolved from diseased bodies in the Middle Ages to the atomic age. Today, international treaties like the CWC and NPT are our best defenses, but the technology still exists. As students, I want you to think about: Is it possible to truly ban something once it has been invented? How do we regulate those who refuse to sign treaties? Take a moment to answer the assessment questions on the slide.",
         visualSuggestion: "A collage of the different WMD icons we've used throughout the deck.",
         engagementElement: {
           question: "Why are WMDs considered 'indiscriminate'?",
@@ -330,7 +330,7 @@ export const LESSONS: Lesson[] = [
           "4. Understand implications (Health, Environment, Privacy).",
           "Word Bank: nanorobot, nanomedicine, nanomachine, nanoelectronics."
         ],
-        speakerNotes: "Welcome to Lesson 6. We're shifting from the scale of mass destruction to the scale of the unimaginably small. Nanotechnology is changing everything from the medicine we take to the way we power our cars.",
+        speakerNotes: "Welcome to Lesson 6. We are moving from the scale of the 'Massive' to the scale of the 'Minute.' Nanotechnology is the science of the extremely small, and it is arguably the most revolutionary technology of our generation. It’s not just about smaller gadgets; it’s about a new way of building our world, atom by atom. Today we will define what 'nano' really is, look at the tools that let us see this invisible world, and discuss how these tiny machines might someday live inside our bodies or power our homes.",
         visualSuggestion: "A zoomed-in image of a microchip or a molecular model.",
         engagementElement: {
           question: "What does the prefix 'nano-' usually imply in terms of size?",
@@ -349,7 +349,7 @@ export const LESSONS: Lesson[] = [
           "Nanomachine: Tiny machine capable of doing human tasks at nano level.",
           "Nanorobot: Miniature 'surgeons' implanted in the body to diagnose/treat disorders."
         ],
-        speakerNotes: "To understand 'nano,' think about a human hair. A single hair is roughly 25,000 nanometers wide. We are working at a scale where we can manipulate individual atoms. At this level, the physical properties of materials change—gold might turn red, and insulators might become conductors.",
+        speakerNotes: "To understand 'nano,' think about a human hair. A single hair is roughly 25,000 nanometers wide. We are working at a scale where we can manipulate individual atoms. At this level, the physical properties of materials change—gold might turn red, and insulators might become conductors. This scale allows us to build 'Nanorobots'—tiny surgical machines that could potentially travel through your bloodstream to find and kill cancer cells individually, or 'Nanomachines' that can manufacture materials with zero waste.",
         visualSuggestion: "A scale comparison chart showing a human hair, a red blood cell, a DNA strand, and an atom.",
         engagementElement: {
           question: "How many nanometers wide is the average human hair?",
@@ -368,7 +368,7 @@ export const LESSONS: Lesson[] = [
           "1998: US National Science and Technology Council (NSTC) realizes benefits.",
           "2000: President Bill Clinton funds research with $500M."
         ],
-        speakerNotes: "Richard Feynman is the 'godfather' of nanotech, having predicted in 1959 that we would someday be able to arrange atoms individually. It wasn't until 1981, with the invention of the STM, that we could finally 'see' and manipulate atoms directly. Modern funding really exploded at the turn of the millennium.",
+        speakerNotes: "Richard Feynman is the 'godfather' of nanotech, having predicted in 1959 that we would someday be able to arrange atoms individually. He famously said, 'There is plenty of room at the bottom.' It wasn't until 1981, with the invention of the STM, that we could finally 'see' and manipulate atoms directly. Modern funding really exploded at the turn of the millennium when governments realized whoever masters nanotech masters the future of industry.",
         visualSuggestion: "A portrait of Richard Feynman alongside a timeline of these key dates.",
         engagementElement: {
           question: "Who coined the term 'nanotechnology' and in what year?",
@@ -384,7 +384,7 @@ export const LESSONS: Lesson[] = [
           "Eric Drexler: Popularized molecular nanotechnology (MNT) in the 70s/80s; wrote 'Nanosystems' (1992).",
           "Kim Eric Drexler (Born 1955): American engineer who distinguished nano-ideas from other scientists."
         ],
-        speakerNotes: "These three figures built the foundation of the field. Feynman provided the vision, Taniguchi gave it a name and technical definition, and Drexler brought the concept of 'molecular manufacturing' to the mainstream, imagining a world where machines build themselves atom by atom.",
+        speakerNotes: "These three figures—Feynman, Taniguchi, and Drexler—built the foundation of the field. Feynman provided the vision of manipulating matter by 'one atom or one molecule.' Taniguchi gave it a name and technical definition. and Drexler brought the concept of 'molecular manufacturing' to the mainstream, imagining a world where machines build themselves atom by atom, creating a 'living' factory at the scale of a cell.",
         visualSuggestion: "Side-by-side portraits of Feynman, Taniguchi, and Drexler.",
         engagementElement: {
           question: "What is the name of the book written by Eric Drexler in 1991/1992?",
@@ -400,7 +400,7 @@ export const LESSONS: Lesson[] = [
           "Carbon Nanotubes: Cylindrical allotropes of carbon; highest strength-to-weight ratio (used in light spacecrafts).",
           "Graphene: One-atom-thick sheet of carbon; high electrical resistance changes when other molecules attach (useful for sensors)."
         ],
-        speakerNotes: "Without the AFM and STM, nanotechnology wouldn't exist. These aren't like regular microscopes; they 'feel' the surface of atoms using physical probes. Carbon nanotubes and Graphene are the 'super materials' of the nano-world, offering incredible strength and unique electrical properties.",
+        speakerNotes: "You can't see a nanometer with a regular microscope. You need the Atomic Force Microscope (AFM) or the Scanning Tunneling Microscope (STM). These don't use light; they use physical probes that 'feel' the surface of atoms, much like a blind person uses a cane. The AFM can magnify things up to 100 million times! Besides the tools, we have new materials like Carbon Nanotubes, which are incredibly strong and light, and Graphene, a sheet of carbon just one atom thick that could revolutionize how we build sensors and computers.",
         visualSuggestion: "An image of an AFM machine and a molecular model of a carbon nanotube.",
         engagementElement: {
           question: "How many times can an Atomic Force Microscope (AFM) magnify a surface?",
@@ -419,7 +419,7 @@ export const LESSONS: Lesson[] = [
           " - Remove blockages in arteries.",
           "Other uses: Activity monitors, targeted chemotherapy, nebulizers, insulin pumps."
         ],
-        speakerNotes: "In medicine, nanotech allows for precision that was previously impossible. Imagine a robot smaller than a red blood cell that can swim through your arteries, find a cancer cell, and deliver a toxin directly to it without harming healthy tissue. This is the promise of nanomedicine.",
+        speakerNotes: "In medicine, nanotech allows for precision that was previously impossible. Imagine a robot smaller than a red blood cell that can swim through your arteries, find a cancer cell, and deliver a toxin directly to it without harming healthy tissue. This is the promise of nanomedicine. These 'Nanorobots' could also monitor your brain-wave activity, fix chemical imbalances, or even repair your DNA if you have a genetic disease. This is the future of 'Precision Medicine.'",
         visualSuggestion: "A conceptual illustration of a nanorobot inside a blood vessel interacting with cells.",
         engagementElement: {
           question: "What can nanorobots do to assist people with genetic deficiencies?",
@@ -440,7 +440,7 @@ export const LESSONS: Lesson[] = [
           " - Nanotube-mixed epoxy for lighter, stronger windmill blades.",
           " - Solar cells using silicon nanowire for cheaper energy."
         ],
-        speakerNotes: "Electronics are getting smaller and more efficient thanks to nano-sized transistors. On the environmental front, nanotech offers new ways to clean water and generate green energy. Silicon nanowires could make solar power cheaper than coal or oil by improving efficiency at a lower cost.",
+        speakerNotes: "In your pocket right now is a device powered by nanotech. Nanoelectronics allow us to cram billions of transistors onto a single chip, making your phone faster and lighter while using less power. But the environmental impact is even more exciting. Iron nanoparticles can 'eat' pollution in our water supplies, and silicon nanowires are making solar cells cheaper and more efficient. We're even mixing nanotubes into the epoxy of wind turbine blades to make them lighter and stronger, allowing them to spin in less wind and generate more green energy.",
         visualSuggestion: "Pictures of flexible phone prototypes and high-efficiency wind turbines.",
         engagementElement: {
           question: "How are nanotubes used to improve wind energy?",
@@ -461,7 +461,7 @@ export const LESSONS: Lesson[] = [
           " - Golf club shafts with nano-particles for improved swing quality.",
           " - Reduced air leaks in tennis balls."
         ],
-        speakerNotes: "You likely already use nanotechnology. If you have 'stain-proof' pants or 'odor-resistant' socks, those are often treated with nanoparticles. Lithium-ion batteries in EVs use nanotech to charge faster and last longer. Even tennis rackets are now reinforced at the molecular level for better performance.",
+        speakerNotes: "Nanotechnology is already in your home. Have you ever bought socks that don't smell? Those often contain silver nanoparticles that kill bacteria. Or 'hydrophobic' fabrics that water just bounces off of? Those use a nano-textured surface. In sports, carbon nanotubes are used to make tennis rackets stronger and golf shafts lighter for better swing quality. Even tennis balls are now coated internally with a nano-material to stop air from leaking out, meaning they stay 'bouncy' much longer. It’s making our everyday products smarter and more durable.",
         visualSuggestion: "An image showing water beading off a hydrophobic fabric and a high-performance tennis racket.",
         engagementElement: {
           question: "What is the purpose of silver nanoparticles in clothing fabrics?",
@@ -478,7 +478,7 @@ export const LESSONS: Lesson[] = [
           "Economy: Huge investment required; 20-50 years for full commercialization.",
           "Politics: Need for regulation (synthetic drugs, high-powered weapons) and environmental laws."
         ],
-        speakerNotes: "Nanotech isn't without risks. The 'Gray Goo' theory is a famous nightmare where self-replicating nanobots consume the Earth's biomass. On a more realistic level, we don't fully know the long-term health effects of inhaling tiny particles. Regulation is crucial to ensure these tools are used for good rather than for untraceable weapons or surveillance.",
+        speakerNotes: "But with great power comes great risk. Because nanoparticles are so small, they can bypass our body's natural filters, entering through the lungs or skin and potentially damaging our cells in ways we don't yet understand. There are also national security risks: 'Nano-bombs' or self-replicating viruses. And then there's the 'Gray Goo' scenario—the theoretical fear that self-replicating nanobots might accidentally consume all biomass on Earth. This is why we need strong political and ethical regulations as this technology matures.",
         visualSuggestion: "A conceptual 'Gray Goo' illustration vs. a chart of nano-regulation laws.",
         engagementElement: {
           question: "What is the 'Gray Goo' scenario?",
@@ -500,7 +500,7 @@ export const LESSONS: Lesson[] = [
           " 2. Name two environmental applications of nanotech.",
           " 3. Why is political regulation necessary for nanotechnology?"
         ],
-        speakerNotes: "As we've seen, nanotechnology is the next industrial revolution. It offers incredible benefits but requires careful oversight. We must balance the excitement of 'limitless' potential with the ethical and safety concerns of manipulating the building blocks of life itself.",
+        speakerNotes: "To conclude Lesson 6, we've seen that the nanoworld is where science meets engineering at the most fundamental level. We've gone from Feynman's 1959 vision to a world where nano-medicines and nano-electronics are reality. The benefits are clear, but we must stay vigilant about the health and security risks. Nanotech will likely be the defining technology of the next 50 years. As you review the assessment questions, think about how this technology might change your own career in the future.",
         visualSuggestion: "A final summary slide with a high-tech, futuristic aesthetic.",
         engagementElement: {
           question: "Which US president significantly funded nanotech research with $500M in the year 2000?",
