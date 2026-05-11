@@ -28,7 +28,7 @@ export default function App() {
 
   // Sync logic
   const isPresenter = new URLSearchParams(window.location.search).get("view") === "presenter";
-  const [lastSyncTime, setLastSyncTime] = useState(0);
+  const syncTimestampRef = useRef<number>(0);
   const syncChannelRef = useRef<BroadcastChannel | null>(null);
   const isIncomingChange = useRef(false);
 
@@ -37,10 +37,7 @@ export default function App() {
     try {
       syncChannelRef.current = new BroadcastChannel("presentation_sync_modern");
       syncChannelRef.current.onmessage = (event) => {
-        const data = event.data;
-        if (!isPresenter) {
-          applySync(data);
-        }
+        applySync(event.data);
       };
     } catch (e) {
       console.warn("BroadcastChannel not supported, falling back to storage events", e);
@@ -50,27 +47,22 @@ export default function App() {
     const handleSync = (event: StorageEvent) => {
       if (event.key === "presentation_sync_data" && event.newValue) {
         try {
-          const data = JSON.parse(event.newValue);
-          if (!isPresenter) {
-            applySync(data);
-          }
+          applySync(JSON.parse(event.newValue));
         } catch (e) {
           console.error("Sync data parsing failed", e);
         }
       }
-      if (event.key === "answer_reveal_event" && !isPresenter) {
-         // Force reveal check
+      if (event.key === "answer_reveal_event") {
          const stored = localStorage.getItem("presentation_sync_data");
-         if (stored) {
-           applySync(JSON.parse(stored));
-         }
+         if (stored) applySync(JSON.parse(stored));
       }
     };
 
     function applySync(data: any) {
-      if (data.timestamp > lastSyncTime) {
+      if (data.timestamp > syncTimestampRef.current) {
         isIncomingChange.current = true;
-        setLastSyncTime(data.timestamp);
+        syncTimestampRef.current = data.timestamp;
+        
         setCurrentLessonIndex(data.lesson);
         setCurrentSlideIndex(data.slide);
         setShowEngagement(data.engagement);
@@ -92,12 +84,14 @@ export default function App() {
       window.removeEventListener("storage", handleSync);
       syncChannelRef.current?.close();
     };
-  }, [isPresenter]); // Only depend on isPresenter status
+  }, []);
 
   useEffect(() => {
-    if (isPresenter && !isIncomingChange.current) {
+    if (!isIncomingChange.current) {
       const element = mainScrollRef.current;
       const scrollRatio = element ? (element.scrollTop / (element.scrollHeight - element.clientHeight || 1)) : 0;
+      const now = Date.now();
+      syncTimestampRef.current = now;
 
       const syncData = {
         lesson: currentLessonIndex,
@@ -105,21 +99,17 @@ export default function App() {
         engagement: showEngagement,
         answerRevealed: isAnswerRevealed,
         scrollRatio: scrollRatio,
-        timestamp: Date.now(),
+        timestamp: now,
       };
       
-      // Broadcast via channel
       syncChannelRef.current?.postMessage(syncData);
-      
-      // Broadcast via localStorage (for other listeners)
       localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
       
-      // Also broadcast a specific "answer_reveal" event if needed
       if (isAnswerRevealed) {
-        localStorage.setItem("answer_reveal_event", Date.now().toString());
+        localStorage.setItem("answer_reveal_event", now.toString());
       }
     }
-  }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed, isPresenter]);
+  }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed]);
 
   const launchPresenter = () => {
     const url = new URL(window.location.href);
@@ -229,7 +219,7 @@ export default function App() {
       <main 
         ref={mainScrollRef}
         onScroll={() => {
-          if (isPresenter && !isIncomingChange.current) {
+          if (!isIncomingChange.current) {
             const element = mainScrollRef.current;
             if (element) {
               const scrollRatio = element.scrollTop / (element.scrollHeight - element.clientHeight || 1);
@@ -246,7 +236,7 @@ export default function App() {
             }
           }
         }}
-        className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-y-auto md:overflow-hidden bg-slate-900"
+        className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-y-auto bg-slate-900"
       >
         <div className="flex-1 relative flex flex-col items-center p-6 md:p-12">
           <AnimatePresence mode="wait">
