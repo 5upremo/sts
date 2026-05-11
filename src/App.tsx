@@ -79,21 +79,40 @@ export default function App() {
   useEffect(() => {
     const applySync = (data: any) => {
       if (!data || typeof data !== 'object') return;
-      if (data.timestamp > syncTimestampRef.current) {
+      
+      // If we are getting a timestamp that is equal or newer, we apply it.
+      // We also check if the data actually changed to avoid redundant state updates.
+      if (data.timestamp >= syncTimestampRef.current) {
         isIncomingChange.current = true;
         syncTimestampRef.current = data.timestamp;
         
-        setNavState({
-          lessonIndex: data.lesson ?? 0,
-          slideIndex: data.slide ?? 0,
-          engagement: !!data.engagement,
-          answerRevealed: !!data.answerRevealed,
-          imagePopup: !!data.imagePopup
+        setNavState(prev => {
+          // Optimization: Only update state if values actually changed
+          if (
+            prev.lessonIndex === data.lesson &&
+            prev.slideIndex === data.slide &&
+            prev.engagement === !!data.engagement &&
+            prev.answerRevealed === !!data.answerRevealed &&
+            prev.imagePopup === !!data.imagePopup
+          ) {
+            isIncomingChange.current = false; // Reset if we skip
+            return prev;
+          }
+          return {
+            lessonIndex: data.lesson ?? 0,
+            slideIndex: data.slide ?? 0,
+            engagement: !!data.engagement,
+            answerRevealed: !!data.answerRevealed,
+            imagePopup: !!data.imagePopup
+          };
         });
         
         if (data.scrollRatio !== undefined && contentScrollRef.current) {
           const element = contentScrollRef.current;
-          element.scrollTop = data.scrollRatio * (element.scrollHeight - element.clientHeight);
+          const targetScroll = data.scrollRatio * (element.scrollHeight - element.clientHeight);
+          if (Math.abs(element.scrollTop - targetScroll) > 5) {
+            element.scrollTop = targetScroll;
+          }
         }
       }
     };

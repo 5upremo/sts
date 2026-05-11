@@ -44,7 +44,7 @@ export const LESSONS: Lesson[] = [
           answer: "Usually Nuclear, Biological, and Chemical."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Global Security Perspective",
           description: "Weapons of Mass Destruction represent a global challenge that transcends borders, requiring international cooperation and stringent policy to ensure the safety of our planet."
         }
@@ -68,7 +68,7 @@ export const LESSONS: Lesson[] = [
           answer: "WMDs produce large-scale destruction and do not choose their targets (affecting civilians)."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/159201/military-defense-missile-launcher-159201.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Modern Defense Systems",
           description: "Comparing traditional defense to WMDs highlights the terrifying difference in scale and the indiscriminate nature of modern mass-destruction tools."
         }
@@ -89,7 +89,7 @@ export const LESSONS: Lesson[] = [
           answer: "Radiological weapon of mass destruction."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1548691905-57c36cc8d935?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/1001435/pexels-photo-1001435.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Hazardous Materials Warning",
           description: "Radiological materials are used in many civilian industries, but if misused in a 'dirty bomb', they pose a significant risk of long-term contamination."
         }
@@ -113,7 +113,7 @@ export const LESSONS: Lesson[] = [
           answer: "By catapulting plague-contaminated corpses over the walls of Caffa."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1599739291060-4578e77dac5a?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/161401/castle-fortress-architecture-medieval-161401.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Historical Fortifications",
           description: "Ancient sieges, like the Mongol attack on Caffa, were early examples of biological warfare, using disease to break the defenses of fortified cities."
         }
@@ -135,7 +135,7 @@ export const LESSONS: Lesson[] = [
           answer: "Zyklon B (hydrogen cyanide)."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1520038411769-701314bdc16c?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/1169754/pexels-photo-1169754.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Remnants of History",
           description: "The 20th century saw the peak of architectural and scientific tools being turned into engines of mass destruction, marking a dark chapter in human history."
         }
@@ -157,7 +157,7 @@ export const LESSONS: Lesson[] = [
           answer: "Agent Orange."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/167699/pexels-photo-167699.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Environmental Impact",
           description: "Chemical defoliants like Agent Orange used in Vietnam caused long-term ecological damage and severe health issues for generations."
         }
@@ -183,7 +183,7 @@ export const LESSONS: Lesson[] = [
           answer: "1977 (following the 1967 WHO vaccination campaign)."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1583324113626-70df0f43aa2b?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "High-Security Biolabs",
           description: "Biological agents like Anthrax and Smallpox require high-security laboratories (BSL-4) and specialized study to prevent and prepare for catastrophic outbreaks."
         }
@@ -207,9 +207,9 @@ export const LESSONS: Lesson[] = [
           answer: "Pneumonic plague."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1200&auto=format&fit=crop",
-          caption: "Public Health Preparedness",
-          description: "Monitoring and responding to outbreaks of pathogens like Ebola or the Plague is a cornerstone of global health security."
+          url: "https://images.pexels.com/photos/3951901/pexels-photo-3951901.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          caption: "Public Health Response",
+          description: "During biological threats, global health organizations like the WHO and CDC coordinate rapid response teams to contain outbreaks and distribute life-saving vaccines."
         }
       },
       {
@@ -230,9 +230,9 @@ export const LESSONS: Lesson[] = [
           answer: "Botulinum toxin."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1579154235828-40198282c939?q=80&w=1200&auto=format&fit=crop",
-          caption: "Microscopic Research",
-          description: "Protecting against toxins like Botulinum requires isolating and studying their molecular structure safely in controlled laboratory settings."
+          url: "https://images.pexels.com/photos/3184435/pexels-photo-3184435.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          caption: "Advanced Microscopic Analysis",
+          description: "Protecting against toxins like Botulinum requires identifying and studying their molecular structure safely in controlled, high-containment laboratory settings."
         }
       },
       {
@@ -254,7 +254,7 @@ export const LESSONS: Lesson[] = [
           answer: "Freshness, purity, weather conditions, wind direction, and dissemination means."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/247791/pexels-photo-247791.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Industrial Chemical Safety",
           description: "Modern chemical security focuses on preventing industrial chemicals from being diverted into weapons programs."
         }
@@ -277,9 +277,9 @@ export const LESSONS: Lesson[] = [
           answer: "VX."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?q=80&w=1200&auto=format&fit=crop",
-          caption: "Chemical Protective Gear",
-          description: "Handling extremely lethal nerve agents like VX requires full-body chemical protection and advanced filtration systems to prevent fatal exposure."
+          url: "https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          caption: "Hazardous Chemical Handling",
+          description: "Nerve agents like VX are synthetic compounds that require extreme caution, specialized high-grade lab equipment, and zero-leak containment systems to handle safely."
         }
       },
       {
@@ -299,9 +299,9 @@ export const LESSONS: Lesson[] = [
           answer: "In low-lying areas."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1549467231-13a86971936e?q=80&w=1200&auto=format&fit=crop",
-          caption: "Chemical Hazard Training",
-          description: "Understanding the unique properties of chemical agents—like how mustard gas settles in low-lying areas—is vital for survival and protection."
+          url: "https://images.pexels.com/photos/700446/pexels-photo-700446.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          caption: "Vintage Protective Gear",
+          description: "Understanding the behavior of chemical agents, such as sulfur mustard's tendency to settle in trenches and low areas, led to the development of early gas mask technology."
         }
       },
       {
@@ -323,9 +323,9 @@ export const LESSONS: Lesson[] = [
           answer: "Fusion (often 10 to 100 times more explosive)."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1563206767-5b18f218e0de?q=80&w=1200&auto=format&fit=crop",
-          caption: "Atomic Energy Engineering",
-          description: "Harnessing the power of fission and fusion requires some of the most complex engineering ever developed by humanity."
+          url: "https://images.pexels.com/photos/256262/pexels-photo-256262.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          caption: "Atomic Scale Energy",
+          description: "Releasing the energy stored within the nucleus of an atom provides power for cities, but in a weaponized form, it creates the most destructive force on Earth."
         }
       },
       {
@@ -344,9 +344,9 @@ export const LESSONS: Lesson[] = [
           answer: "Fallout."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1517089596392-db9a5e93a6f6?q=80&w=1200&auto=format&fit=crop",
-          caption: "Containment of the Atom",
-          description: "While nuclear energy can power cities, its misuse creates fallout—radioactive particles that contaminate the environment for generations."
+          url: "https://images.pexels.com/photos/1001435/pexels-photo-1001435.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          caption: "Nevada Test Site Craters",
+          description: "These massive craters in the desert are the lingering scars of mid-20th century nuclear testing, demonstrating the immense ground-shifting power of atomic weapons."
         }
       },
       {
@@ -366,9 +366,9 @@ export const LESSONS: Lesson[] = [
           answer: "To spread toxic radiation and cause mass disruption/terror."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1519067786448-469a7b7d1421?q=80&w=1200&auto=format&fit=crop",
-          caption: "Radiological Hazard Symbol",
-          description: "Radiological weapons prioritize psychological terror and long-term economic disruption over immediate blast lethality."
+          url: "https://images.pexels.com/photos/3951628/pexels-photo-3951628.jpeg?auto=compress&cs=tinysrgb&w=1200",
+          caption: "High-Activity Radioactive Sources",
+          description: "Radiological materials used in medicine and industry are strictly tracked to prevent them from being intercepted and used in radiological dispersal devices."
         }
       },
       {
@@ -392,7 +392,7 @@ export const LESSONS: Lesson[] = [
           answer: "Because they cannot be limited to military targets and inevitably affect civilians on a large scale."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/7412089/pexels-photo-7412089.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Global Responsibility",
           description: "Understanding WMDs leads us to one conclusion: the imperative to regulate these tools of destruction to protect our collective future."
         }
@@ -422,7 +422,7 @@ export const LESSONS: Lesson[] = [
           answer: "Extremely small (one-billionth)."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1614935151651-0bea6508db6b?auto=format&fit=crop&q=80&w=1200",
+          url: "https://images.pexels.com/photos/3031078/pexels-photo-3031078.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "DNA and Molecular Scale",
           description: "Nanotechnology operates at the level of individual molecules, which is the foundational scale of life and matter."
         }
@@ -446,7 +446,7 @@ export const LESSONS: Lesson[] = [
           answer: "About 25,000 nanometers."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1583946099379-f9c9cb8bc030?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Microscopic Scale Comparison",
           description: "To grasp the nanoworld, one must imagine slicing a single human hair 25,000 times. We are building at the level of the smallest building blocks of life."
         }
@@ -470,7 +470,7 @@ export const LESSONS: Lesson[] = [
           answer: "Norio Taniguchi in 1974."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1582719471327-593551c1c013?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/34088/pexels-photo-34088.jpg?auto=compress&cs=tinysrgb&w=1200",
           caption: "The Birth of a Scientific Field",
           description: "From a theoretical vision in 1959 to a named discipline in 1974, nanotechnology has become the pinnacle of modern applied science."
         }
@@ -491,7 +491,7 @@ export const LESSONS: Lesson[] = [
           answer: "Nanosystems: Molecular Machinery Manufacturing and Computation."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Nanoscale Architecture",
           description: "Building machines at the atomic level requires a complete rethink of engineering principles, moving from macro-assembly to molecular self-construction."
         }
@@ -512,7 +512,7 @@ export const LESSONS: Lesson[] = [
           answer: "Up to 100,000,000 times."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1628595304645-83bc3919953f?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/356079/pexels-photo-356079.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Atomic Level Visualization",
           description: "Tools like the AFM don't use light; they use 'probes' to feel atoms, generating 3D maps of the invisible architectures that make up our world."
         }
@@ -536,7 +536,7 @@ export const LESSONS: Lesson[] = [
           answer: "They can help correct genetic deficiencies by altering or replacing DNA molecules."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Future of Precision Medicine",
           description: "Conceptualization of nanotechnology in medicine, where miniature robots could navigate the human body at the molecular level to repair defects."
         }
@@ -562,7 +562,7 @@ export const LESSONS: Lesson[] = [
           answer: "They are mixed with epoxy to produce lighter but stronger windmill blades for greater electricity output."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1466611653911-954ff21770d1?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/414860/pexels-photo-414860.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Nanotech in Green Energy",
           description: "Nanotechnology is revolutionizing renewable energy by creating lighter, stronger components for wind turbines and higher-efficiency solar panels."
         }
@@ -588,7 +588,7 @@ export const LESSONS: Lesson[] = [
           answer: "To help destroy odor-causing bacteria, making the clothes odor-resistant."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1614850523296-d8c1af93d400?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/2097/pexels-photo-2097.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Smart Textiles",
           description: "Nano-coatings on fabrics can provide everything from antibacterial properties to extreme water and stain resistance (hydrophobicity)."
         }
@@ -610,7 +610,7 @@ export const LESSONS: Lesson[] = [
           answer: "A hypothetical scenario where self-replicating nanomachines go out of control and consume all living matter on Earth."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Technological Ethics & Risk",
           description: "The 'Gray Goo' theory serves as a cautionary tale for runaway technology, emphasizing the critical need for global regulation in nanoscience."
         }
@@ -637,7 +637,7 @@ export const LESSONS: Lesson[] = [
           answer: "President Bill Clinton."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop",
+          url: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=1200",
           caption: "Shaping the Global Future",
           description: "The choices we make today about nano-regulation will determine whether this technology builds a utopia of health and energy or creates new global security challenges."
         }
