@@ -9,16 +9,19 @@ import {
   Eye,
   Settings,
   X,
+  MonitorPlay,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { LESSONS, Lesson, Slide as SlideType } from "./data/lessons";
+import { SlideVisual } from "./components/PresentationVisuals";
 
 export default function App() {
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [showNotes, setShowNotes] = useState(false);
   const [showEngagement, setShowEngagement] = useState(false);
+  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [showSelector, setShowSelector] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -61,6 +64,7 @@ export default function App() {
       setCurrentLessonIndex(data.lesson);
       setCurrentSlideIndex(data.slide);
       setShowEngagement(data.engagement);
+      setIsAnswerRevealed(data.answerRevealed || false);
       setLastSyncTime(data.timestamp);
       setTimeout(() => {
         isIncomingChange.current = false;
@@ -80,6 +84,7 @@ export default function App() {
         lesson: currentLessonIndex,
         slide: currentSlideIndex,
         engagement: showEngagement,
+        answerRevealed: isAnswerRevealed,
         timestamp: Date.now(),
       };
       
@@ -108,6 +113,7 @@ export default function App() {
     if (currentSlideIndex < currentLesson.slides.length - 1) {
       setCurrentSlideIndex(currentSlideIndex + 1);
       setShowEngagement(false);
+      setIsAnswerRevealed(false);
     } else if (currentLessonIndex < LESSONS.length - 1) {
       // Prompt to go to next lesson?
     }
@@ -117,6 +123,7 @@ export default function App() {
     if (currentSlideIndex > 0) {
       setCurrentSlideIndex(currentSlideIndex - 1);
       setShowEngagement(false);
+      setIsAnswerRevealed(false);
     }
   };
 
@@ -154,12 +161,6 @@ export default function App() {
           </h1>
         </div>
         <div className="flex items-center gap-4">
-          {!isPresenter && (
-            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-[10px] font-bold uppercase tracking-widest border border-green-500/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-              Audience View: Synced
-            </div>
-          )}
           {isPresenter && (
             <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-widest border border-blue-500/20">
               <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
@@ -168,10 +169,10 @@ export default function App() {
           )}
           <button
             onClick={launchPresenter}
-            className="hidden md:flex text-xs font-bold px-3 py-1.5 rounded-full bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition-colors items-center gap-2 border border-amber-500/30"
-            title="Opens a second window with speaker notes and controls"
+            className="hidden md:flex p-2 rounded-full bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition-colors items-center gap-2 border border-amber-500/30"
+            title="Launch Presenter Mode (Opens in new window)"
           >
-            <Maximize2 className="w-3 h-3" /> Launch Presenter View
+            <MonitorPlay className="w-4 h-4" />
           </button>
           <button
             onClick={() => setShowSelector(true)}
@@ -210,41 +211,38 @@ export default function App() {
                 </h2>
               </div>
 
-              <div className="flex-1 slide-content-scroll overflow-y-auto pr-4">
-                <ul className="space-y-4">
-                  {currentSlide.onSlideText.map((text, i) => (
-                    <motion.li
-                      key={i}
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + i * 0.05 }}
-                      className="text-lg md:text-xl text-slate-200 flex gap-3"
-                    >
-                      <span className="text-blue-500 mt-1.5 flex-shrink-0">•</span>
-                      <span>{text}</span>
-                    </motion.li>
-                  ))}
-                </ul>
+              <div className="flex-1 flex flex-col md:flex-row gap-8 overflow-hidden">
+                <div className="flex-1 slide-content-scroll overflow-y-auto pr-4">
+                  <ul className="space-y-4">
+                    {currentSlide.onSlideText.map((text, i) => (
+                      <motion.li
+                        key={i}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 + i * 0.05 }}
+                        className="text-lg md:text-xl text-slate-200 flex gap-3"
+                      >
+                        <span className="text-blue-500 mt-1.5 flex-shrink-0">•</span>
+                        <span>{text}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
 
-                {/* Visual Suggestion Box */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                  className="mt-12 p-6 rounded-2xl bg-slate-800/50 border border-white/5 flex gap-4 items-start"
-                >
-                  <div className="p-2 rounded-lg bg-indigo-500/20 text-indigo-400">
-                    <Eye className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-400 mb-1">
-                      Visual Suggestion
-                    </h4>
-                    <p className="text-sm text-slate-400 italic">
-                      {currentSlide.visualSuggestion}
-                    </p>
-                  </div>
-                </motion.div>
+                <div className="w-full md:w-1/2 flex flex-col gap-4">
+                  <SlideVisual slideId={currentSlide.id} />
+                  
+                  {/* Visual Suggestion Label */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                    className="flex items-center gap-2 text-[10px] uppercase font-bold tracking-widest text-slate-500"
+                  >
+                    <div className="w-8 h-px bg-slate-800" />
+                    Interactive Visualization
+                  </motion.div>
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -357,24 +355,16 @@ export default function App() {
           </button>
         </div>
 
-        <button
-          onClick={() => setShowNotes(!showNotes)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
-            showNotes ? "bg-amber-500/20 text-amber-400 ring-1 ring-amber-500/50" : "bg-white/5 text-slate-400"
-          }`}
-        >
-          <Info className="w-5 h-5" />
-          <span className="hidden md:inline font-medium">Speaker Notes (N)</span>
-        </button>
-
-        <div className="w-32 md:w-64 h-1.5 bg-slate-800 rounded-full overflow-hidden">
-          <motion.div
-            className="h-full bg-blue-500"
-            initial={false}
-            animate={{
-              width: `${((currentSlideIndex + 1) / currentLesson.slides.length) * 100}%`,
-            }}
-          />
+        <div className="flex-1 px-8">
+          <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-blue-500"
+              initial={false}
+              animate={{
+                width: `${((currentSlideIndex + 1) / currentLesson.slides.length) * 100}%`,
+              }}
+            />
+          </div>
         </div>
       </footer>
 
@@ -417,20 +407,28 @@ export default function App() {
                   </p>
                 </div>
 
-                <div className="group overflow-hidden rounded-2xl border border-white/5 bg-slate-950/50">
-                  <button className="w-full text-left p-6 flex items-center justify-between hover:bg-white/5 transition-colors group-hover:cursor-help">
-                    <span className="text-slate-500 group-hover:text-blue-400 font-medium transition-colors">
-                      Reveal Answer
+                <div className="rounded-2xl border border-white/5 bg-slate-950/50">
+                  <button 
+                    onClick={() => setIsAnswerRevealed(!isAnswerRevealed)}
+                    className="w-full text-left p-6 flex items-center justify-between hover:bg-white/5 transition-colors group"
+                  >
+                    <span className={`${isAnswerRevealed ? 'text-blue-400' : 'text-slate-500'} font-medium transition-colors`}>
+                      {isAnswerRevealed ? "Answer Revealed" : "Reveal Answer"}
                     </span>
-                    <ChevronRight className="w-5 h-5 text-slate-600 group-hover:text-blue-400 transition-transform group-hover:translate-x-1" />
+                    <ChevronRight className={`w-5 h-5 transition-transform ${isAnswerRevealed ? 'rotate-90 text-blue-400' : 'text-slate-600'}`} />
                   </button>
-                  <div className="overflow-hidden max-h-0 group-hover:max-h-40 transition-all duration-500">
+                  <motion.div 
+                    initial={false}
+                    animate={{ maxHeight: isAnswerRevealed ? 200 : 0, opacity: isAnswerRevealed ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
                     <div className="p-6 pt-0 border-t border-white/5">
                       <p className="text-xl text-green-400 font-semibold">
                         {currentSlide.engagementElement.answer}
                       </p>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
               </div>
 
