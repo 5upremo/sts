@@ -172,9 +172,9 @@ export default function App() {
   }, [currentSlideIndex, currentLessonIndex]);
 
   return (
-    <div className="presentation-container bg-slate-900 text-white relative">
+    <div className="presentation-container bg-slate-900 text-white relative h-screen flex flex-col overflow-hidden">
       {/* Header */}
-      <header className="p-3 md:p-4 flex items-center justify-between border-b border-white/10 bg-slate-900/50 backdrop-blur-md z-10 sticky top-0">
+      <header className="p-3 md:p-4 flex items-center justify-between border-b border-white/10 bg-slate-900/50 backdrop-blur-md z-10">
         <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
           <BookOpen className="text-blue-400 w-5 h-5 md:w-6 md:h-6 flex-shrink-0" />
           <h1 className="text-[10px] md:text-sm font-semibold tracking-wide uppercase text-slate-400 truncate max-w-[120px] md:max-w-none">
@@ -217,7 +217,7 @@ export default function App() {
 
       {/* Main Slide Area */}
       <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-slate-900">
-        <div className="flex-1 relative flex flex-col items-center p-6 md:p-12">
+        <div className={`relative flex flex-col items-center p-6 md:p-12 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'}`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={`${currentLesson.id}-${currentSlide.id}`}
@@ -327,34 +327,37 @@ export default function App() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Floating Engagement Trigger (Hidden in Presenter Mode to avoid blocking) */}
+          {/* Floating Engagement Trigger (Hidden in Presenter Mode to avoid blocking footer navigation) */}
           {!isPresenter && (
-            <div className="fixed bottom-24 right-4 md:bottom-32 md:right-10 z-30">
+            <div className="fixed bottom-28 right-6 md:bottom-32 md:right-10 z-30">
               <button
                 onClick={() => setShowEngagement(true)}
-                className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white p-3 md:px-5 md:py-3 rounded-full shadow-xl shadow-blue-900/40 transition-all hover:scale-105 active:scale-95"
+                className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white p-4 md:px-5 md:py-3 rounded-full shadow-2xl shadow-blue-900/50 transition-all hover:scale-105 active:scale-95 border border-white/20"
               >
-                <HelpCircle className="w-5 h-5 md:w-6 md:h-6" />
+                <HelpCircle className="w-6 h-6" />
                 <span className="hidden md:inline font-bold">Ask the Class</span>
               </button>
             </div>
           )}
         </div>
 
-        {/* Sidebar / Speaker Notes (Only show if not in presenter mode, or if user explicitly toggles it in standard view) */}
+        {/* Sidebar / Speaker Notes */}
         <AnimatePresence>
           {(showNotes || isPresenter) && (
             <motion.aside
-              initial={{ width: 0, opacity: 0 }}
-              animate={{ width: isPresenter ? "100%" : 400, opacity: 1 }}
-              exit={{ width: 0, opacity: 0 }}
-              className={`bg-slate-950/80 backdrop-blur-xl border-l border-white/10 flex flex-col ${isPresenter ? 'md:max-w-md' : 'hidden md:flex'}`}
+              initial={{ x: 300, opacity: 0 }}
+              animate={{ 
+                x: 0,
+                opacity: 1,
+              }}
+              exit={{ x: 300, opacity: 0 }}
+              className={`bg-slate-950/90 backdrop-blur-2xl border-l border-white/10 flex flex-col z-20 ${isPresenter ? 'flex-1 md:flex-none md:w-[400px]' : 'w-full md:w-[400px] fixed md:relative inset-0 md:inset-auto'}`}
             >
               <div className="p-6 border-b border-white/10 flex items-center justify-between bg-amber-500/10">
                 <div className="flex items-center gap-2 text-amber-400">
                   <Info className="w-5 h-5" />
-                  <h3 className="font-bold uppercase tracking-tighter">
-                    {isPresenter ? "Presenter: Speaker Notes" : "Speaker Notes"}
+                  <h3 className="font-bold uppercase tracking-tighter text-sm">
+                    {isPresenter ? "Presenter View" : "Speaker Notes"}
                   </h3>
                 </div>
                 {!isPresenter && (
@@ -372,16 +375,16 @@ export default function App() {
                     <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2">
                       <div className="flex items-center gap-2 text-blue-400">
                         <HelpCircle className="w-4 h-4" />
-                        <span className="text-xs font-bold uppercase">Pro Tip: Google Meet</span>
+                        <span className="text-xs font-bold uppercase tracking-widest">Pro Tip: Sharing</span>
                       </div>
-                      <p className="text-[11px] text-slate-400 leading-tight">
-                        To hide these notes from your audience, share the <strong>original tab</strong> in Google Meet, not this window. These windows will stay synced!
+                      <p className="text-[10px] text-slate-400 leading-relaxed">
+                        Share your <span className="text-blue-400 font-semibold">Audience Tab</span> to students, while keeping this <span className="text-amber-400 font-semibold">Presenter Window</span> on your private screen.
                       </p>
                     </div>
 
                     <button
                       onClick={() => setShowEngagement(true)}
-                      className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/20"
+                      className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/40 hover:scale-[1.02] active:scale-[0.98]"
                     >
                       <HelpCircle className="w-5 h-5" />
                       Trigger "Ask the Class"
