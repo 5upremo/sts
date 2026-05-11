@@ -23,30 +23,51 @@ export default function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Sync logic
-  const isPresenterRef = useRef(new URLSearchParams(window.location.search).get("view") === "presenter");
-  const channelRef = useRef(new BroadcastChannel("presentation_sync"));
+  const isPresenter = new URLSearchParams(window.location.search).get("view") === "presenter";
+  const [lastSyncTime, setLastSyncTime] = useState(0);
+  
+  // Use a ref to track if a state change was caused by an incoming sync message
+  const isIncomingChange = useRef(false);
 
   useEffect(() => {
-    const channel = channelRef.current;
-    const onMessage = (event: MessageEvent) => {
-      if (event.data.type === "SYNC_STATE") {
-        setCurrentLessonIndex(event.data.lesson);
-        setCurrentSlideIndex(event.data.slide);
-        setShowEngagement(event.data.engagement);
+    const handleSync = (event: StorageEvent) => {
+      if (event.key === "presentation_sync_data" && event.newValue) {
+        const data = JSON.parse(event.newValue);
+        
+        // Only update if the message is newer and we aren't the presenter 
+        // (audience follows presenter)
+        if (!isPresenter && data.timestamp > lastSyncTime) {
+          isIncomingChange.current = true;
+          setCurrentLessonIndex(data.lesson);
+          setCurrentSlideIndex(data.slide);
+          setShowEngagement(data.engagement);
+          setLastSyncTime(data.timestamp);
+          
+          // Reset the flag after a short delay to allow React to process
+          setTimeout(() => {
+            isIncomingChange.current = false;
+          }, 50);
+        }
       }
     };
-    channel.addEventListener("message", onMessage);
-    return () => channel.removeEventListener("message", onMessage);
-  }, []);
+
+    window.addEventListener("storage", handleSync);
+    return () => window.removeEventListener("storage", handleSync);
+  }, [isPresenter, lastSyncTime]);
 
   useEffect(() => {
-    channelRef.current.postMessage({
-      type: "SYNC_STATE",
-      lesson: currentLessonIndex,
-      slide: currentSlideIndex,
-      engagement: showEngagement,
-    });
-  }, [currentLessonIndex, currentSlideIndex, showEngagement]);
+    // Only the presenter BROADCASTS changes
+    // And only if the change wasn't triggered by an incoming message
+    if (isPresenter && !isIncomingChange.current) {
+      const syncData = {
+        lesson: currentLessonIndex,
+        slide: currentSlideIndex,
+        engagement: showEngagement,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
+    }
+  }, [currentLessonIndex, currentSlideIndex, showEngagement, isPresenter]);
 
   const launchPresenter = () => {
     const url = new URL(window.location.href);
@@ -107,6 +128,18 @@ export default function App() {
           </h1>
         </div>
         <div className="flex items-center gap-4">
+          {!isPresenter && (
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-[10px] font-bold uppercase tracking-widest border border-green-500/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              Audience View: Synced
+            </div>
+          )}
+          {isPresenter && (
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold uppercase tracking-widest border border-blue-500/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+              Presenter Mode: Master
+            </div>
+          )}
           <button
             onClick={launchPresenter}
             className="hidden md:flex text-xs font-bold px-3 py-1.5 rounded-full bg-amber-500/20 text-amber-400 hover:bg-amber-500/30 transition-colors items-center gap-2 border border-amber-500/30"
@@ -204,21 +237,21 @@ export default function App() {
 
         {/* Sidebar / Speaker Notes (Only show if not in presenter mode, or if user explicitly toggles it in standard view) */}
         <AnimatePresence>
-          {(showNotes || isPresenterRef.current) && (
+          {(showNotes || isPresenter) && (
             <motion.aside
               initial={{ width: 0, opacity: 0 }}
-              animate={{ width: isPresenterRef.current ? "100%" : 400, opacity: 1 }}
+              animate={{ width: isPresenter ? "100%" : 400, opacity: 1 }}
               exit={{ width: 0, opacity: 0 }}
-              className={`bg-slate-950/80 backdrop-blur-xl border-l border-white/10 flex flex-col ${isPresenterRef.current ? 'md:max-w-md' : 'hidden md:flex'}`}
+              className={`bg-slate-950/80 backdrop-blur-xl border-l border-white/10 flex flex-col ${isPresenter ? 'md:max-w-md' : 'hidden md:flex'}`}
             >
               <div className="p-6 border-b border-white/10 flex items-center justify-between bg-amber-500/10">
                 <div className="flex items-center gap-2 text-amber-400">
                   <Info className="w-5 h-5" />
                   <h3 className="font-bold uppercase tracking-tighter">
-                    {isPresenterRef.current ? "Presenter: Speaker Notes" : "Speaker Notes"}
+                    {isPresenter ? "Presenter: Speaker Notes" : "Speaker Notes"}
                   </h3>
                 </div>
-                {!isPresenterRef.current && (
+                {!isPresenter && (
                   <button
                     onClick={() => setShowNotes(false)}
                     className="hover:text-amber-400 transition-colors"
@@ -228,7 +261,7 @@ export default function App() {
                 )}
               </div>
               <div className="flex-1 p-6 overflow-y-auto space-y-6">
-                {isPresenterRef.current && (
+                {isPresenter && (
                   <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2">
                     <div className="flex items-center gap-2 text-blue-400">
                       <HelpCircle className="w-4 h-4" />
@@ -247,7 +280,7 @@ export default function App() {
                   </p>
                 </div>
                 
-                {isPresenterRef.current && (
+                {isPresenter && (
                   <div className="pt-6 border-t border-white/10 space-y-4">
                     <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Navigation Controls</h4>
                     <div className="grid grid-cols-2 gap-3">
