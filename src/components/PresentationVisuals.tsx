@@ -31,6 +31,48 @@ interface VisualProps {
 
 export const SlideVisual: React.FC<VisualProps> = ({ slideId }) => {
   switch (slideId) {
+    case "wmd-title":
+      return (
+        <div className="absolute inset-0 z-0 overflow-hidden opacity-20 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-red-500/10 blur-[120px] rounded-full" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/10 blur-[100px] rounded-full" />
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] border border-white/5 rounded-full"
+          />
+        </div>
+      );
+
+    case "nt-title":
+      return (
+        <div className="absolute inset-0 z-0 overflow-hidden opacity-20 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-500/10 blur-[120px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 blur-[100px] rounded-full" />
+          <div className="grid grid-cols-10 grid-rows-10 gap-4 absolute inset-0 opacity-10">
+            {Array.from({ length: 100 }).map((_, i) => (
+              <div key={i} className="w-1 h-1 bg-white rounded-full" />
+            ))}
+          </div>
+        </div>
+      );
+
+    case "wmd-references":
+      return (
+        <div className="absolute inset-0 z-0 overflow-hidden opacity-10 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-500/5 via-transparent to-transparent" />
+          <BookOpen className="absolute -right-20 -bottom-20 w-96 h-96 text-white/[0.03]" />
+        </div>
+      );
+
+    case "nt-references":
+      return (
+        <div className="absolute inset-0 z-0 overflow-hidden opacity-10 pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/5 via-transparent to-transparent" />
+          <BookOpen className="absolute -right-20 -bottom-20 w-96 h-96 text-white/[0.03]" />
+        </div>
+      );
+
     case "intro":
       return (
         <div className="relative w-full h-64 md:h-80 flex items-center justify-center bg-slate-950 rounded-3xl overflow-hidden border border-white/5">

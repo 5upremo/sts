@@ -11,6 +11,19 @@ import {
   X,
   MonitorPlay,
   Image as ImageIcon,
+  Bomb,
+  Atom,
+  Globe,
+  Shield,
+  Microscope,
+  Library,
+  History,
+  User,
+  Zap,
+  AlertTriangle,
+  Wind,
+  Cpu,
+  FlaskConical,
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
@@ -24,14 +37,14 @@ function ImageWithLoader({ src, alt }: { src: string; alt: string }) {
     <div className="w-full h-full relative flex items-center justify-center">
       {status === "loading" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900">
-          <div className="w-10 h-10 border-4 border-blue-500/20 border-t-blue-500 rounded-full animate-spin mb-4" />
+          <div className="w-10 h-10 border-4 border-white/10 border-t-white rounded-full animate-spin mb-4" />
           <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">Loading Visual...</p>
         </div>
       )}
       {status === "error" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950 p-8 text-center">
           <div className="p-4 rounded-2xl bg-red-500/10 text-red-500 mb-4">
-             <ImageIcon className="w-8 h-8 opacity-50" />
+            <ImageIcon className="w-8 h-8 opacity-50" />
           </div>
           <p className="text-slate-400 font-medium mb-2">Image Failed to Load</p>
           <p className="text-[10px] text-slate-600 uppercase tracking-widest">Connection might be blocked or URL expired</p>
@@ -42,9 +55,8 @@ function ImageWithLoader({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         onLoad={() => setStatus("loaded")}
         onError={() => setStatus("error")}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${
-          status === "loaded" ? "opacity-100" : "opacity-0"
-        }`}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${status === "loaded" ? "opacity-100" : "opacity-0"
+          }`}
         referrerPolicy="no-referrer"
       />
     </div>
@@ -79,13 +91,13 @@ export default function App() {
   useEffect(() => {
     const applySync = (data: any) => {
       if (!data || typeof data !== 'object') return;
-      
+
       // If we are getting a timestamp that is equal or newer, we apply it.
       // We also check if the data actually changed to avoid redundant state updates.
       if (data.timestamp >= syncTimestampRef.current) {
         isIncomingChange.current = true;
         syncTimestampRef.current = data.timestamp;
-        
+
         setNavState(prev => {
           // Optimization: Only update state if values actually changed
           if (
@@ -106,7 +118,7 @@ export default function App() {
             imagePopup: !!data.imagePopup
           };
         });
-        
+
         if (data.scrollRatio !== undefined && contentScrollRef.current) {
           const element = contentScrollRef.current;
           const targetScroll = data.scrollRatio * (element.scrollHeight - element.clientHeight);
@@ -173,7 +185,7 @@ export default function App() {
       scrollRatio: scrollRatio,
       timestamp: now,
     };
-    
+
     syncChannelRef.current?.postMessage(syncData);
     try {
       localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
@@ -204,6 +216,9 @@ export default function App() {
   const currentLesson = LESSONS[currentLessonIndex] || LESSONS[0];
   const currentSlide = currentLesson?.slides?.[currentSlideIndex] || currentLesson?.slides?.[0];
 
+  const isTitleSlide = currentSlide?.id?.toLowerCase().includes("title");
+  const isReferenceSlide = currentSlide?.id?.toLowerCase().includes("references");
+
   if (!currentSlide) {
     return <div className="bg-slate-900 text-white p-8">Loading or error in slide data...</div>;
   }
@@ -218,7 +233,14 @@ export default function App() {
         imagePopup: false
       }));
     } else if (currentLessonIndex < LESSONS.length - 1) {
-      // Prompt to go to next lesson?
+      // Transition to next lesson
+      setNavState({
+        lessonIndex: currentLessonIndex + 1,
+        slideIndex: 0,
+        engagement: false,
+        answerRevealed: false,
+        imagePopup: false
+      });
     }
   };
 
@@ -285,7 +307,7 @@ export default function App() {
             onClick={() => setShowSelector(true)}
             className="text-[10px] md:text-xs font-medium px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors flex items-center gap-2"
           >
-            <Settings className="w-3 h-3 md:w-4 md:h-4" /> 
+            <Settings className="w-3 h-3 md:w-4 md:h-4" />
             <span className="hidden sm:inline">Change Lesson</span>
           </button>
           <button
@@ -303,7 +325,7 @@ export default function App() {
 
       {/* Main Slide Area */}
       <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-slate-900">
-        <div className={`relative flex flex-col items-center p-6 md:p-12 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'}`}>
+        <div className={`relative flex flex-col items-center p-6 md:p-12 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'} ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'justify-center min-h-0' : ''}`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={`${currentLesson.id}-${currentSlide.id}`}
@@ -311,16 +333,36 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className="w-full max-w-5xl h-full flex flex-col"
+              className={`w-full max-w-5xl h-full flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center justify-center' : ''}`}
             >
-              <div className="mb-4 md:mb-8">
-                <h2 className="text-2xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 leading-tight">
+              <div className={`mb-4 md:mb-8 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-center' : ''}`}>
+                <h2 className={`${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-4xl md:text-7xl mb-4' : 'text-2xl md:text-5xl'} font-bold text-transparent bg-clip-text bg-gradient-to-r ${currentLesson.theme.gradient} leading-tight`}>
                   {currentSlide.title}
                 </h2>
+                {(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
+                  <p className="text-slate-500 font-mono tracking-[0.5em] uppercase text-[10px] md:text-xs">
+                    {isTitleSlide ? "BSIT 1B - GROUP 8" : isReferenceSlide ? "Sources & Acknowledgments" : ""}
+                  </p>
+                )}
               </div>
 
-              <div className="flex-1 flex flex-col md:flex-row gap-6 md:gap-10 overflow-hidden">
-                <div 
+              <div className={`flex-1 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center max-w-2xl w-full relative z-10' : 'md:flex-row'} gap-6 md:gap-10 overflow-hidden`}>
+                {(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
+                  <div className="absolute inset-0 -z-10 bg-slate-900 overflow-hidden rounded-3xl">
+                    {currentSlide.backgroundImage ? (
+                      <img 
+                        src={currentSlide.backgroundImage} 
+                        alt="Background" 
+                        className="w-full h-full object-cover opacity-100" 
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <SlideVisual slideId={currentSlide.id} />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-b from-slate-900/10 via-transparent to-slate-900/30" />
+                  </div>
+                )}
+                <div
                   ref={contentScrollRef}
                   onScroll={() => {
                     if (!isIncomingChange.current) {
@@ -341,91 +383,123 @@ export default function App() {
                       }
                     }
                   }}
-                  className="flex-1 flex flex-col overflow-y-auto pr-2 no-scrollbar"
+                  className={`flex-1 flex flex-col overflow-y-auto pr-2 no-scrollbar ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center text-center justify-center' : ''}`}
                 >
-                  <ul className="space-y-4 mb-6 md:mb-10">
+                  <ul className={`space-y-4 mb-6 md:mb-10 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'list-none' : ''}`}>
                     {currentSlide.onSlideText.map((text, i) => (
                       <motion.li
                         key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 + i * 0.05 }}
-                        className="text-base md:text-xl text-slate-200 flex gap-3 leading-relaxed"
+                        className={`${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-lg md:text-2xl text-slate-300 font-medium' : 'text-base md:text-xl text-slate-200 flex gap-3'} leading-relaxed`}
                       >
-                        <span className="text-blue-500 mt-1.5 flex-shrink-0">•</span>
-                        <span>{text}</span>
+                        {!(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && <span className={`${currentLesson.theme.primary === 'red' ? 'text-red-500' : 'text-blue-500'} mt-1.5 flex-shrink-0`}>•</span>}
+                        <span>
+                          {text.startsWith('http') ? (
+                            <img src={text} alt="Slide Graphic" className="max-w-xs md:max-w-md h-auto rounded-2xl shadow-2xl border border-white/10 mx-auto my-4" referrerPolicy="no-referrer" />
+                          ) : text.startsWith('icon:') ? (
+                            (() => {
+                              const iconName = text.split(':')[1];
+                              const IconLookup: Record<string, any> = {
+                                Bomb, Atom, Globe, Shield, Microscope, Library, History, User, Zap, AlertTriangle, Wind, Cpu, FlaskConical
+                              };
+                              const Icon = IconLookup[iconName] || HelpCircle;
+                              return (
+                                <motion.div
+                                  initial={{ scale: 0.5, opacity: 0 }}
+                                  animate={{ scale: 1, opacity: 1 }}
+                                  transition={{ 
+                                    type: "spring",
+                                    stiffness: 260,
+                                    damping: 20,
+                                    delay: 0.2 
+                                  }}
+                                  className="flex justify-center my-8"
+                                >
+                                  <div className={`p-8 md:p-12 rounded-[2.5rem] ${currentLesson.theme.bgAccent} border-4 ${currentLesson.theme.borderAccent} shadow-2xl`}>
+                                    <Icon className={`w-24 h-24 md:w-40 md:h-40 ${currentLesson.theme.accent} filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]`} />
+                                  </div>
+                                </motion.div>
+                              );
+                            })()
+                          ) : (
+                            text
+                          )}
+                        </span>
                       </motion.li>
                     ))}
                   </ul>
 
-                  {/* On-Slide Engagement (Visible to All) */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="mt-auto pt-6 border-t border-white/5 space-y-4"
-                  >
-                    <div className="bg-slate-950/40 rounded-2xl border border-white/5 p-4 md:p-6">
-                      <div className="flex items-center gap-2 mb-2">
-                        <HelpCircle className="w-3.5 h-3.5 text-blue-400" />
-                        <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-blue-400/60">Interaction</span>
+                  {/* On-Slide Engagement (Visible to All) - Only hide on title if needed but standard title slides don't usually have questions immediately */}
+                  {!(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6 }}
+                      className="mt-auto pt-6 border-t border-white/5 space-y-4"
+                    >
+                      <div className="bg-slate-950/40 rounded-2xl border border-white/5 p-4 md:p-6">
+                        <div className="flex items-center gap-2 mb-2">
+                          <HelpCircle className={`w-3.5 h-3.5 ${currentLesson.theme.primary === 'red' ? 'text-red-400' : 'text-blue-400'}`} />
+                          <span className={`text-[9px] font-bold uppercase tracking-[0.2em] ${currentLesson.theme.primary === 'red' ? 'text-red-400/60' : 'text-blue-400/60'}`}>Interaction</span>
+                        </div>
+                        <p className="text-sm md:text-base text-slate-300 font-medium mb-4 leading-relaxed">
+                          {currentSlide.engagementElement.question}
+                        </p>
+
+                        <div className="relative">
+                          {!isAnswerRevealed ? (
+                            <div className="py-3 flex items-center justify-center bg-slate-900 rounded-xl border border-dashed border-white/10 text-slate-500 text-[10px] md:text-xs">
+                              <span className="animate-pulse">Waiting for presenter...</span>
+                            </div>
+                          ) : (
+                            <motion.div
+                              initial={{ opacity: 0, y: 5 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              className={`p-4 ${currentLesson.theme.bgAccent} border ${currentLesson.theme.borderAccent} rounded-xl ${currentLesson.theme.accent} font-semibold text-center text-sm`}
+                            >
+                              {currentSlide.engagementElement.answer}
+                            </motion.div>
+                          )}
+                        </div>
                       </div>
-                      <p className="text-sm md:text-base text-slate-300 font-medium mb-4 leading-relaxed">
-                        {currentSlide.engagementElement.question}
-                      </p>
-                      
-                      <div className="relative">
-                        {!isAnswerRevealed ? (
-                          <div className="py-3 flex items-center justify-center bg-slate-900 rounded-xl border border-dashed border-white/10 text-slate-500 text-[10px] md:text-xs">
-                            <span className="animate-pulse">Waiting for presenter...</span>
-                          </div>
-                        ) : (
-                          <motion.div
-                            initial={{ opacity: 0, y: 5 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="p-4 bg-blue-500/10 border border-blue-500/20 rounded-xl text-blue-300 font-semibold text-center text-sm"
-                          >
-                            {currentSlide.engagementElement.answer}
-                          </motion.div>
-                        )}
-                      </div>
-                    </div>
-                  </motion.div>
+                    </motion.div>
+                  )}
                 </div>
 
-                <div className="w-full md:w-[45%] flex flex-col gap-4">
-                  <div className="relative group">
-                    <SlideVisual slideId={currentSlide.id} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity rounded-3xl" />
+                {!(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
+                  <div className="w-full md:w-[45%] flex flex-col gap-4">
+                    <div className="relative group">
+                      <SlideVisual slideId={currentSlide.id} />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity rounded-3xl" />
+                    </div>
+
+                    {/* Visual Suggestion Label */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.8 }}
+                      className="flex items-center gap-3 text-[9px] uppercase font-bold tracking-[0.3em] text-slate-500 px-2"
+                    >
+                      <div className="w-6 h-px bg-slate-800" />
+                      SIMULATION VIEW
+                    </motion.div>
                   </div>
-                  
-                  {/* Visual Suggestion Label */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    className="flex items-center gap-3 text-[9px] uppercase font-bold tracking-[0.3em] text-slate-500 px-2"
-                  >
-                    <div className="w-6 h-px bg-slate-800" />
-                    SIMULATION VIEW
-                  </motion.div>
-                </div>
+                )}
+              </div>
+
+              {/* Slide Footer */}
+              <div className="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-[10px] uppercase tracking-widest text-slate-600 font-medium">
+
+                <div className="font-bold text-slate-500">Reference: Aldea et al., 2018. Science, Technology and Society (OBE Ready).
+                  Library code: Fil.303.48 A1121 2018</div>
               </div>
             </motion.div>
           </AnimatePresence>
 
           {/* Floating Engagement Trigger (Hidden in Presenter Mode to avoid blocking footer navigation) */}
-          {!isPresenter && (
-            <div className="fixed bottom-28 right-6 md:bottom-32 md:right-10 z-30">
-              <button
-                onClick={() => setNavState(prev => ({ ...prev, engagement: true }))}
-                className="group flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white p-4 md:px-5 md:py-3 rounded-full shadow-2xl shadow-blue-900/50 transition-all hover:scale-105 active:scale-95 border border-white/20"
-              >
-                <HelpCircle className="w-6 h-6" />
-                <span className="hidden md:inline font-bold">Ask the Class</span>
-              </button>
-            </div>
-          )}
+          {/* Removed as per user request to simplify audience view */}
         </div>
 
         {/* Sidebar / Speaker Notes */}
@@ -433,7 +507,7 @@ export default function App() {
           {(showNotes || isPresenter) && (
             <motion.aside
               initial={{ x: 300, opacity: 0 }}
-              animate={{ 
+              animate={{
                 x: 0,
                 opacity: 1,
               }}
@@ -475,14 +549,14 @@ export default function App() {
                       <ImageIcon className="w-5 h-5" />
                       Show Real-World Example
                     </button>
-                    
-                    <div className="p-4 rounded-xl bg-blue-500/10 border border-blue-500/20 space-y-2">
-                       <div className="flex items-center gap-2 text-blue-400">
+
+                    <div className={`p-4 rounded-xl ${currentLesson.theme.bgAccent} border ${currentLesson.theme.borderAccent} space-y-2`}>
+                      <div className={`flex items-center gap-2 ${currentLesson.theme.accent}`}>
                         <HelpCircle className="w-4 h-4" />
                         <span className="text-xs font-bold uppercase tracking-widest">Pro Tip: Sharing</span>
                       </div>
                       <p className="text-[10px] text-slate-400 leading-relaxed">
-                        Share your <span className="text-blue-400 font-semibold">Audience Tab</span> to students, while keeping this <span className="text-amber-400 font-semibold">Presenter Window</span> on your private screen.
+                        Share your <span className={`${currentLesson.theme.accent} font-semibold`}>Audience Tab</span> to students, while keeping this <span className="text-amber-400 font-semibold">Presenter Window</span> on your private screen.
                       </p>
                     </div>
                   </div>
@@ -494,18 +568,18 @@ export default function App() {
                     <li>Emphasize the human impact of the technology.</li>
                     <li>Connect the slide to previous lessons.</li>
                   </ul>
-                  
+
                   <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Current Context & Script</h4>
                   <p className="text-slate-200 leading-relaxed text-sm md:text-lg font-medium font-serif">
                     {currentSlide.speakerNotes}
                   </p>
                 </div>
-                
+
                 {isPresenter && (
                   <div className="pt-6 border-t border-white/10 space-y-4">
                     <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Navigation Controls</h4>
                     <div className="grid grid-cols-2 gap-3">
-                      <button 
+                      <button
                         onClick={prevSlide}
                         disabled={currentSlideIndex === 0}
                         className="py-3 bg-white/5 hover:bg-white/10 rounded-xl flex flex-col items-center gap-1 disabled:opacity-30"
@@ -513,10 +587,10 @@ export default function App() {
                         <ChevronLeft className="w-5 h-5" />
                         <span className="text-[10px] uppercase font-bold">Previous</span>
                       </button>
-                      <button 
+                      <button
                         onClick={nextSlide}
                         disabled={currentSlideIndex === currentLesson.slides.length - 1}
-                        className="py-3 bg-blue-600 hover:bg-blue-500 rounded-xl flex flex-col items-center gap-1 disabled:opacity-30"
+                        className={`py-3 ${currentLesson.theme.primary === 'red' ? 'bg-red-600 hover:bg-red-500' : 'bg-blue-600 hover:bg-blue-500'} rounded-xl flex flex-col items-center gap-1 disabled:opacity-30`}
                       >
                         <ChevronRight className="w-5 h-5" />
                         <span className="text-[10px] uppercase font-bold text-white">Next</span>
@@ -546,7 +620,7 @@ export default function App() {
           <button
             onClick={nextSlide}
             disabled={currentSlideIndex === currentLesson.slides.length - 1}
-            className="p-2 md:p-3 rounded-full hover:bg-white/10 disabled:opacity-10 transition-all text-blue-400"
+            className={`p-2 md:p-3 rounded-full hover:bg-white/10 disabled:opacity-10 transition-all ${currentLesson.theme.primary === 'red' ? 'text-red-400' : 'text-blue-400'}`}
           >
             <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
           </button>
@@ -555,7 +629,7 @@ export default function App() {
         <div className="flex-1 px-4 md:px-12">
           <div className="w-full h-1 bg-white/5 rounded-full overflow-hidden">
             <motion.div
-              className="h-full bg-gradient-to-r from-blue-600 to-indigo-500"
+              className={`h-full bg-gradient-to-r ${currentLesson.theme.gradient}`}
               initial={false}
               animate={{
                 width: `${((currentSlideIndex + 1) / currentLesson.slides.length) * 100}%`,
@@ -605,7 +679,7 @@ export default function App() {
                 </div>
 
                 <div className="rounded-2xl border border-white/5 bg-slate-950/50">
-                  <button 
+                  <button
                     onClick={() => {
                       if (isPresenter) {
                         setNavState(prev => ({ ...prev, answerRevealed: !prev.answerRevealed }));
@@ -618,7 +692,7 @@ export default function App() {
                     </span>
                     <ChevronRight className={`w-5 h-5 transition-transform ${isAnswerRevealed ? 'rotate-90 text-blue-400' : 'text-slate-600'}`} />
                   </button>
-                  <motion.div 
+                  <motion.div
                     initial={false}
                     animate={{ maxHeight: isAnswerRevealed ? 200 : 0, opacity: isAnswerRevealed ? 1 : 0 }}
                     transition={{ duration: 0.3 }}
@@ -662,32 +736,32 @@ export default function App() {
               className="relative bg-slate-900 border border-white/10 overflow-hidden rounded-[2rem] max-w-4xl w-full shadow-2xl flex flex-col md:flex-row"
             >
               <div className="w-full md:w-2/3 aspect-video md:aspect-auto overflow-hidden bg-slate-950 relative flex items-center justify-center">
-                 <ImageWithLoader 
-                   src={currentSlide.exampleImage.url} 
-                   alt={currentSlide.exampleImage.caption}
-                 />
+                <ImageWithLoader
+                  src={currentSlide.exampleImage.url}
+                  alt={currentSlide.exampleImage.caption}
+                />
               </div>
               <div className="w-full md:w-1/3 p-8 md:p-10 flex flex-col justify-center">
-                 <div className="flex items-center gap-2 mb-4">
-                   <div className="p-2 rounded-lg bg-amber-500/20 text-amber-500">
-                     <ImageIcon className="w-5 h-5" />
-                   </div>
-                   <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500">Real-World Context</span>
-                 </div>
-                 <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
-                   {currentSlide.exampleImage.caption}
-                 </h3>
-                 <p className="text-slate-400 text-sm leading-relaxed mb-8">
-                   {currentSlide.exampleImage.description}
-                 </p>
-                 <button
-                   onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
-                   className="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all"
-                 >
-                   Return to Lesson
-                 </button>
+                <div className="flex items-center gap-2 mb-4">
+                  <div className="p-2 rounded-lg bg-amber-500/20 text-amber-500">
+                    <ImageIcon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500">Real-World Context</span>
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
+                  {currentSlide.exampleImage.caption}
+                </h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-8">
+                  {currentSlide.exampleImage.description}
+                </p>
+                <button
+                  onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
+                  className="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all"
+                >
+                  Return to Lesson
+                </button>
               </div>
-              <button 
+              <button
                 onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
                 className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white/50 hover:text-white"
               >
@@ -729,11 +803,10 @@ export default function App() {
                       });
                       setShowSelector(false);
                     }}
-                    className={`w-full text-left p-6 rounded-2xl border transition-all flex items-center justify-between group ${
-                      currentLessonIndex === idx
-                        ? "bg-blue-600/20 border-blue-500/50 text-blue-300"
-                        : "bg-white/5 border-white/5 text-slate-400 hover:bg-white/10"
-                    }`}
+                    className={`w-full text-left p-6 rounded-2xl border transition-all flex items-center justify-between group ${currentLessonIndex === idx
+                      ? "bg-blue-600/20 border-blue-500/50 text-blue-300"
+                      : "bg-white/5 border-white/5 text-slate-400 hover:bg-white/10"
+                      }`}
                   >
                     <div className="flex items-center gap-4">
                       <BookOpen className={`w-6 h-6 ${currentLessonIndex === idx ? "text-blue-400" : "text-slate-500"}`} />
