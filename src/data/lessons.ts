@@ -53,7 +53,7 @@ export const LESSONS: Lesson[] = [
           answer: "Yes, let's explore this critical global topic."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1579273166152-d725a4e2b755?auto=format&fit=crop&q=80&w=1200",
+          url: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg",
           caption: "Nuclear Technology Structure",
           description: "A historical view of the 'Fat Man' nuclear bomb, illustrating the scale and complexity of early weapons of mass destruction."
         }
@@ -76,7 +76,7 @@ export const LESSONS: Lesson[] = [
           answer: "Usually Nuclear, Biological, and Chemical."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&q=80&w=1200",
+          url: "https://upload.wikimedia.org/wikipedia/commons/1/16/THEODOSIA_01.jpg",
           caption: "Nuclear Non-Proliferation",
           description: "The global effort to regulate and prevent the spread of weapons of mass destruction is a central pillar of international security policy."
         }
@@ -100,7 +100,7 @@ export const LESSONS: Lesson[] = [
           answer: "WMDs produce large-scale destruction and do not choose their targets (affecting civilians)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Tarant-3_Chemical_Warfare_System.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Structure_of_NIAID_Integrated_Research_Facility.jpg",
           caption: "Chemical Warfare Systems",
           description: "A historical example of chemical delivery systems, highlighting the technical logistics behind weapons of mass destruction."
         }
@@ -121,7 +121,7 @@ export const LESSONS: Lesson[] = [
           answer: "Radiological weapon of mass destruction."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1583324113626-70df0f4deaab?auto=format&fit=crop&q=80&w=1200",
+          url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Anthrax_PHIL_2033.png",
           caption: "Hazardous Materials Warning",
           description: "Radiological materials are used in many civilian industries, but if misused in a 'dirty bomb', they pose a significant risk of long-term contamination."
         }
@@ -145,7 +145,7 @@ export const LESSONS: Lesson[] = [
           answer: "By catapulting plague-contaminated corpses over the walls of Caffa."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/1/16/THEODOSIA_01.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/a/ab/7042_lores-Ebola-Zaire-CDC_Photo.jpg",
           caption: "Historical Fortifications",
           description: "Ancient sieges, like the Mongol attack on Caffa, were early examples of biological warfare, using disease to break the defenses of fortified cities."
         }
@@ -167,7 +167,7 @@ export const LESSONS: Lesson[] = [
           answer: "Zyklon B (hydrogen cyanide)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/9/91/World_War_I_gas_mask_for_man_and_horse.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Biohazard_symbol.svg",
           caption: "Industrial Scale War",
           description: "The 20th century turned scientific innovation into a tool for industrial-scale destruction, as seen in the pervasive use of gas masks in WWI."
         }
@@ -189,7 +189,7 @@ export const LESSONS: Lesson[] = [
           answer: "Agent Orange."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Agent_Orange_cropdusting.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/b/b1/WMD-chemical.svg",
           caption: "Agent Orange Impact",
           description: "The ecological and human toll of chemical defoliants like Agent Orange remains a poignant reminder of the long-term consequences of WMD use."
         }
@@ -215,7 +215,7 @@ export const LESSONS: Lesson[] = [
           answer: "1977 (following the 1967 WHO vaccination campaign)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Structure_of_NIAID_Integrated_Research_Facility.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/0/07/Indiana_Urban_Search_and_Rescue_Task_Force_1_suits_up_for_Vibrant_Response_2014_140722-A-PC120-205.jpg",
           caption: "High-Security Biolabs",
           description: "Biological agents like Anthrax and Smallpox require high-security laboratories (BSL-4) and specialized study to prevent and prepare for catastrophic outbreaks."
         }
@@ -239,7 +239,7 @@ export const LESSONS: Lesson[] = [
           answer: "Pneumonic plague."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Yersinia_pestis.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Agent_Orange_cropdusting.jpg",
           caption: "Pathogen Visualization",
           description: "Studying the Yersinia pestis bacterium is essential for understanding how historically devastating diseases could be weaponized today."
         }
@@ -262,7 +262,7 @@ export const LESSONS: Lesson[] = [
           answer: "Botulinum toxin."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1584036561566-baf8f5f1b144?auto=format&fit=crop&q=80&w=1200",
+          url: "https://upload.wikimedia.org/wikipedia/commons/4/4c/VX-S-enantiomer-2D-skeletal.png",
           caption: "Molecular Toxicity",
           description: "Botulinum toxin is one of the most lethal substances known, requiring extreme bio-security measures in investigative laboratories."
         }
@@ -286,7 +286,7 @@ export const LESSONS: Lesson[] = [
           answer: "Freshness, purity, weather conditions, wind direction, and dissemination means."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/1/15/BASF_Schwarzheide_GmbH_Werksansicht_01.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Sulfur-mustard-3D-vdW.png",
           caption: "Industrial Chemical Safety",
           description: "Modern chemical security focuses on preventing industrial chemicals from being diverted into weapons programs."
         }
@@ -309,7 +309,7 @@ export const LESSONS: Lesson[] = [
           answer: "VX."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/4/4c/VX-S-enantiomer-2D-skeletal.png",
+          url: "https://upload.wikimedia.org/wikipedia/commons/1/15/BASF_Schwarzheide_GmbH_Werksansicht_01.jpg",
           caption: "Hazardous Chemical Handling",
           description: "Nerve agents like VX are synthetic compounds that require extreme caution, specialized high-grade lab equipment, and zero-leak containment systems to handle safely."
         }
@@ -331,7 +331,7 @@ export const LESSONS: Lesson[] = [
           answer: "In low-lying areas."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Sulfur-mustard-3D-vdW.png",
+          url: "https://upload.wikimedia.org/wikipedia/commons/5/58/GHS-pictogram-skull.svg",
           caption: "Vintage Protective Gear",
           description: "Understanding the behavior of chemical agents, such as sulfur mustard's tendency to settle in trenches and low areas, led to the development of early gas mask technology."
         }
@@ -355,7 +355,7 @@ export const LESSONS: Lesson[] = [
           answer: "Fusion (often 10 to 100 times more explosive)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/0/03/Mushroom_Cloud_over_Nagasaki.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/8/87/Radioactive_material_sign.svg",
           caption: "The Power of the Atom",
           description: "The sheer scale of energy released during nuclear fission is a stark reminder of the responsibility that comes with scientific mastery."
         }
@@ -376,7 +376,7 @@ export const LESSONS: Lesson[] = [
           answer: "Fallout."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/0/0e/CastleBravo1.gif",
+          url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Fullerene_Nanogears_-_GPN-2000-001535.jpg",
           caption: "Nevada Test Site Craters",
           description: "These massive craters in the desert are the lingering scars of mid-20th century nuclear testing, demonstrating the immense ground-shifting power of atomic weapons."
         }
@@ -398,7 +398,7 @@ export const LESSONS: Lesson[] = [
           answer: "To spread toxic radiation and cause mass disruption/terror."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/8/87/Radioactive_material_sign.svg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/8/83/C60_Molecule.svg",
           caption: "High-Activity Radioactive Sources",
           description: "Radiological materials used in medicine and industry are strictly tracked to prevent them from being intercepted and used in radiological dispersal devices."
         }
@@ -424,7 +424,7 @@ export const LESSONS: Lesson[] = [
           answer: "Because they cannot be limited to military targets and inevitably affect civilians on a large scale."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/9/94/Protein_translation.gif",
           caption: "Global Responsibility",
           description: "Understanding WMDs leads us to one conclusion: the imperative to regulate these tools of destruction to protect our collective future."
         }
@@ -462,10 +462,8 @@ export const LESSONS: Lesson[] = [
       {
         id: "nt-title",
         title: "Nanotechnology",
-        backgroundImage: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Scanning_Tunneling_Microscopy_image_of_DNA.jpg",
-        onSlideText: [
-          "icon:Atom"
-        ],
+        backgroundImage: "https://i.makeagif.com/media/5-02-2022/pVwFvQ.gif",
+        onSlideText: [],
         speakerNotes: "Hello everyone, Group 8 is back to present Lesson 6: Nanotechnology. In this session, we'll examine how science and technology at the atomic level are reshaping our society, from medicine to environmental protection.",
         visualSuggestion: "Visual Idea: Futuristic nanotechnology interface blue and white.",
         engagementElement: {
@@ -473,7 +471,7 @@ export const LESSONS: Lesson[] = [
           answer: "We are now working at the scale of atoms—the nanoscale!"
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Scanning_Tunneling_Microscopy_image_of_DNA.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/4/45/MtRedoubtedit1.jpg",
           caption: "STM Scan of DNA",
           description: "An actual Scanning Tunneling Microscope image of a double-helix DNA molecule, showing the level of detail possible at the nanoscale."
         }
@@ -497,7 +495,7 @@ export const LESSONS: Lesson[] = [
           answer: "Extremely small (one-billionth)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/e/ec/Scanning_Tunneling_Microscopy_image_of_DNA.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/0/03/Mushroom_Cloud_over_Nagasaki.jpg",
           caption: "Atomic Scale Reality",
           description: "An actual image from a Scanning Tunneling Microscope, representing the dawn of our ability to see and manipulate matter at the molecular level."
         }
@@ -521,7 +519,7 @@ export const LESSONS: Lesson[] = [
           answer: "About 25,000 nanometers."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/3/3b/Nanomedicine.png",
+          url: "https://upload.wikimedia.org/wikipedia/commons/0/0e/CastleBravo1.gif",
           caption: "Medical Nanobots Concept",
           description: "A detailed conceptual visualization of nanorobots interacting with human cells for targeted medical treatment."
         }
@@ -545,7 +543,7 @@ export const LESSONS: Lesson[] = [
           answer: "Norio Taniguchi in 1974."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/5/5e/Fullerene-C60-rotated-anim.gif",
+          url: "https://upload.wikimedia.org/wikipedia/commons/0/0f/W87_MIRV.jpg",
           caption: "Buckminsterfullerene (C60)",
           description: "The discovery of 'Buckyballs' in 1985 opened new doors in materials science and nanotechnology."
         }
@@ -566,7 +564,7 @@ export const LESSONS: Lesson[] = [
           answer: "Nanosystems: Molecular Machinery Manufacturing and Computation."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/4/42/Richard_Feynman_Nobel.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/5/54/Atomic_bombing_of_Japan.jpg",
           caption: "Dr. Richard Feynman",
           description: "The visionary physicist who first proposed that machines could be built atom by atom in his famous 1959 lecture."
         }
@@ -587,7 +585,7 @@ export const LESSONS: Lesson[] = [
           answer: "Up to 100,000,000 times."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/5/5a/Armchair_carbon_nanotube.png",
+          url: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg",
           caption: "Carbon Nanotube Model",
           description: "A high-precision model of a carbon nanotube, known for its extraordinary strength and unique electrical properties."
         }
@@ -612,7 +610,7 @@ export const LESSONS: Lesson[] = [
           answer: "They can help correct genetic deficiencies by altering or replacing DNA molecules."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/9/94/Protein_translation.gif",
+          url: "https://upload.wikimedia.org/wikipedia/commons/1/16/THEODOSIA_01.jpg",
           caption: "Future of Precision Medicine",
           description: "Conceptualization of nanotechnology in medicine, where miniature robots could navigate the human body at the molecular level to repair defects."
         }
@@ -639,7 +637,7 @@ export const LESSONS: Lesson[] = [
           answer: "They are mixed with epoxy to produce lighter but stronger windmill blades for greater electricity output."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/9/90/Solar_cell.png",
+          url: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Structure_of_NIAID_Integrated_Research_Facility.jpg",
           caption: "Nanotech in Green Energy",
           description: "Nanotechnology is revolutionizing renewable energy by creating lighter, stronger components for wind turbines and higher-efficiency solar panels."
         }
@@ -666,7 +664,7 @@ export const LESSONS: Lesson[] = [
           answer: "To help destroy odor-causing bacteria, making the clothes odor-resistant."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/9/92/LotusEffect1.jpg",
+          url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Anthrax_PHIL_2033.png",
           caption: "Smart Textiles",
           description: "Nano-coatings on fabrics can provide everything from antibacterial properties to extreme water and stain resistance (hydrophobicity)."
         }
@@ -688,7 +686,7 @@ export const LESSONS: Lesson[] = [
           answer: "A hypothetical scenario where self-replicating nanomachines go out of control and consume all living matter on Earth."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/c/cb/Fullerene_nanotubes.png",
+          url: "https://upload.wikimedia.org/wikipedia/commons/a/ab/7042_lores-Ebola-Zaire-CDC_Photo.jpg",
           caption: "Technological Ethics & Risk",
           description: "The 'Gray Goo' theory serves as a cautionary tale for runaway technology, emphasizing the critical need for global regulation in nanoscience."
         }
@@ -715,7 +713,7 @@ export const LESSONS: Lesson[] = [
           answer: "President Bill Clinton."
         },
         exampleImage: {
-          url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
+          url: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Biohazard_symbol.svg",
           caption: "Shaping the Global Future",
           description: "The choices we make today about nano-regulation will determine whether this technology builds a utopia of health and energy or creates new global security challenges."
         }

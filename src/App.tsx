@@ -281,6 +281,28 @@ export default function App() {
 
   return (
     <div className="presentation-container bg-slate-900 text-white relative h-screen flex flex-col overflow-hidden">
+      {/* FULL SCREEN BACKGROUND */}
+      <AnimatePresence>
+        {currentSlide.backgroundImage && (
+          <motion.div
+            key={currentSlide.backgroundImage as string}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 z-0 pointer-events-none"
+          >
+            <img 
+              src={currentSlide.backgroundImage as string} 
+              alt="Background" 
+              className="w-full h-full object-cover" 
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-slate-950/70" />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Header */}
       <header className="p-3 md:p-4 flex items-center justify-between border-b border-white/10 bg-slate-900/50 backdrop-blur-md z-10">
         <div className="flex items-center gap-2 md:gap-3 overflow-hidden">
@@ -324,7 +346,7 @@ export default function App() {
       </header>
 
       {/* Main Slide Area */}
-      <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-slate-900">
+      <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-transparent z-10">
         <div className={`relative flex flex-col items-center p-6 md:p-12 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'} ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'justify-center min-h-0' : ''}`}>
           <AnimatePresence mode="wait">
             <motion.div
@@ -340,25 +362,16 @@ export default function App() {
                   {currentSlide.title}
                 </h2>
                 {(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
-                  <p className="text-slate-500 font-mono tracking-[0.5em] uppercase text-[10px] md:text-xs">
-                    {isTitleSlide ? "BSIT 1B - GROUP 8" : isReferenceSlide ? "Sources & Acknowledgments" : ""}
+                  <p className="text-slate-100 font-mono tracking-[0.3em] uppercase text-xs md:text-sm bg-black/60 px-4 py-1.5 rounded-full inline-block mt-2 backdrop-blur-sm shadow-xl font-semibold">
+                    {isTitleSlide ? "BSIT 1B - GROUP 8" : isReferenceSlide ? "SOURCES & ACKNOWLEDGMENTS" : ""}
                   </p>
                 )}
               </div>
 
               <div className={`flex-1 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center max-w-2xl w-full relative z-10' : 'md:flex-row'} gap-6 md:gap-10 overflow-hidden`}>
-                {(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
+                {(isTitleSlide || isReferenceSlide) && !currentSlide.backgroundImage && (
                   <div className="absolute inset-0 -z-10 bg-slate-900 overflow-hidden rounded-3xl">
-                    {currentSlide.backgroundImage ? (
-                      <img 
-                        src={currentSlide.backgroundImage} 
-                        alt="Background" 
-                        className="w-full h-full object-cover opacity-100" 
-                        referrerPolicy="no-referrer"
-                      />
-                    ) : (
-                      <SlideVisual slideId={currentSlide.id} />
-                    )}
+                    <SlideVisual slideId={currentSlide.id} />
                     <div className="absolute inset-0 bg-gradient-to-b from-slate-900/10 via-transparent to-slate-900/30" />
                   </div>
                 )}
