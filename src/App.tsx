@@ -347,7 +347,7 @@ export default function App() {
 
       {/* Main Slide Area */}
       <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-transparent z-10">
-        <div className={`relative flex flex-col items-center p-6 md:p-12 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'} ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'justify-center min-h-0' : ''}`}>
+        <div className={`relative flex flex-col items-center p-6 md:p-12 min-h-0 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'} ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'justify-center' : ''}`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={`${currentLesson.id}-${currentSlide.id}`}
@@ -355,9 +355,9 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className={`w-full max-w-5xl h-full flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center justify-center' : ''}`}
+              className={`w-full max-w-5xl h-full min-h-0 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center justify-center' : ''}`}
             >
-              <div className={`mb-4 md:mb-8 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-center' : ''}`}>
+              <div className={`mb-4 md:mb-8 flex-shrink-0 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-center' : ''}`}>
                 <h2 className={`${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-4xl md:text-7xl mb-4' : 'text-2xl md:text-5xl'} font-bold text-transparent bg-clip-text bg-gradient-to-r ${currentLesson.theme.gradient} leading-tight`}>
                   {currentSlide.title}
                 </h2>
@@ -368,7 +368,7 @@ export default function App() {
                 )}
               </div>
 
-              <div className={`flex-1 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center max-w-2xl w-full relative z-10' : 'md:flex-row'} gap-6 md:gap-10 overflow-hidden`}>
+              <div className={`flex-1 min-h-0 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center max-w-2xl w-full relative z-10' : 'md:flex-row'} gap-6 md:gap-10 overflow-hidden`}>
                 {(isTitleSlide || isReferenceSlide) && !currentSlide.backgroundImage && (
                   <div className="absolute inset-0 -z-10 bg-slate-900 overflow-hidden rounded-3xl">
                     <SlideVisual slideId={currentSlide.id} />
