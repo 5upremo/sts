@@ -74,6 +74,14 @@ export default function App() {
   const [showSelector, setShowSelector] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
+  const [personalNotes, setPersonalNotes] = useState<{ [key: string]: string }>(() => {
+    try {
+      const stored = localStorage.getItem("presentation_personal_notes");
+      return stored ? JSON.parse(stored) : {};
+    } catch {
+      return {};
+    }
+  });
   const contentScrollRef = useRef<HTMLDivElement>(null);
 
   const currentLessonIndex = navState.lessonIndex;
@@ -223,6 +231,20 @@ export default function App() {
     return <div className="bg-slate-900 text-white p-8">Loading or error in slide data...</div>;
   }
 
+  const handlePersonalNotesChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const val = e.target.value;
+    const slideId = currentSlide.id;
+    setPersonalNotes(prev => {
+      const next = { ...prev, [slideId]: val };
+      try {
+        localStorage.setItem("presentation_personal_notes", JSON.stringify(next));
+      } catch (err) {
+        console.warn("Storage quota exceeded or unavailable", err);
+      }
+      return next;
+    });
+  };
+
   const nextSlide = () => {
     if (currentSlideIndex < currentLesson.slides.length - 1) {
       setNavState(prev => ({
@@ -280,7 +302,7 @@ export default function App() {
   }, [currentSlideIndex, currentLessonIndex]);
 
   return (
-    <div className="presentation-container bg-slate-900 text-white relative h-screen flex flex-col overflow-hidden">
+    <div className="presentation-container bg-slate-900 text-white relative w-full h-[100dvh] flex flex-col overflow-hidden">
       {/* FULL SCREEN BACKGROUND */}
       <AnimatePresence>
         {currentSlide.backgroundImage && (
@@ -368,7 +390,7 @@ export default function App() {
                 )}
               </div>
 
-              <div className={`flex-1 min-h-0 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center max-w-2xl w-full relative z-10' : 'md:flex-row'} gap-6 md:gap-10 overflow-hidden`}>
+              <div className={`flex-1 min-h-0 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center max-w-2xl w-full relative z-10' : 'md:flex-row'} gap-6 md:gap-10`}>
                 {(isTitleSlide || isReferenceSlide) && !currentSlide.backgroundImage && (
                   <div className="absolute inset-0 -z-10 bg-slate-900 overflow-hidden rounded-3xl">
                     <SlideVisual slideId={currentSlide.id} />
@@ -396,7 +418,7 @@ export default function App() {
                       }
                     }
                   }}
-                  className={`flex-1 flex flex-col overflow-y-auto pr-2 no-scrollbar ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center text-center justify-center' : ''}`}
+                  className={`flex-1 flex flex-col overflow-y-auto pr-2 scroll-smooth touch-pan-y ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center text-center justify-center' : ''}`}
                 >
                   <ul className={`space-y-4 mb-6 md:mb-10 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'list-none' : ''}`}>
                     {currentSlide.onSlideText.map((text, i) => (
@@ -587,6 +609,21 @@ export default function App() {
                     {currentSlide.speakerNotes}
                   </p>
                 </div>
+
+                {isPresenter && (
+                  <div className="pt-6 border-t border-white/10">
+                    <h4 className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">
+                      <BookOpen className="w-3 h-3" />
+                      Personal Notes (Saved Locally)
+                    </h4>
+                    <textarea 
+                      value={personalNotes[currentSlide.id] || ""}
+                      onChange={handlePersonalNotesChange}
+                      placeholder="Add your own teaching notes for this slide here..."
+                      className="w-full h-32 bg-slate-900 border border-white/10 rounded-xl p-3 text-sm text-slate-300 focus:outline-none focus:border-amber-500/50 resize-y transition-colors placeholder:text-slate-600"
+                    />
+                  </div>
+                )}
 
                 {isPresenter && (
                   <div className="pt-6 border-t border-white/10 space-y-4">
