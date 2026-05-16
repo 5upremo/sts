@@ -692,7 +692,7 @@ export default function App() {
       {/* Engagement Modal */}
       <AnimatePresence>
         {showEngagement && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className={`fixed inset-y-0 left-0 ${isPresenter ? 'right-0 md:right-[400px]' : 'right-0'} z-[60] flex items-center justify-center p-4`}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -704,7 +704,7 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative bg-slate-900 border border-white/10 p-8 md:p-12 rounded-3xl max-w-2xl w-full shadow-2xl"
+              className="relative bg-slate-900 border border-white/10 p-8 md:p-12 rounded-3xl max-w-2xl w-full shadow-auto shadow-2xl"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="p-3 rounded-2xl bg-blue-500/20 text-blue-400">
@@ -771,7 +771,7 @@ export default function App() {
       {/* Image Example Modal */}
       <AnimatePresence>
         {showImagePopup && currentSlide.exampleImage && (
-          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
+          <div className={`fixed inset-y-0 left-0 ${isPresenter ? 'right-0 md:right-[400px]' : 'right-0'} z-[60] flex items-center justify-center p-4`}>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
