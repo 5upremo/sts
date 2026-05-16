@@ -369,7 +369,7 @@ export default function App() {
 
       {/* Main Slide Area */}
       <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-transparent z-10">
-        <div className={`relative flex flex-col items-center p-6 md:p-12 min-h-0 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'} ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'justify-center' : ''}`}>
+        <div className={`relative flex flex-col items-center p-6 md:p-12 min-h-0 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'} ${(isTitleSlide || currentSlide.backgroundImage) ? 'justify-center' : ''}`}>
           <AnimatePresence mode="wait">
             <motion.div
               key={`${currentLesson.id}-${currentSlide.id}`}
@@ -377,7 +377,7 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className={`w-full max-w-5xl h-full min-h-0 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center justify-center' : ''}`}
+              className={`w-full max-w-5xl h-full min-h-0 flex flex-col ${(isTitleSlide || currentSlide.backgroundImage) ? 'items-center justify-center' : isReferenceSlide ? 'items-center pt-8' : ''}`}
             >
               <div className={`mb-4 md:mb-8 flex-shrink-0 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-center' : ''}`}>
                 <h2 className={`${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-4xl md:text-7xl mb-4' : 'text-2xl md:text-5xl'} font-bold text-transparent bg-clip-text bg-gradient-to-r ${currentLesson.theme.gradient} leading-tight`}>
@@ -418,7 +418,7 @@ export default function App() {
                       }
                     }
                   }}
-                  className={`flex-1 flex flex-col overflow-y-auto pr-2 scroll-smooth touch-pan-y ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center text-center justify-center' : ''}`}
+                  className={`flex-1 flex flex-col min-h-0 overflow-y-auto pr-2 scroll-smooth touch-pan-y ${(isTitleSlide || currentSlide.backgroundImage) ? 'items-center text-center justify-center' : isReferenceSlide ? 'items-center text-center' : ''}`}
                 >
                   <ul className={`space-y-4 mb-6 md:mb-10 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'list-none' : ''}`}>
                     {currentSlide.onSlideText.map((text, i) => (
