@@ -53,9 +53,9 @@ export const LESSONS: Lesson[] = [
           answer: "Yes, let's explore this critical global topic."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg",
-          caption: "Nuclear Technology Structure",
-          description: "A historical view of the 'Fat Man' nuclear bomb, illustrating the scale and complexity of early weapons of mass destruction."
+          url: "https://www.usni.org/sites/default/files/Cobb-PRO-9-24-1%20Hero.jpg",
+          caption: "The Rise of Mechanized Warfare",
+          description: "A historical side view of an early 20th-century Soviet T-26 light tank, highlighting the evolution of armored vehicles and the mechanization of modern combat forces."
         }
       },
       {
@@ -76,9 +76,9 @@ export const LESSONS: Lesson[] = [
           answer: "Usually Nuclear, Biological, and Chemical."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/1/16/THEODOSIA_01.jpg",
-          caption: "Nuclear Non-Proliferation",
-          description: "The global effort to regulate and prevent the spread of weapons of mass destruction is a central pillar of international security policy."
+          url: "https://www.genevaenvironmentnetwork.org/wp-content/uploads/2020/09/atomic-bomb-japan-aspect-ratio-2000-1200.jpg",
+          caption: "The Atomic Mushroom Cloud over Nagasaki",
+          description: "A stark historical photograph of the immense mushroom cloud rising miles into the atmosphere following the atomic detonation over Nagasaki, Japan, on August 9, 1945."
         }
       },
       {
@@ -100,9 +100,9 @@ export const LESSONS: Lesson[] = [
           answer: "WMDs produce large-scale destruction and do not choose their targets (affecting civilians)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Structure_of_NIAID_Integrated_Research_Facility.jpg",
-          caption: "Chemical Warfare Systems",
-          description: "A historical example of chemical delivery systems, highlighting the technical logistics behind weapons of mass destruction."
+          url: "https://www.energy-reporters.com/wp-content/uploads/2025/09/military-intelligence-warns-russia-to-produce-2500-high-precision-missiles-by-2025-that-could-shift-global-power-balance.jpg.webp",
+          caption: "Advanced Missile Delivery Systems",
+          description: "A close-up view of a high-precision military ballistic missile system, showcasing the sophisticated technology and delivery mechanisms behind modern tactical weapons."
         }
       },
       {
@@ -121,9 +121,9 @@ export const LESSONS: Lesson[] = [
           answer: "Radiological weapon of mass destruction."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Anthrax_PHIL_2033.png",
-          caption: "Hazardous Materials Warning",
-          description: "Radiological materials are used in many civilian industries, but if misused in a 'dirty bomb', they pose a significant risk of long-term contamination."
+          url: "https://unodaweb.unoda.org/public/styles/large/public/2021-01/Biological-Weapons-e1610631767948_7.jpg?itok=XW0SQc9_",
+          caption: "International Biological Weapon Conventions",
+          description: "A conceptual view representing the legal and scientific frameworks involved in the prohibition, tracking, and non-proliferation of biological warfare agents."
         }
       },
       {
@@ -145,9 +145,9 @@ export const LESSONS: Lesson[] = [
           answer: "By catapulting plague-contaminated corpses over the walls of Caffa."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/a/ab/7042_lores-Ebola-Zaire-CDC_Photo.jpg",
-          caption: "Historical Fortifications",
-          description: "Ancient sieges, like the Mongol attack on Caffa, were early examples of biological warfare, using disease to break the defenses of fortified cities."
+          url: "https://owlcation.com/.image/MTk5MDc0MTUyMjM3NDQzMDI4/the-siege-of-caffa-prelude-to-the-black-death.jpg?io=1&profile=w2560&x=0&y=0",
+          caption: "The Siege of Caffa",
+          description: "A historical illustration depicting the 1346 Mongol siege of the fortified city of Caffa, famously known as an early instance of biological warfare where plague-infected corpses were catapulted over city walls."
         }
       },
       {
@@ -167,7 +167,7 @@ export const LESSONS: Lesson[] = [
           answer: "Zyklon B (hydrogen cyanide)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Biohazard_symbol.svg",
+          url: "https://sciencehistory.org/wp-content/uploads/2023/08/American_Brit_French_German_Gas_Masks_FINAL_Alt-1024x740.jpg",
           caption: "Industrial Scale War",
           description: "The 20th century turned scientific innovation into a tool for industrial-scale destruction, as seen in the pervasive use of gas masks in WWI."
         }
@@ -189,9 +189,9 @@ export const LESSONS: Lesson[] = [
           answer: "Agent Orange."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/b/b1/WMD-chemical.svg",
+          url: "https://aces.illinois.edu/sites/default/files/styles/news_landscape/public/news/Vegetation%20after%20spraying%20with%20AO%20John%20Crivello_sm.jpg?itok=O5Ofb-po",
           caption: "Agent Orange Impact",
-          description: "The ecological and human toll of chemical defoliants like Agent Orange remains a poignant reminder of the long-term consequences of WMD use."
+          description: "A historical photograph capturing a defoliated jungle landscape in Vietnam after being sprayed with Agent Orange, illustrating the catastrophic ecological impact of tactical chemical herbicides."
         }
       },
       {
@@ -215,9 +215,9 @@ export const LESSONS: Lesson[] = [
           answer: "1977 (following the 1967 WHO vaccination campaign)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/0/07/Indiana_Urban_Search_and_Rescue_Task_Force_1_suits_up_for_Vibrant_Response_2014_140722-A-PC120-205.jpg",
-          caption: "High-Security Biolabs",
-          description: "Biological agents like Anthrax and Smallpox require high-security laboratories (BSL-4) and specialized study to prevent and prepare for catastrophic outbreaks."
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmC4JoiQOg7hx0Oehic1sLd_hq1a35rMRkiw&s",
+          caption: "Anthrax Spores Under the Microscope",
+          description: "A high-resolution microscopic view of Bacillus anthracis bacteria, highlighting the durable spore structures that allow the biological agent to persist in soil for decades."
         }
       },
       {
@@ -239,9 +239,9 @@ export const LESSONS: Lesson[] = [
           answer: "Pneumonic plague."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/e/e0/Agent_Orange_cropdusting.jpg",
-          caption: "Pathogen Visualization",
-          description: "Studying the Yersinia pestis bacterium is essential for understanding how historically devastating diseases could be weaponized today."
+          url: "https://o.quizlet.com/idzlSCgmDFmLJDvIowiBlQ_b.jpg",
+          caption: "The Bubonic Plague Transmission Cycle",
+          description: "A medical diagram illustrating how the Yersinia pestis bacterium circulates through fleas and rodents before vector transmission to human hosts."
         }
       },
       {
@@ -262,9 +262,9 @@ export const LESSONS: Lesson[] = [
           answer: "Botulinum toxin."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/4/4c/VX-S-enantiomer-2D-skeletal.png",
-          caption: "Molecular Toxicity",
-          description: "Botulinum toxin is one of the most lethal substances known, requiring extreme bio-security measures in investigative laboratories."
+          url: "https://www.dpi.nsw.gov.au/__data/assets/image/0009/798750/RiceBlast1.jpg",
+          caption: "Rice Blast Lesions on Crop Leaf",
+          description: "A close-up view of diamond-shaped lesions caused by Pyricularia oryzae (Rice Blast fungus) on a leaf blade, illustrating the physical manifestations of a major biological threat to global food security."
         }
       },
       {
@@ -286,9 +286,9 @@ export const LESSONS: Lesson[] = [
           answer: "Freshness, purity, weather conditions, wind direction, and dissemination means."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Sulfur-mustard-3D-vdW.png",
-          caption: "Industrial Chemical Safety",
-          description: "Modern chemical security focuses on preventing industrial chemicals from being diverted into weapons programs."
+          url: "https://thumbs.dreamstime.com/b/caution-sign-featuring-gas-mask-symbol-yellow-background-safety-awareness-features-bright-emphasizing-importance-432441560.jpg",
+          caption: "Hazard Awareness: CBRN Warning Protocols",
+          description: "A standard industrial safety caution sign featuring a gas mask symbol, highlighting the vital necessity of personal protective equipment (PPE) and rapid response readiness in chemical hazard zones."
         }
       },
       {
@@ -309,9 +309,9 @@ export const LESSONS: Lesson[] = [
           answer: "VX."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/1/15/BASF_Schwarzheide_GmbH_Werksansicht_01.jpg",
-          caption: "Hazardous Chemical Handling",
-          description: "Nerve agents like VX are synthetic compounds that require extreme caution, specialized high-grade lab equipment, and zero-leak containment systems to handle safely."
+          url: "https://natoassociation.ca/wp-content/uploads/2014/05/nerve-gas.jpg",
+          caption: "The Spectral Threat of Chemical Warfare",
+          description: "A stark visualization representing the insidious and invisible nature of nerve agents like Sarin and VX, emphasizing the critical importance of defense and detection protocols."
         }
       },
       {
@@ -331,9 +331,9 @@ export const LESSONS: Lesson[] = [
           answer: "In low-lying areas."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/5/58/GHS-pictogram-skull.svg",
-          caption: "Vintage Protective Gear",
-          description: "Understanding the behavior of chemical agents, such as sulfur mustard's tendency to settle in trenches and low areas, led to the development of early gas mask technology."
+          url: "https://ichef.bbci.co.uk/ace/standard/976/cpsprodpb/16740/production/_85486919_gas1.jpg",
+          caption: "The Blistering Effects of Mustard Gas",
+          description: "A historical medical photograph documenting the severe external trauma caused by sulfur mustard. As a powerful vesicant, it inflicts agonizing chemical burns and large, fluid-filled blisters upon contact with skin and lung tissue."
         }
       },
       {
@@ -355,9 +355,9 @@ export const LESSONS: Lesson[] = [
           answer: "Fusion (often 10 to 100 times more explosive)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/8/87/Radioactive_material_sign.svg",
-          caption: "The Power of the Atom",
-          description: "The sheer scale of energy released during nuclear fission is a stark reminder of the responsibility that comes with scientific mastery."
+          url: "https://static.vecteezy.com/system/resources/previews/073/440/380/non_2x/nuclear-fission-vs-nuclear-fusion-comparison-diagram-vector.jpg",
+          caption: "Nuclear Mechanics: Fission vs. Fusion",
+          description: "A comparative educational diagram illustrating the fundamental difference between nuclear processes: fission, the splitting of a heavy nucleus into smaller parts, and fusion, the combining of light nuclei to form a heavier nucleus."
         }
       },
       {
@@ -376,9 +376,9 @@ export const LESSONS: Lesson[] = [
           answer: "Fallout."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/b/b6/Fullerene_Nanogears_-_GPN-2000-001535.jpg",
-          caption: "Nevada Test Site Craters",
-          description: "These massive craters in the desert are the lingering scars of mid-20th century nuclear testing, demonstrating the immense ground-shifting power of atomic weapons."
+          url: "https://oncodaily.com/pub/uploads/2025/06/688eb6b8-d9b6-435e-94c8-6c15792a32eb-800x533.png",
+          caption: "Nuclear Explosion Effects: Blast, Heat, and Radiation",
+          description: "A conceptual diagram showing the catastrophic expansion of a nuclear blast wave, intense thermal flash, and the immediate release of ionizing radiation across the epicenter."
         }
       },
       {
@@ -398,9 +398,9 @@ export const LESSONS: Lesson[] = [
           answer: "To spread toxic radiation and cause mass disruption/terror."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/8/83/C60_Molecule.svg",
-          caption: "High-Activity Radioactive Sources",
-          description: "Radiological materials used in medicine and industry are strictly tracked to prevent them from being intercepted and used in radiological dispersal devices."
+          url: "https://www.cdph.ca.gov/Programs/EPO/PublishingImages/dirty_bombs.jpg",
+          caption: "Radiological Dispersal: The Mechanics of a Dirty Bomb",
+          description: "An educational infographic demonstrating how a radiological weapon utilizes conventional explosives to scatter radioactive materials across an urban area, focusing on containment and public health protection strategies."
         }
       },
       {
@@ -424,9 +424,9 @@ export const LESSONS: Lesson[] = [
           answer: "Because they cannot be limited to military targets and inevitably affect civilians on a large scale."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/9/94/Protein_translation.gif",
-          caption: "Global Responsibility",
-          description: "Understanding WMDs leads us to one conclusion: the imperative to regulate these tools of destruction to protect our collective future."
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNuJLcc6b94KWfotoUvHLgcV4jh7uH6HOKSw&s",
+          caption: "Comprehensive CBRN Defense Protocols",
+          description: "A professional safety collage highlighting international response mechanisms, personal hazard protection gear, and decontamination strategies designed to counter Chemical, Biological, Radiological, and Nuclear threats."
         }
       },
       {
