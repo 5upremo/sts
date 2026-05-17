@@ -31,14 +31,18 @@ import { LESSONS, Lesson, Slide as SlideType } from "./data/lessons";
 import { SlideVisual } from "./components/PresentationVisuals";
 
 function ImageWithLoader({ src, alt }: { src: string; alt: string }) {
-  const [status, setStatus] = useState<"loading" | "loaded" | "error">("loading");
+  const [status, setStatus] = useState<"loading" | "loaded" | "error">(
+    "loading",
+  );
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">
       {status === "loading" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900">
           <div className="w-10 h-10 border-4 border-white/10 border-t-white rounded-full animate-spin mb-4" />
-          <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">Loading Visual...</p>
+          <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500">
+            Loading Visual...
+          </p>
         </div>
       )}
       {status === "error" && (
@@ -46,8 +50,12 @@ function ImageWithLoader({ src, alt }: { src: string; alt: string }) {
           <div className="p-4 rounded-2xl bg-red-500/10 text-red-500 mb-4">
             <ImageIcon className="w-8 h-8 opacity-50" />
           </div>
-          <p className="text-slate-400 font-medium mb-2">Image Failed to Load</p>
-          <p className="text-[10px] text-slate-600 uppercase tracking-widest">Connection might be blocked or URL expired</p>
+          <p className="text-slate-400 font-medium mb-2">
+            Image Failed to Load
+          </p>
+          <p className="text-[10px] text-slate-600 uppercase tracking-widest">
+            Connection might be blocked or URL expired
+          </p>
         </div>
       )}
       <img
@@ -55,8 +63,9 @@ function ImageWithLoader({ src, alt }: { src: string; alt: string }) {
         alt={alt}
         onLoad={() => setStatus("loaded")}
         onError={() => setStatus("error")}
-        className={`w-full h-full object-cover transition-opacity duration-500 ${status === "loaded" ? "opacity-100" : "opacity-0"
-          }`}
+        className={`w-full h-full object-cover transition-opacity duration-500 ${
+          status === "loaded" ? "opacity-100" : "opacity-0"
+        }`}
         referrerPolicy="no-referrer"
       />
     </div>
@@ -69,19 +78,21 @@ export default function App() {
     slideIndex: 0,
     engagement: false,
     answerRevealed: false,
-    imagePopup: false
+    imagePopup: false,
   });
   const [showSelector, setShowSelector] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
-  const [personalNotes, setPersonalNotes] = useState<{ [key: string]: string }>(() => {
-    try {
-      const stored = localStorage.getItem("presentation_personal_notes");
-      return stored ? JSON.parse(stored) : {};
-    } catch {
-      return {};
-    }
-  });
+  const [personalNotes, setPersonalNotes] = useState<{ [key: string]: string }>(
+    () => {
+      try {
+        const stored = localStorage.getItem("presentation_personal_notes");
+        return stored ? JSON.parse(stored) : {};
+      } catch {
+        return {};
+      }
+    },
+  );
   const contentScrollRef = useRef<HTMLDivElement>(null);
 
   const currentLessonIndex = navState.lessonIndex;
@@ -91,14 +102,15 @@ export default function App() {
   const showImagePopup = navState.imagePopup;
 
   // Sync logic
-  const isPresenter = new URLSearchParams(window.location.search).get("view") === "presenter";
+  const isPresenter =
+    new URLSearchParams(window.location.search).get("view") === "presenter";
   const syncTimestampRef = useRef<number>(0);
   const syncChannelRef = useRef<BroadcastChannel | null>(null);
   const isIncomingChange = useRef(false);
 
   useEffect(() => {
     const applySync = (data: any) => {
-      if (!data || typeof data !== 'object') return;
+      if (!data || typeof data !== "object") return;
 
       // If we are getting a timestamp that is equal or newer, we apply it.
       // We also check if the data actually changed to avoid redundant state updates.
@@ -106,7 +118,7 @@ export default function App() {
         isIncomingChange.current = true;
         syncTimestampRef.current = data.timestamp;
 
-        setNavState(prev => {
+        setNavState((prev) => {
           // Optimization: Only update state if values actually changed
           if (
             prev.lessonIndex === data.lesson &&
@@ -123,13 +135,14 @@ export default function App() {
             slideIndex: data.slide ?? 0,
             engagement: !!data.engagement,
             answerRevealed: !!data.answerRevealed,
-            imagePopup: !!data.imagePopup
+            imagePopup: !!data.imagePopup,
           };
         });
 
         if (data.scrollRatio !== undefined && contentScrollRef.current) {
           const element = contentScrollRef.current;
-          const targetScroll = data.scrollRatio * (element.scrollHeight - element.clientHeight);
+          const targetScroll =
+            data.scrollRatio * (element.scrollHeight - element.clientHeight);
           if (Math.abs(element.scrollTop - targetScroll) > 5) {
             element.scrollTop = targetScroll;
           }
@@ -180,7 +193,9 @@ export default function App() {
     }
 
     const element = contentScrollRef.current;
-    const scrollRatio = element ? (element.scrollTop / (element.scrollHeight - element.clientHeight || 1)) : 0;
+    const scrollRatio = element
+      ? element.scrollTop / (element.scrollHeight - element.clientHeight || 1)
+      : 0;
     const now = Date.now();
     syncTimestampRef.current = now;
 
@@ -203,7 +218,13 @@ export default function App() {
     } catch (e) {
       console.warn("Storage quota exceeded or unavailable", e);
     }
-  }, [currentLessonIndex, currentSlideIndex, showEngagement, isAnswerRevealed, showImagePopup]);
+  }, [
+    currentLessonIndex,
+    currentSlideIndex,
+    showEngagement,
+    isAnswerRevealed,
+    showImagePopup,
+  ]);
 
   const launchPresenter = () => {
     try {
@@ -222,22 +243,34 @@ export default function App() {
   }, [currentSlideIndex, currentLessonIndex]);
 
   const currentLesson = LESSONS[currentLessonIndex] || LESSONS[0];
-  const currentSlide = currentLesson?.slides?.[currentSlideIndex] || currentLesson?.slides?.[0];
+  const currentSlide =
+    currentLesson?.slides?.[currentSlideIndex] || currentLesson?.slides?.[0];
 
   const isTitleSlide = currentSlide?.id?.toLowerCase().includes("title");
-  const isReferenceSlide = currentSlide?.id?.toLowerCase().includes("references");
+  const isReferenceSlide = currentSlide?.id
+    ?.toLowerCase()
+    .includes("references");
 
   if (!currentSlide) {
-    return <div className="bg-slate-900 text-white p-8">Loading or error in slide data...</div>;
+    return (
+      <div className="bg-slate-900 text-white p-8">
+        Loading or error in slide data...
+      </div>
+    );
   }
 
-  const handlePersonalNotesChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handlePersonalNotesChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     const val = e.target.value;
     const slideId = currentSlide.id;
-    setPersonalNotes(prev => {
+    setPersonalNotes((prev) => {
       const next = { ...prev, [slideId]: val };
       try {
-        localStorage.setItem("presentation_personal_notes", JSON.stringify(next));
+        localStorage.setItem(
+          "presentation_personal_notes",
+          JSON.stringify(next),
+        );
       } catch (err) {
         console.warn("Storage quota exceeded or unavailable", err);
       }
@@ -247,12 +280,12 @@ export default function App() {
 
   const nextSlide = () => {
     if (currentSlideIndex < currentLesson.slides.length - 1) {
-      setNavState(prev => ({
+      setNavState((prev) => ({
         ...prev,
         slideIndex: prev.slideIndex + 1,
         engagement: false,
         answerRevealed: false,
-        imagePopup: false
+        imagePopup: false,
       }));
     } else if (currentLessonIndex < LESSONS.length - 1) {
       // Transition to next lesson
@@ -261,19 +294,19 @@ export default function App() {
         slideIndex: 0,
         engagement: false,
         answerRevealed: false,
-        imagePopup: false
+        imagePopup: false,
       });
     }
   };
 
   const prevSlide = () => {
     if (currentSlideIndex > 0) {
-      setNavState(prev => ({
+      setNavState((prev) => ({
         ...prev,
         slideIndex: prev.slideIndex - 1,
         engagement: false,
         answerRevealed: false,
-        imagePopup: false
+        imagePopup: false,
       }));
     }
   };
@@ -314,10 +347,10 @@ export default function App() {
             transition={{ duration: 1 }}
             className="absolute inset-0 z-0 pointer-events-none"
           >
-            <img 
-              src={currentSlide.backgroundImage as string} 
-              alt="Background" 
-              className="w-full h-full object-cover" 
+            <img
+              src={currentSlide.backgroundImage as string}
+              alt="Background"
+              className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-slate-950/70" />
@@ -369,7 +402,9 @@ export default function App() {
 
       {/* Main Slide Area */}
       <main className="flex-1 min-h-0 relative flex flex-col md:flex-row overflow-hidden bg-transparent z-10">
-        <div className={`relative flex flex-col items-center p-6 md:p-12 min-h-0 transition-all ${isPresenter ? 'h-[40vh] md:h-auto md:flex-1' : 'flex-1'} ${(isTitleSlide || currentSlide.backgroundImage) ? 'justify-center' : ''}`}>
+        <div
+          className={`relative flex flex-col items-center p-6 md:p-12 min-h-0 transition-all ${isPresenter ? "h-[40vh] md:h-auto md:flex-1" : "flex-1"} ${isTitleSlide || currentSlide.backgroundImage ? "justify-center" : ""}`}
+        >
           <AnimatePresence mode="wait">
             <motion.div
               key={`${currentLesson.id}-${currentSlide.id}`}
@@ -377,33 +412,48 @@ export default function App() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1.02 }}
               transition={{ duration: 0.3 }}
-              className={`w-full max-w-5xl h-full min-h-0 flex flex-col ${(isTitleSlide || currentSlide.backgroundImage) ? 'items-center justify-center' : isReferenceSlide ? 'items-center pt-8' : ''}`}
+              className={`w-full max-w-5xl h-full min-h-0 flex flex-col ${isTitleSlide || currentSlide.backgroundImage ? "items-center justify-center" : isReferenceSlide ? "items-center pt-8" : ""}`}
             >
-              <div className={`mb-4 md:mb-8 flex-shrink-0 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-center' : ''}`}>
-                <h2 className={`${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-4xl md:text-7xl mb-4' : 'text-2xl md:text-5xl'} font-bold text-transparent bg-clip-text bg-gradient-to-r ${currentLesson.theme.gradient} leading-tight`}>
+              <div
+                className={`mb-4 md:mb-8 flex-shrink-0 ${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "text-center" : ""}`}
+              >
+                <h2
+                  className={`${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "text-4xl md:text-7xl mb-4" : "text-2xl md:text-5xl"} font-bold text-transparent bg-clip-text bg-gradient-to-r ${currentLesson.theme.gradient} leading-tight`}
+                >
                   {currentSlide.title}
                 </h2>
-                {(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
+                {(isTitleSlide ||
+                  isReferenceSlide ||
+                  currentSlide.backgroundImage) && (
                   <p className="text-slate-100 font-mono tracking-[0.3em] uppercase text-xs md:text-sm bg-black/60 px-4 py-1.5 rounded-full inline-block mt-2 backdrop-blur-sm shadow-xl font-semibold">
-                    {isTitleSlide ? "BSIT 1B - GROUP 8" : isReferenceSlide ? "SOURCES & ACKNOWLEDGMENTS" : ""}
+                    {isTitleSlide
+                      ? "BSIT 1B - GROUP 8"
+                      : isReferenceSlide
+                        ? "SOURCES & ACKNOWLEDGMENTS"
+                        : ""}
                   </p>
                 )}
               </div>
 
-              <div className={`flex-1 min-h-0 flex flex-col ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'items-center max-w-2xl w-full relative z-10' : 'md:flex-row'} gap-6 md:gap-10`}>
-                {(isTitleSlide || isReferenceSlide) && !currentSlide.backgroundImage && (
-                  <div className="absolute inset-0 -z-10 bg-slate-900 overflow-hidden rounded-3xl">
-                    <SlideVisual slideId={currentSlide.id} />
-                    <div className="absolute inset-0 bg-gradient-to-b from-slate-900/10 via-transparent to-slate-900/30" />
-                  </div>
-                )}
+              <div
+                className={`flex-1 min-h-0 flex flex-col ${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "items-center max-w-2xl w-full relative z-10" : "md:flex-row"} gap-6 md:gap-10`}
+              >
+                {(isTitleSlide || isReferenceSlide) &&
+                  !currentSlide.backgroundImage && (
+                    <div className="absolute inset-0 -z-10 bg-slate-900 overflow-hidden rounded-3xl">
+                      <SlideVisual slideId={currentSlide.id} />
+                      <div className="absolute inset-0 bg-gradient-to-b from-slate-900/10 via-transparent to-slate-900/30" />
+                    </div>
+                  )}
                 <div
                   ref={contentScrollRef}
                   onScroll={() => {
                     if (!isIncomingChange.current) {
                       const element = contentScrollRef.current;
                       if (element) {
-                        const scrollRatio = element.scrollTop / (element.scrollHeight - element.clientHeight || 1);
+                        const scrollRatio =
+                          element.scrollTop /
+                          (element.scrollHeight - element.clientHeight || 1);
                         const syncData = {
                           lesson: currentLessonIndex,
                           slide: currentSlideIndex,
@@ -414,46 +464,82 @@ export default function App() {
                           timestamp: Date.now(),
                         };
                         syncChannelRef.current?.postMessage(syncData);
-                        localStorage.setItem("presentation_sync_data", JSON.stringify(syncData));
+                        localStorage.setItem(
+                          "presentation_sync_data",
+                          JSON.stringify(syncData),
+                        );
                       }
                     }
                   }}
-                  className={`flex-1 flex flex-col min-h-0 overflow-y-auto pr-2 scroll-smooth touch-pan-y ${(isTitleSlide || currentSlide.backgroundImage) ? 'items-center text-center justify-center' : isReferenceSlide ? 'items-center text-center' : ''}`}
+                  className={`flex-1 flex flex-col min-h-0 overflow-y-auto pr-2 scroll-smooth touch-pan-y ${isTitleSlide || currentSlide.backgroundImage ? "items-center text-center justify-center" : isReferenceSlide ? "items-center text-center" : ""}`}
                 >
-                  <ul className={`space-y-4 mb-6 md:mb-10 ${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'list-none' : ''}`}>
+                  <ul
+                    className={`space-y-5 md:space-y-6 mb-6 md:mb-12 ${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "list-none" : ""}`}
+                  >
                     {currentSlide.onSlideText.map((text, i) => (
                       <motion.li
                         key={i}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 + i * 0.05 }}
-                        className={`${(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) ? 'text-lg md:text-2xl text-slate-300 font-medium' : 'text-base md:text-xl text-slate-200 flex gap-3'} leading-relaxed`}
+                        className={`${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "text-lg md:text-2xl text-slate-300 font-medium" : "text-base md:text-[1.35rem] text-slate-200 flex gap-3"} leading-loose`}
                       >
-                        {!(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && <span className={`${currentLesson.theme.primary === 'red' ? 'text-red-500' : 'text-blue-500'} mt-1.5 flex-shrink-0`}>•</span>}
+                        {!(
+                          isTitleSlide ||
+                          isReferenceSlide ||
+                          currentSlide.backgroundImage
+                        ) && (
+                          <span
+                            className={`${currentLesson.theme.primary === "red" ? "text-red-500" : "text-blue-500"} mt-1.5 flex-shrink-0`}
+                          >
+                            •
+                          </span>
+                        )}
                         <span>
-                          {text.startsWith('http') ? (
-                            <img src={text} alt="Slide Graphic" className="max-w-xs md:max-w-md h-auto rounded-2xl shadow-2xl border border-white/10 mx-auto my-4" referrerPolicy="no-referrer" />
-                          ) : text.startsWith('icon:') ? (
+                          {text.startsWith("http") ? (
+                            <img
+                              src={text}
+                              alt="Slide Graphic"
+                              className="max-w-xs md:max-w-md h-auto rounded-2xl shadow-2xl border border-white/10 mx-auto my-4"
+                              referrerPolicy="no-referrer"
+                            />
+                          ) : text.startsWith("icon:") ? (
                             (() => {
-                              const iconName = text.split(':')[1];
+                              const iconName = text.split(":")[1];
                               const IconLookup: Record<string, any> = {
-                                Bomb, Atom, Globe, Shield, Microscope, Library, History, User, Zap, AlertTriangle, Wind, Cpu, FlaskConical
+                                Bomb,
+                                Atom,
+                                Globe,
+                                Shield,
+                                Microscope,
+                                Library,
+                                History,
+                                User,
+                                Zap,
+                                AlertTriangle,
+                                Wind,
+                                Cpu,
+                                FlaskConical,
                               };
                               const Icon = IconLookup[iconName] || HelpCircle;
                               return (
                                 <motion.div
                                   initial={{ scale: 0.5, opacity: 0 }}
                                   animate={{ scale: 1, opacity: 1 }}
-                                  transition={{ 
+                                  transition={{
                                     type: "spring",
                                     stiffness: 260,
                                     damping: 20,
-                                    delay: 0.2 
+                                    delay: 0.2,
                                   }}
                                   className="flex justify-center my-8"
                                 >
-                                  <div className={`p-8 md:p-12 rounded-[2.5rem] ${currentLesson.theme.bgAccent} border-4 ${currentLesson.theme.borderAccent} shadow-2xl`}>
-                                    <Icon className={`w-24 h-24 md:w-40 md:h-40 ${currentLesson.theme.accent} filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]`} />
+                                  <div
+                                    className={`p-8 md:p-12 rounded-[2.5rem] ${currentLesson.theme.bgAccent} border-4 ${currentLesson.theme.borderAccent} shadow-2xl`}
+                                  >
+                                    <Icon
+                                      className={`w-24 h-24 md:w-40 md:h-40 ${currentLesson.theme.accent} filter drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]`}
+                                    />
                                   </div>
                                 </motion.div>
                               );
@@ -467,7 +553,11 @@ export default function App() {
                   </ul>
 
                   {/* On-Slide Engagement (Visible to All) - Only hide on title if needed but standard title slides don't usually have questions immediately */}
-                  {!(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
+                  {!(
+                    isTitleSlide ||
+                    isReferenceSlide ||
+                    currentSlide.backgroundImage
+                  ) && (
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -476,8 +566,14 @@ export default function App() {
                     >
                       <div className="bg-slate-950/40 rounded-2xl border border-white/5 p-4 md:p-6">
                         <div className="flex items-center gap-2 mb-2">
-                          <HelpCircle className={`w-3.5 h-3.5 ${currentLesson.theme.primary === 'red' ? 'text-red-400' : 'text-blue-400'}`} />
-                          <span className={`text-[9px] font-bold uppercase tracking-[0.2em] ${currentLesson.theme.primary === 'red' ? 'text-red-400/60' : 'text-blue-400/60'}`}>Interaction</span>
+                          <HelpCircle
+                            className={`w-3.5 h-3.5 ${currentLesson.theme.primary === "red" ? "text-red-400" : "text-blue-400"}`}
+                          />
+                          <span
+                            className={`text-[9px] font-bold uppercase tracking-[0.2em] ${currentLesson.theme.primary === "red" ? "text-red-400/60" : "text-blue-400/60"}`}
+                          >
+                            Interaction
+                          </span>
                         </div>
                         <p className="text-sm md:text-base text-slate-300 font-medium mb-4 leading-relaxed">
                           {currentSlide.engagementElement.question}
@@ -486,7 +582,9 @@ export default function App() {
                         <div className="relative">
                           {!isAnswerRevealed ? (
                             <div className="py-3 flex items-center justify-center bg-slate-900 rounded-xl border border-dashed border-white/10 text-slate-500 text-[10px] md:text-xs">
-                              <span className="animate-pulse">Waiting for presenter...</span>
+                              <span className="animate-pulse">
+                                Waiting for presenter...
+                              </span>
                             </div>
                           ) : (
                             <motion.div
@@ -503,8 +601,12 @@ export default function App() {
                   )}
                 </div>
 
-                {!(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
-                  <div className="w-full md:w-[35%] flex flex-col gap-4">
+                {!(
+                  isTitleSlide ||
+                  isReferenceSlide ||
+                  currentSlide.backgroundImage
+                ) && (
+                  <div className="w-full md:w-[25%] flex flex-col gap-4">
                     <div className="relative group">
                       <SlideVisual slideId={currentSlide.id} />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity rounded-3xl" />
@@ -526,9 +628,10 @@ export default function App() {
 
               {/* Slide Footer */}
               <div className="mt-8 pt-4 border-t border-white/5 flex justify-between items-center text-[10px] uppercase tracking-widest text-slate-600 font-medium">
-
-                <div className="font-bold text-slate-500">Reference: Aldea et al., 2018. Science, Technology and Society (OBE Ready).
-                  Library code: Fil.303.48 A1121 2018</div>
+                <div className="font-bold text-slate-500">
+                  Reference: Aldea et al., 2018. Science, Technology and Society
+                  (OBE Ready). Library code: Fil.303.48 A1121 2018
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>
@@ -547,7 +650,7 @@ export default function App() {
                 opacity: 1,
               }}
               exit={{ x: 300, opacity: 0 }}
-              className={`bg-slate-950/90 backdrop-blur-2xl border-l border-white/10 flex flex-col z-20 ${isPresenter ? 'flex-1 md:flex-none md:w-[400px]' : 'w-full md:w-[400px] fixed md:relative inset-0 md:inset-auto'}`}
+              className={`bg-slate-950/90 backdrop-blur-2xl border-l border-white/10 flex flex-col z-20 ${isPresenter ? "flex-1 md:flex-none md:w-[400px]" : "w-full md:w-[400px] fixed md:relative inset-0 md:inset-auto"}`}
             >
               <div className="p-6 border-b border-white/10 flex items-center justify-between bg-amber-500/10">
                 <div className="flex items-center gap-2 text-amber-400">
@@ -569,7 +672,9 @@ export default function App() {
                 {isPresenter && (
                   <div className="space-y-4">
                     <button
-                      onClick={() => setNavState(prev => ({ ...prev, engagement: true }))}
+                      onClick={() =>
+                        setNavState((prev) => ({ ...prev, engagement: true }))
+                      }
                       className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-blue-900/40 hover:scale-[1.02] active:scale-[0.98]"
                     >
                       <HelpCircle className="w-5 h-5" />
@@ -577,7 +682,9 @@ export default function App() {
                     </button>
 
                     <button
-                      onClick={() => setNavState(prev => ({ ...prev, imagePopup: true }))}
+                      onClick={() =>
+                        setNavState((prev) => ({ ...prev, imagePopup: true }))
+                      }
                       disabled={!currentSlide.exampleImage}
                       className="w-full py-4 bg-amber-600 hover:bg-amber-500 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-lg shadow-amber-900/40 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-30 disabled:hover:scale-100"
                     >
@@ -585,26 +692,46 @@ export default function App() {
                       Show Real-World Example
                     </button>
 
-                    <div className={`p-4 rounded-xl ${currentLesson.theme.bgAccent} border ${currentLesson.theme.borderAccent} space-y-2`}>
-                      <div className={`flex items-center gap-2 ${currentLesson.theme.accent}`}>
+                    <div
+                      className={`p-4 rounded-xl ${currentLesson.theme.bgAccent} border ${currentLesson.theme.borderAccent} space-y-2`}
+                    >
+                      <div
+                        className={`flex items-center gap-2 ${currentLesson.theme.accent}`}
+                      >
                         <HelpCircle className="w-4 h-4" />
-                        <span className="text-xs font-bold uppercase tracking-widest">Pro Tip: Sharing</span>
+                        <span className="text-xs font-bold uppercase tracking-widest">
+                          Pro Tip: Sharing
+                        </span>
                       </div>
                       <p className="text-[10px] text-slate-400 leading-relaxed">
-                        Share your <span className={`${currentLesson.theme.accent} font-semibold`}>Audience Tab</span> to students, while keeping this <span className="text-amber-400 font-semibold">Presenter Window</span> on your private screen.
+                        Share your{" "}
+                        <span
+                          className={`${currentLesson.theme.accent} font-semibold`}
+                        >
+                          Audience Tab
+                        </span>{" "}
+                        to students, while keeping this{" "}
+                        <span className="text-amber-400 font-semibold">
+                          Presenter Window
+                        </span>{" "}
+                        on your private screen.
                       </p>
                     </div>
                   </div>
                 )}
                 <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Key Discussion Points</h4>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">
+                    Key Discussion Points
+                  </h4>
                   <ul className="text-xs text-slate-400 space-y-1 mb-6 list-disc pl-4">
                     <li>Ask students for real-world examples.</li>
                     <li>Emphasize the human impact of the technology.</li>
                     <li>Connect the slide to previous lessons.</li>
                   </ul>
 
-                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">Current Context & Script</h4>
+                  <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">
+                    Current Context & Script
+                  </h4>
                   <p className="text-slate-200 leading-relaxed text-sm md:text-lg font-medium font-serif">
                     {currentSlide.speakerNotes}
                   </p>
@@ -616,7 +743,7 @@ export default function App() {
                       <BookOpen className="w-3 h-3" />
                       Personal Notes (Saved Locally)
                     </h4>
-                    <textarea 
+                    <textarea
                       value={personalNotes[currentSlide.id] || ""}
                       onChange={handlePersonalNotesChange}
                       placeholder="Add your own teaching notes for this slide here..."
@@ -627,7 +754,9 @@ export default function App() {
 
                 {isPresenter && (
                   <div className="pt-6 border-t border-white/10 space-y-4">
-                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500">Navigation Controls</h4>
+                    <h4 className="text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                      Navigation Controls
+                    </h4>
                     <div className="grid grid-cols-2 gap-3">
                       <button
                         onClick={prevSlide}
@@ -635,15 +764,21 @@ export default function App() {
                         className="py-3 bg-white/5 hover:bg-white/10 rounded-xl flex flex-col items-center gap-1 disabled:opacity-30"
                       >
                         <ChevronLeft className="w-5 h-5" />
-                        <span className="text-[10px] uppercase font-bold">Previous</span>
+                        <span className="text-[10px] uppercase font-bold">
+                          Previous
+                        </span>
                       </button>
                       <button
                         onClick={nextSlide}
-                        disabled={currentSlideIndex === currentLesson.slides.length - 1}
-                        className={`py-3 ${currentLesson.theme.primary === 'red' ? 'bg-red-600 hover:bg-red-500' : 'bg-blue-600 hover:bg-blue-500'} rounded-xl flex flex-col items-center gap-1 disabled:opacity-30`}
+                        disabled={
+                          currentSlideIndex === currentLesson.slides.length - 1
+                        }
+                        className={`py-3 ${currentLesson.theme.primary === "red" ? "bg-red-600 hover:bg-red-500" : "bg-blue-600 hover:bg-blue-500"} rounded-xl flex flex-col items-center gap-1 disabled:opacity-30`}
                       >
                         <ChevronRight className="w-5 h-5" />
-                        <span className="text-[10px] uppercase font-bold text-white">Next</span>
+                        <span className="text-[10px] uppercase font-bold text-white">
+                          Next
+                        </span>
                       </button>
                     </div>
                   </div>
@@ -655,14 +790,14 @@ export default function App() {
       </main>
 
       {/* Footer Controls */}
-      <footer className="p-4 md:px-8 md:py-6 bg-slate-950/90 backdrop-blur-md border-t border-white/5 flex items-center justify-between sticky bottom-0 z-40">
+      <footer className="p-3 md:px-6 md:py-3 bg-slate-950/90 backdrop-blur-md border-t border-white/5 flex items-center justify-between sticky bottom-0 z-40">
         <div className="flex items-center gap-1 md:gap-4 flex-shrink-0">
           <button
             onClick={prevSlide}
             disabled={currentSlideIndex === 0}
-            className="p-2 md:p-3 rounded-full hover:bg-white/10 disabled:opacity-10 transition-all"
+            className="p-1 md:p-2 rounded-full hover:bg-white/10 disabled:opacity-10 transition-all"
           >
-            <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
           </button>
           <div className="text-[10px] md:text-sm font-mono text-slate-500 tabular-nums min-w-[60px] text-center">
             {currentSlideIndex + 1} / {currentLesson.slides.length}
@@ -670,9 +805,9 @@ export default function App() {
           <button
             onClick={nextSlide}
             disabled={currentSlideIndex === currentLesson.slides.length - 1}
-            className={`p-2 md:p-3 rounded-full hover:bg-white/10 disabled:opacity-10 transition-all ${currentLesson.theme.primary === 'red' ? 'text-red-400' : 'text-blue-400'}`}
+            className={`p-1 md:p-2 rounded-full hover:bg-white/10 disabled:opacity-10 transition-all ${currentLesson.theme.primary === "red" ? "text-red-400" : "text-blue-400"}`}
           >
-            <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+            <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
           </button>
         </div>
 
@@ -692,12 +827,16 @@ export default function App() {
       {/* Engagement Modal */}
       <AnimatePresence>
         {showEngagement && (
-          <div className={`fixed inset-y-0 left-0 ${isPresenter ? 'right-0 md:right-[400px]' : 'right-0'} z-[60] flex items-center justify-center p-4`}>
+          <div
+            className={`fixed inset-y-0 left-0 ${isPresenter ? "right-0 md:right-[400px]" : "right-0"} z-[60] flex items-center justify-center p-4`}
+          >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setNavState(prev => ({ ...prev, engagement: false }))}
+              onClick={() =>
+                setNavState((prev) => ({ ...prev, engagement: false }))
+              }
               className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
             />
             <motion.div
@@ -714,7 +853,9 @@ export default function App() {
                   <h3 className="text-xs font-bold uppercase tracking-widest text-blue-400">
                     Check for Understanding
                   </h3>
-                  <p className="text-2xl font-bold text-white">Interactive Review</p>
+                  <p className="text-2xl font-bold text-white">
+                    Interactive Review
+                  </p>
                 </div>
               </div>
 
@@ -732,19 +873,29 @@ export default function App() {
                   <button
                     onClick={() => {
                       if (isPresenter) {
-                        setNavState(prev => ({ ...prev, answerRevealed: !prev.answerRevealed }));
+                        setNavState((prev) => ({
+                          ...prev,
+                          answerRevealed: !prev.answerRevealed,
+                        }));
                       }
                     }}
-                    className={`w-full text-left p-6 flex items-center justify-between transition-colors group ${isPresenter ? 'hover:bg-white/5' : 'cursor-default opacity-50'}`}
+                    className={`w-full text-left p-6 flex items-center justify-between transition-colors group ${isPresenter ? "hover:bg-white/5" : "cursor-default opacity-50"}`}
                   >
-                    <span className={`${isAnswerRevealed ? 'text-blue-400' : 'text-slate-500'} font-medium transition-colors`}>
+                    <span
+                      className={`${isAnswerRevealed ? "text-blue-400" : "text-slate-500"} font-medium transition-colors`}
+                    >
                       {isAnswerRevealed ? "Answer Revealed" : "Reveal Answer"}
                     </span>
-                    <ChevronRight className={`w-5 h-5 transition-transform ${isAnswerRevealed ? 'rotate-90 text-blue-400' : 'text-slate-600'}`} />
+                    <ChevronRight
+                      className={`w-5 h-5 transition-transform ${isAnswerRevealed ? "rotate-90 text-blue-400" : "text-slate-600"}`}
+                    />
                   </button>
                   <motion.div
                     initial={false}
-                    animate={{ maxHeight: isAnswerRevealed ? 200 : 0, opacity: isAnswerRevealed ? 1 : 0 }}
+                    animate={{
+                      maxHeight: isAnswerRevealed ? 200 : 0,
+                      opacity: isAnswerRevealed ? 1 : 0,
+                    }}
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
@@ -758,7 +909,9 @@ export default function App() {
               </div>
 
               <button
-                onClick={() => setNavState(prev => ({ ...prev, engagement: false }))}
+                onClick={() =>
+                  setNavState((prev) => ({ ...prev, engagement: false }))
+                }
                 className="mt-12 w-full py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold transition-colors"
               >
                 Close Question
@@ -771,12 +924,16 @@ export default function App() {
       {/* Image Example Modal */}
       <AnimatePresence>
         {showImagePopup && currentSlide.exampleImage && (
-          <div className={`fixed inset-y-0 left-0 ${isPresenter ? 'right-0 md:right-[400px]' : 'right-0'} z-[60] flex items-center justify-center p-4`}>
+          <div
+            className={`fixed inset-y-0 left-0 ${isPresenter ? "right-0 md:right-[400px]" : "right-0"} z-[60] flex items-center justify-center p-4`}
+          >
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
+              onClick={() =>
+                setNavState((prev) => ({ ...prev, imagePopup: false }))
+              }
               className="absolute inset-0 bg-slate-950/90 backdrop-blur-md"
             />
             <motion.div
@@ -796,7 +953,9 @@ export default function App() {
                   <div className="p-2 rounded-lg bg-amber-500/20 text-amber-500">
                     <ImageIcon className="w-5 h-5" />
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500">Real-World Context</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-amber-500">
+                    Real-World Context
+                  </span>
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4 leading-tight">
                   {currentSlide.exampleImage.caption}
@@ -805,14 +964,18 @@ export default function App() {
                   {currentSlide.exampleImage.description}
                 </p>
                 <button
-                  onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
+                  onClick={() =>
+                    setNavState((prev) => ({ ...prev, imagePopup: false }))
+                  }
                   className="w-full py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-bold transition-all"
                 >
                   Return to Lesson
                 </button>
               </div>
               <button
-                onClick={() => setNavState(prev => ({ ...prev, imagePopup: false }))}
+                onClick={() =>
+                  setNavState((prev) => ({ ...prev, imagePopup: false }))
+                }
                 className="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white/50 hover:text-white"
               >
                 <X className="w-5 h-5" />
@@ -849,17 +1012,20 @@ export default function App() {
                         lessonIndex: idx,
                         slideIndex: 0,
                         engagement: false,
-                        answerRevealed: false
+                        answerRevealed: false,
                       });
                       setShowSelector(false);
                     }}
-                    className={`w-full text-left p-6 rounded-2xl border transition-all flex items-center justify-between group ${currentLessonIndex === idx
-                      ? "bg-blue-600/20 border-blue-500/50 text-blue-300"
-                      : "bg-white/5 border-white/5 text-slate-400 hover:bg-white/10"
-                      }`}
+                    className={`w-full text-left p-6 rounded-2xl border transition-all flex items-center justify-between group ${
+                      currentLessonIndex === idx
+                        ? "bg-blue-600/20 border-blue-500/50 text-blue-300"
+                        : "bg-white/5 border-white/5 text-slate-400 hover:bg-white/10"
+                    }`}
                   >
                     <div className="flex items-center gap-4">
-                      <BookOpen className={`w-6 h-6 ${currentLessonIndex === idx ? "text-blue-400" : "text-slate-500"}`} />
+                      <BookOpen
+                        className={`w-6 h-6 ${currentLessonIndex === idx ? "text-blue-400" : "text-slate-500"}`}
+                      />
                       <span className="font-bold">{lesson.title}</span>
                     </div>
                     <ChevronRight className="w-5 h-5 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
