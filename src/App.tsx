@@ -474,7 +474,7 @@ export default function App() {
                   className={`flex-1 flex flex-col min-h-0 overflow-y-auto pr-2 scroll-smooth touch-pan-y ${isTitleSlide || currentSlide.backgroundImage ? "items-center text-center justify-center" : isReferenceSlide ? "items-center text-center" : ""}`}
                 >
                   <ul
-                    className={`space-y-5 md:space-y-6 mb-6 md:mb-12 ${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "list-none" : ""}`}
+                    className={`space-y-3 md:space-y-4 mb-6 md:mb-8 ${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "list-none" : ""}`}
                   >
                     {currentSlide.onSlideText.map((text, i) => (
                       <motion.li
@@ -482,7 +482,7 @@ export default function App() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 + i * 0.05 }}
-                        className={`${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "text-lg md:text-2xl text-slate-300 font-medium" : "text-base md:text-[1.35rem] text-slate-200 flex gap-3"} leading-loose`}
+                        className={`${isTitleSlide || isReferenceSlide || currentSlide.backgroundImage ? "text-lg md:text-2xl text-slate-300 font-medium" : "text-base md:text-[1.35rem] text-slate-200 flex gap-3"} leading-relaxed`}
                       >
                         {!(
                           isTitleSlide ||
