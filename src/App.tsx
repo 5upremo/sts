@@ -504,7 +504,7 @@ export default function App() {
                 </div>
 
                 {!(isTitleSlide || isReferenceSlide || currentSlide.backgroundImage) && (
-                  <div className="w-full md:w-[45%] flex flex-col gap-4">
+                  <div className="w-full md:w-[35%] flex flex-col gap-4">
                     <div className="relative group">
                       <SlideVisual slideId={currentSlide.id} />
                       <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-40 group-hover:opacity-20 transition-opacity rounded-3xl" />
