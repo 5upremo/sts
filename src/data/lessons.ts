@@ -735,7 +735,6 @@ export const LESSONS: Lesson[] = [
         id: "nt-apps-consumer-sport",
         title: "Applications: Consumer and Sporting Goods",
         onSlideText: [
-          "icon:Wind",
           "Consumer Products:",
           " - Silver nanoparticles in fabrics destroy odor-causing bacteria.",
           " - Skin care products with better penetration.",
