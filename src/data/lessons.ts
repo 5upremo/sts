@@ -44,7 +44,7 @@ export const LESSONS: Lesson[] = [
       {
         id: "wmd-title",
         title: "Weapons of Mass Destruction",
-        backgroundImage: "https://cdn.dribbble.com/userupload/20017899/file/original-45309eba9403d111757e5e86ce2427ba.gif",
+        backgroundImage: "https://upload.wikimedia.org/wikipedia/commons/0/0e/CastleBravo1.gif",
         onSlideText: [],
         speakerNotes: "Welcome to our presentation on Weapons of Mass Destruction. This is Group 8, and today we'll be exploring the critical intersections of Science, Technology, and Society through the lens of one of humanity's most serious challenges. We will discuss the types, history, and impacts of these weapons.",
         visualSuggestion: "Visual Idea: Cinematic nuclear mushroom cloud explosion high resolution wallpaper.",
@@ -464,17 +464,13 @@ export const LESSONS: Lesson[] = [
         title: "Nanotechnology",
         backgroundImage: "https://i.makeagif.com/media/5-02-2022/pVwFvQ.gif",
         onSlideText: [],
-        speakerNotes: "Hello everyone, Group 8 is thrilled to present Lesson 6: Nanotechnology! Imagine having the power to literally rearrange the building blocks of the universe. In this session, we're diving into the microscopic realm where science and engineering meet at the atomic level. We'll discover how manipulating materials piece by piece is not just science fiction—it's reshaping our entire society, revolutionizing everything from life-saving medicine to planetary environmental protection. Get ready to think small to achieve something massive!",
+        speakerNotes: "Hello guys, I'm (speaker name), Group 8 is thrilled to present Lesson 6: Nanotechnology! Imagine having the power to literally rearrange the building blocks of the universe. In this session, we're diving into the microscopic realm where science and engineering meet at the atomic level. We'll discover how manipulating materials piece by piece is not just science fiction—it's reshaping our entire society, revolutionizing everything from life-saving medicine to planetary environmental protection. Get ready to think small to achieve something massive!",
         visualSuggestion: "Visual Idea: Futuristic nanotechnology interface blue and white.",
         engagementElement: {
           question: "How small do you think we can go with technology today?",
           answer: "We are now working at the scale of atoms—the nanoscale!"
         },
-        exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/4/45/MtRedoubtedit1.jpg",
-          caption: "STM Scan of DNA",
-          description: "An actual Scanning Tunneling Microscope image of a double-helix DNA molecule, showing the level of detail possible at the nanoscale."
-        }
+
       },
       {
         id: "nt-intro",
@@ -495,9 +491,9 @@ export const LESSONS: Lesson[] = [
           answer: "Extremely small (one-billionth)."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/0/03/Mushroom_Cloud_over_Nagasaki.jpg",
-          caption: "Atomic Scale Reality",
-          description: "An actual image from a Scanning Tunneling Microscope, representing the dawn of our ability to see and manipulate matter at the molecular level."
+          url: "https://www.azonano.com/images/Article_Images/ImageForArticle_6820_17301962765701559.jpg",
+          caption: "Nanotechnology Realized: Atom-by-Atom Imaging",
+          description: "An actual high-resolution scanning probe microscopy capture, illustrating the dawn of nanotechnology where scientists can visualize, map, and manipulate individual atoms at the nanoscale."
         }
       },
       {
@@ -519,9 +515,9 @@ export const LESSONS: Lesson[] = [
           answer: "About 25,000 nanometers."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/0/0e/CastleBravo1.gif",
-          caption: "Medical Nanobots Concept",
-          description: "A detailed conceptual visualization of nanorobots interacting with human cells for targeted medical treatment."
+          url: "https://www.researchgate.net/profile/David-Barnes-24/publication/267866793/figure/fig1/AS:295422141714432@1447445535340/Relationship-of-particulate-matter-to-the-size-of-a-human-hair.png",
+          caption: "Understanding Scale: Human Hair vs. Particulate Matter",
+          description: "A scale comparison chart contrasting the width of a human hair (approximately 50,000 to 70,000 nanometers) with fine particulate matter, providing a relative visual baseline for grasping the micro and nanoscale."
         }
       },
       {
@@ -543,9 +539,9 @@ export const LESSONS: Lesson[] = [
           answer: "Norio Taniguchi in 1974."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/0/0f/W87_MIRV.jpg",
-          caption: "Buckminsterfullerene (C60)",
-          description: "The discovery of 'Buckyballs' in 1985 opened new doors in materials science and nanotechnology."
+          url: "https://images.squarespace-cdn.com/content/v1/5507919de4b01b71a2856965/1456894680779-WXT0C6AY179GEPJ3VR0E/image-asset.png",
+          caption: "Feynman's Vision: Plenty of Room at the Bottom",
+          description: "A historical graphic celebrating Dr. Richard Feynman's iconic 1959 lecture, which fundamentally predicted the field of nanotechnology by proposing the manipulation of individual atoms and molecules."
         }
       },
       {
@@ -564,9 +560,9 @@ export const LESSONS: Lesson[] = [
           answer: "Nanosystems: Molecular Machinery Manufacturing and Computation."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/5/54/Atomic_bombing_of_Japan.jpg",
-          caption: "Dr. Richard Feynman",
-          description: "The visionary physicist who first proposed that machines could be built atom by atom in his famous 1959 lecture."
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStmh4rE5gnCPkHBdvNLrPsf_buOb9ovL8wlg&s",
+          caption: "Pioneers of Nanotechnology",
+          description: "A historical portrait highlighting Dr. Richard Feynman alongside key early visionaries whose collective concepts defined nanoscale science and molecular manufacturing."
         }
       },
       {
@@ -585,9 +581,9 @@ export const LESSONS: Lesson[] = [
           answer: "Up to 100,000,000 times."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Flag_of_the_United_Nations.svg",
-          caption: "Carbon Nanotube Model",
-          description: "A high-precision model of a carbon nanotube, known for its extraordinary strength and unique electrical properties."
+          url: "https://www.afmworkshop.com/images/2024/SA_AFM_XY_SAMPLE_STAGE_GRAY_CONTOUR_V10.png",
+          caption: "Atomic Force Microscope (AFM) Sample Stage",
+          description: "A technical architectural diagram highlighting the precision-engineered XY sample stage of an Atomic Force Microscope, which allows for stable, nanoscale positioning required to achieve up to 100,000,000x surface magnification."
         }
       },
       {
@@ -610,9 +606,9 @@ export const LESSONS: Lesson[] = [
           answer: "They can help correct genetic deficiencies by altering or replacing DNA molecules."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/1/16/THEODOSIA_01.jpg",
-          caption: "Future of Precision Medicine",
-          description: "Conceptualization of nanotechnology in medicine, where miniature robots could navigate the human body at the molecular level to repair defects."
+          url: "https://etedge-insights.com/wp-content/uploads/2021/08/nanotechnology-ImResizer.jpg",
+          caption: "Nanomedicine: Nanobots Targeting Cancer Cells",
+          description: "A conceptual visualization of microscopic nanorobots navigating through a blood vessel to identify and destroy localized cancer cells, demonstrating the future of targeted drug delivery and precision medicine."
         }
       },
       {
@@ -637,9 +633,9 @@ export const LESSONS: Lesson[] = [
           answer: "They are mixed with epoxy to produce lighter but stronger windmill blades for greater electricity output."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Structure_of_NIAID_Integrated_Research_Facility.jpg",
-          caption: "Nanotech in Green Energy",
-          description: "Nanotechnology is revolutionizing renewable energy by creating lighter, stronger components for wind turbines and higher-efficiency solar panels."
+          url: "https://storyblok.cdn.vmo2digital.co.uk/f/253875/550x310/7f4f4905a7/iphone-16-family-q125-os2-200125.jpg/m/1200x0/filters:quality(75)",
+          caption: "Nanoelectronics in Consumer Technology",
+          description: "A lineup of modern smartphones representing advanced nanoelectronics. By shrinking billions of transistors down to the nanoscale onto miniature silicon wafers, devices achieve massive computational power, minimal energy consumption, and high memory density."
         }
       },
       {
@@ -664,9 +660,9 @@ export const LESSONS: Lesson[] = [
           answer: "To help destroy odor-causing bacteria, making the clothes odor-resistant."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Anthrax_PHIL_2033.png",
-          caption: "Smart Textiles",
-          description: "Nano-coatings on fabrics can provide everything from antibacterial properties to extreme water and stain resistance (hydrophobicity)."
+          url: "https://www.biolinscientific.com/hubfs/water%20on%20hydrophobic%20fabric.jpg",
+          caption: "Smart Textiles: Advanced Hydrophobic Coatings",
+          description: "A close-up view of water droplets perfectly beading on a nano-treated hydrophobic fabric surface, demonstrating how nanoscale surface tension engineering repels moisture, stains, and liquids."
         }
       },
       {
@@ -686,9 +682,9 @@ export const LESSONS: Lesson[] = [
           answer: "A hypothetical scenario where self-replicating nanomachines go out of control and consume all living matter on Earth."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/a/ab/7042_lores-Ebola-Zaire-CDC_Photo.jpg",
-          caption: "Technological Ethics & Risk",
-          description: "The 'Gray Goo' theory serves as a cautionary tale for runaway technology, emphasizing the critical need for global regulation in nanoscience."
+          url: "https://static.tvtropes.org/pmwiki/pub/images/e5440d05b9479ff6e13ab8cde8b95afc.jpg",
+          caption: "The Ultimate Peril: The Gray Goo Scenario",
+          description: "A chilling conceptual depiction of the 'Gray Goo' apocalypse, a hypothetical existential risk where out-of-control, self-replicating nanorobots consume all organic matter on Earth to sustain their own replication."
         }
       },
       {
@@ -713,9 +709,9 @@ export const LESSONS: Lesson[] = [
           answer: "President Bill Clinton."
         },
         exampleImage: {
-          url: "https://upload.wikimedia.org/wikipedia/commons/c/c0/Biohazard_symbol.svg",
+          url: "https://images.squarespace-cdn.com/content/v1/6192b02960e94236fc22acce/83b0a19d-efda-403f-b485-67f249a9ae4c/City+of+the+Future.jpg",
           caption: "Shaping the Global Future",
-          description: "The choices we make today about nano-regulation will determine whether this technology builds a utopia of health and energy or creates new global security challenges."
+          description: "A conceptual vision of a futuristic city integrated with nanotechnology, demonstrating how advanced nanoscale engineering could reshape urban infrastructure, clean energy, and sustainable architecture."
         }
       },
       {
