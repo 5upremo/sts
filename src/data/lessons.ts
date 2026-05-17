@@ -464,7 +464,7 @@ export const LESSONS: Lesson[] = [
         title: "Nanotechnology",
         backgroundImage: "https://i.makeagif.com/media/5-02-2022/pVwFvQ.gif",
         onSlideText: [],
-        speakerNotes: "Hello everyone, Group 8 is back to present Lesson 6: Nanotechnology. In this session, we'll examine how science and technology at the atomic level are reshaping our society, from medicine to environmental protection.",
+        speakerNotes: "Hello everyone, Group 8 is thrilled to present Lesson 6: Nanotechnology! Imagine having the power to literally rearrange the building blocks of the universe. In this session, we're diving into the microscopic realm where science and engineering meet at the atomic level. We'll discover how manipulating materials piece by piece is not just science fiction—it's reshaping our entire society, revolutionizing everything from life-saving medicine to planetary environmental protection. Get ready to think small to achieve something massive!",
         visualSuggestion: "Visual Idea: Futuristic nanotechnology interface blue and white.",
         engagementElement: {
           question: "How small do you think we can go with technology today?",
@@ -488,7 +488,7 @@ export const LESSONS: Lesson[] = [
           "4. Understand implications (Health, Environment, Privacy).",
           "Word Bank: nanorobot, nanomedicine, nanomachine, nanoelectronics."
         ],
-        speakerNotes: "Welcome to Lesson 6, everyone. Today, we are moving from the scale of the 'Massive' (the WMDs we just studied) to the scale of the 'Minute.' Nanotechnology is the science of the extremely small. It's often called the 'next industrial revolution.' (Enthusiastically) It’s not just about smaller gadgets; it’s about a new way of building our world, literally atom by atom. Today we'll define what 'nano' really means, look at the high-tech 'scanners' that let us see this invisible world, and discuss how these tiny machines might someday live inside our bodies to cure diseases or power our homes with clean energy. Take a look at our word bank: nanorobot, nanomedicine—these are the tools of our future.",
+        speakerNotes: "Welcome to Lesson 6! In our last lesson, we looked at massive global threats. Now, we are shifting gears to the absolute 'Minute.' Nanotechnology is the science of the unimaginably small, and it's widely hailed as the next industrial revolution. Why? Because it isn't just about shrinking gadgets; it's about fundamentally rebuilding our world, atom by atom. Today, we'll unpack what 'nano' truly means, examine the mind-bending microscopes that let us explore this invisible universe, and explore how microscopic machines—like nanorobots—could soon patrol our bloodstream to cure diseases or transform how we generate clean energy. Keep these words in mind: nanorobot, nanomedicine, nanomachine—these aren't just vocabulary words; they are the blueprint of our future.",
         visualSuggestion: "Visual Idea: Nanotechnology word bank infographic.",
         engagementElement: {
           question: "What does the prefix 'nano-' usually imply in terms of size?",
@@ -512,7 +512,7 @@ export const LESSONS: Lesson[] = [
           "Nanomachine: Tiny machine capable of doing human tasks at nano level.",
           "Nanorobot: Miniature 'surgeons' implanted in the body to diagnose/treat disorders."
         ],
-        speakerNotes: "To understand 'nano,' think about a human hair. A single hair is roughly 25,000 nanometers wide. We are working at a scale where we can manipulate individual atoms. At this level, the physical properties of materials change—gold might turn red, and insulators might become conductors. This scale allows us to build 'Nanorobots'—tiny surgical machines that could potentially travel through your bloodstream to find and kill cancer cells individually, or 'Nanomachines' that can manufacture materials with zero waste.",
+        speakerNotes: "To truly grasp ‘nano,’ pull a single strand of hair from your head. That hair is about 25,000 nanometers wide. Now imagine dividing that width 25,000 times! That is the astonishing scale we are working at—the scale of individual atoms. In this realm, the rules of physics flip upside down: gold can look red, and insulators can suddenly conduct electricity. Harnessing this bizarre physics allows us to invent 'Nanorobots'—microscopic surgeons designed to swim through your bloodstream, hunting down and destroying cancer cells one by one—and 'Nanomachines' that assemble new materials with zero waste. It’s almost like having a God-mode cheat code for matter itself.",
         visualSuggestion: "Visual Idea: Nanoscale comparison chart human hair DNA cell.",
         engagementElement: {
           question: "How many nanometers wide is the average human hair?",
@@ -536,7 +536,7 @@ export const LESSONS: Lesson[] = [
           "1998: US National Science and Technology Council (NSTC) realizes benefits.",
           "2000: President Bill Clinton funds research with $500M."
         ],
-        speakerNotes: "Richard Feynman is the 'godfather' of nanotech, having predicted in 1959 that we would someday be able to arrange atoms individually. He famously said, 'There is plenty of room at the bottom.' It wasn't until 1981, with the invention of the STM, that we could finally 'see' and manipulate atoms directly. Modern funding really exploded at the turn of the millennium when governments realized whoever masters nanotech masters the future of industry.",
+        speakerNotes: "Every revolution begins with a visionary, and for nanotech, that was Dr. Richard Feynman. In a legendary 1959 lecture, he predicted that humanity would eventually arrange atoms individually, famously declaring, 'There is plenty of room at the bottom.' But he was decades ahead of his time. It wasn't until 1981, with the invention of the Scanning Tunneling Microscope, that scientists could finally prove him right by 'seeing' and moving actual atoms. Since then, the race has been on. By the year 2000, world leaders realized a profound truth: the nation that masters nanotechnology will undoubtedly control the future of global industry.",
         visualSuggestion: "Visual Idea: Richard Feynman Plenty of Room at the Bottom lecture 1959.",
         engagementElement: {
           question: "Who coined the term 'nanotechnology' and in what year?",
@@ -557,7 +557,7 @@ export const LESSONS: Lesson[] = [
           "Eric Drexler: Popularized molecular nanotechnology (MNT) in the 70s/80s; wrote 'Nanosystems' (1992).",
           "Kim Eric Drexler (Born 1955): American engineer who distinguished nano-ideas from other scientists."
         ],
-        speakerNotes: "These three figures—Feynman, Taniguchi, and Drexler—built the foundation of the field. Feynman provided the vision of manipulating matter by 'one atom or one molecule.' Taniguchi gave it a name and technical definition. and Drexler brought the concept of 'molecular manufacturing' to the mainstream, imagining a world where machines build themselves atom by atom, creating a 'living' factory at the scale of a cell.",
+        speakerNotes: "Think of Feynman, Taniguchi, and Drexler as the architects of the invisible world. Feynman gave us the daring vision: the ability to manipulate matter atom by single atom. Norio Taniguchi gave this emerging science its name and technical framework. Then, Eric Drexler took it a step further, aggressively pushing the radical concept of 'molecular manufacturing.' Drexler imagined a world where trillions of machines build themselves, acting like a programmable, living factory the size of a biological cell. Their combined ideas laid the groundwork for everything we are trying to achieve today.",
         visualSuggestion: "Visual Idea: Nanotechnology pioneers collage Feynman Taniguchi Drexler.",
         engagementElement: {
           question: "What is the name of the book written by Eric Drexler in 1991/1992?",
@@ -578,7 +578,7 @@ export const LESSONS: Lesson[] = [
           "Carbon Nanotubes: Cylindrical allotropes of carbon; highest strength-to-weight ratio (used in light spacecrafts).",
           "Graphene: One-atom-thick sheet of carbon; high electrical resistance changes when other molecules attach (useful for sensors)."
         ],
-        speakerNotes: "You can't see a nanometer with a regular microscope. You need the Atomic Force Microscope (AFM) or the Scanning Tunneling Microscope (STM). These don't use light; they use physical probes that 'feel' the surface of atoms, much like a blind person uses a cane. The AFM can magnify things up to 100 million times! Besides the tools, we have new materials like Carbon Nanotubes, which are incredibly strong and light, and Graphene, a sheet of carbon just one atom thick that could revolutionize how we build sensors and computers.",
+        speakerNotes: "If you want to see an atom, throw away your traditional microscope; light waves are simply too big! Instead, we rely on the Atomic Force Microscope (AFM) and Scanning Tunneling Microscope (STM). These magnificent tools don't 'look' at atoms; they 'feel' them with an ultra-fine probe, almost like a blind person reading Braille at the atomic level. The AFM can magnify a surface up to 100 MILLION times! Thanks to these eyes into the nanoworld, we are engineering miracle materials like Carbon Nanotubes—which boast the highest strength-to-weight ratio known to man—and Graphene, a single-atom-thick sheet of carbon poised to completely revolutionize modern computing and sensors.",
         visualSuggestion: "Visual Idea: Atomic Force Microscope schematic diagram.",
         engagementElement: {
           question: "How many times can an Atomic Force Microscope (AFM) magnify a surface?",
@@ -603,7 +603,7 @@ export const LESSONS: Lesson[] = [
           " - Remove blockages in arteries.",
           "Other uses: Activity monitors, targeted chemotherapy, nebulizers, insulin pumps."
         ],
-        speakerNotes: "In medicine, nanotech allows for precision that was previously impossible. Imagine a robot smaller than a red blood cell that can swim through your arteries, find a cancer cell, and deliver a toxin directly to it without harming healthy tissue. This is the promise of nanomedicine. These 'Nanorobots' could also monitor your brain-wave activity, fix chemical imbalances, or even repair your DNA if you have a genetic disease. This is the future of 'Precision Medicine.'",
+        speakerNotes: "Of all the promises of nanotechnology, nanomedicine is the most personal. Imagine a fleet of programmable robots, each smaller than a single red blood cell, actively navigating your vascular system. They could seek out elusive cancer cells and deliver a payload of medicine specifically to the tumor, leaving your healthy tissue completely untouched. This is the dawn of true 'Precision Medicine.' Beyond cancer, nanorobots could monitor real-time brain-wave activity, correct chemical imbalances on the fly, or physically splice and repair broken DNA strands to cure inherited genetic diseases. This isn't just treatment; it's a fundamental upgrade to human health.",
         visualSuggestion: "Visual Idea: Nanomedicine nanobots blood vessel cancer cells.",
         engagementElement: {
           question: "What can nanorobots do to assist people with genetic deficiencies?",
@@ -630,7 +630,7 @@ export const LESSONS: Lesson[] = [
           " - Nanotube-mixed epoxy for lighter, stronger windmill blades.",
           " - Solar cells using silicon nanowire for cheaper energy."
         ],
-        speakerNotes: "In your pocket right now is a device powered by nanotech. Nanoelectronics allow us to cram billions of transistors onto a single chip, making your phone faster and lighter while using less power. But the environmental impact is even more exciting. Iron nanoparticles can 'eat' pollution in our water supplies, and silicon nanowires are making solar cells cheaper and more efficient. We're even mixing nanotubes into the epoxy of wind turbine blades to make them lighter and stronger, allowing them to spin in less wind and generate more green energy.",
+        speakerNotes: "Look at the smartphone in your hand—you are already holding nanotechnology. By shrinking transistors to the nanoscale, we've crammed billions of them onto a tiny chip, giving you supercomputer power in your pocket. However, nanotech's true calling might be saving the planet. We are deploying iron nanoparticles into contaminated water to literally 'eat' and neutralize toxic industrial solvents. In green energy, we're using silicon nanowires to drastically boost the efficiency of solar panels, and blending carbon nanotubes into wind turbine blades to make them so light and strong they can generate immense power even in the gentlest breeze. Nanotech is our best weapon against climate change.",
         visualSuggestion: "Visual Idea: Flexible phone concept nanoelectronics.",
         engagementElement: {
           question: "How are nanotubes used to improve wind energy?",
@@ -657,7 +657,7 @@ export const LESSONS: Lesson[] = [
           " - Golf club shafts with nano-particles for improved swing quality.",
           " - Reduced air leaks in tennis balls."
         ],
-        speakerNotes: "Nanotechnology is already in your home. Have you ever bought socks that don't smell? Those often contain silver nanoparticles that kill bacteria. Or 'hydrophobic' fabrics that water just bounces off of? Those use a nano-textured surface. In sports, carbon nanotubes are used to make tennis rackets stronger and golf shafts lighter for better swing quality. Even tennis balls are now coated internally with a nano-material to stop air from leaking out, meaning they stay 'bouncy' much longer. It’s making our everyday products smarter and more durable.",
+        speakerNotes: "Nanotech isn't locked away in a lab; it's sitting in your closet right now. Have you noticed athletic wear that remarkably resists odor? That’s due to silver nanoparticles embedded in the fabric that continuously destroy bacteria. Perhaps you've seen 'hydrophobic' jackets where spilled coffee simply rolls right off—that's nanotech engineering the surface tension. In high-performance sports, carbon nanotubes reinforce tennis rackets to grant superhuman striking force and stiffen golf-club shafts for unparalleled swing control. We even use nano-coatings inside premium tennis balls to trap air molecules, making them last vastly longer than normal. Nanotech is quietly upgrading our everyday reality.",
         visualSuggestion: "Visual Idea: Hydrophobic fabric water droplets.",
         engagementElement: {
           question: "What is the purpose of silver nanoparticles in clothing fabrics?",
@@ -679,7 +679,7 @@ export const LESSONS: Lesson[] = [
           "Economy: Huge investment required; 20-50 years for full commercialization.",
           "Politics: Need for regulation (synthetic drugs, high-powered weapons) and environmental laws."
         ],
-        speakerNotes: "But with great power comes great risk. Because nanoparticles are so small, they can bypass our body's natural filters, entering through the lungs or skin and potentially damaging our cells in ways we don't yet understand. There are also national security risks: 'Nano-bombs' or self-replicating viruses. And then there's the 'Gray Goo' scenario—the theoretical fear that self-replicating nanobots might accidentally consume all biomass on Earth. This is why we need strong political and ethical regulations as this technology matures.",
+        speakerNotes: "But let's be realistic: unmatched power brings unprecedented peril. Because nanoparticles are unimaginably small, they easily bypass biological defenses, seamlessly slipping through skin and lungs into our bloodstream with unpredictable, potentially toxic consequences to our cells. On a global scale, the weaponization of nanotechnology is terrifying—imagine microscopic 'nano-bombs' or highly adaptive, self-replicating synthetic viruses. Then there is the ultimate doomsday dread: the 'Gray Goo' scenario, where trillions of rogue, self-replicating nanobots mindlessly consume the Earth's entire biosphere. To harvest the incredible benefits of nanotechnology, we desperately need airtight political, environmental, and ethical legislation before this technology outpaces our wisdom.",
         visualSuggestion: "Visual Idea: Gray goo scenario nanorobots consuming earth.",
         engagementElement: {
           question: "What is the 'Gray Goo' scenario?",
@@ -706,7 +706,7 @@ export const LESSONS: Lesson[] = [
           " 2. Name two environmental applications of nanotech.",
           " 3. Why is political regulation necessary for nanotechnology?"
         ],
-        speakerNotes: "To conclude Lesson 6, we've seen that the nanoworld is where science meets engineering at the most fundamental level. We've gone from Feynman's 1959 vision to a world where nano-medicines and nano-electronics are reality. The benefits are clear, but we must stay vigilant about the health and security risks. Nanotech will likely be the defining technology of the next 50 years. As you review the assessment questions, think about how this technology might change your own career in the future.",
+        speakerNotes: "To conclude our journey through Lesson 6, let's recognize the magnitude of what we've learned. The nanoworld is the ultimate frontier where physics, chemistry, and engineering converge. Within decades, we evolved from Richard Feynman’s bold hypothesis to a stunning reality of nano-medicine targeting cancer and nano-electronics powering our digital age. The potential to elevate humanity is limitless, yet the shadows of severe health and existential security risks demand our ultimate vigilance. Make no mistake: nanotechnology will define the next fifty years of human history. As we wrap up with this assessment, I want you to seriously consider: how will manipulating the atom reshape your career, your life, and your world?",
         visualSuggestion: "Visual Idea: Futuristic city powered by nanotechnology.",
         engagementElement: {
           question: "Which US president significantly funded nanotech research with $500M in the year 2000?",
@@ -728,7 +728,7 @@ export const LESSONS: Lesson[] = [
           "4. Iijima, S. (1991). Helical microtubules of graphitic carbon. Nature.",
           "5. US National Nanotechnology Initiative (NNI). (2000). Research and Development Funding Documentation."
         ],
-        speakerNotes: "Our research on nanotechnology was guided by these seminal works and official records. From Feynman's original vision to modern government funding documents, these sources trace the development of this revolutionary field. Thank you for following along with Group 8.",
+        speakerNotes: "These defining texts and comprehensive reports form the academic bedrock of our nanotechnology research today. From the genius of Feynman’s original 1959 speech to critical investments backed by modern governments, the trajectory of this revolutionary science is brilliantly documented here. On behalf of Group 8, we sincerely thank you for engaging with us and stepping boldly into the astonishing nano-horizon!",
         visualSuggestion: "Visual Idea: Scientific journal covers nanotechnology.",
         engagementElement: {
           question: "Which pioneer would you like to learn more about?",
