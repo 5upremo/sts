@@ -97,8 +97,16 @@ export default function App() {
 
   const currentLessonIndex = navState.lessonIndex;
   const currentSlideIndex = navState.slideIndex;
+  
+  // Use refs to avoid stale closures in delayed onScroll events
+  const stateRef = useRef({ lesson: currentLessonIndex, slide: currentSlideIndex });
+  useEffect(() => {
+    stateRef.current = { lesson: currentLessonIndex, slide: currentSlideIndex };
+  }, [currentLessonIndex, currentSlideIndex]);
+
   const showEngagement = navState.engagement;
   const isAnswerRevealed = navState.answerRevealed;
+
   const showImagePopup = navState.imagePopup;
 
   // Sync logic
@@ -107,6 +115,7 @@ export default function App() {
   const syncTimestampRef = useRef<number>(0);
   const syncChannelRef = useRef<BroadcastChannel | null>(null);
   const isIncomingChange = useRef(false);
+  const ignoreScroll = useRef(false);
 
   useEffect(() => {
     const applySync = (data: any) => {
@@ -238,7 +247,11 @@ export default function App() {
 
   useEffect(() => {
     if (contentScrollRef.current) {
+      ignoreScroll.current = true;
       contentScrollRef.current.scrollTop = 0;
+      setTimeout(() => {
+        ignoreScroll.current = false;
+      }, 50);
     }
   }, [currentSlideIndex, currentLessonIndex]);
 
@@ -279,36 +292,42 @@ export default function App() {
   };
 
   const nextSlide = () => {
-    if (currentSlideIndex < currentLesson.slides.length - 1) {
-      setNavState((prev) => ({
-        ...prev,
-        slideIndex: prev.slideIndex + 1,
-        engagement: false,
-        answerRevealed: false,
-        imagePopup: false,
-      }));
-    } else if (currentLessonIndex < LESSONS.length - 1) {
-      // Transition to next lesson
-      setNavState({
-        lessonIndex: currentLessonIndex + 1,
-        slideIndex: 0,
-        engagement: false,
-        answerRevealed: false,
-        imagePopup: false,
-      });
-    }
+    setNavState((prev) => {
+      const currentLessonLength = LESSONS[prev.lessonIndex]?.slides.length || 0;
+      if (prev.slideIndex < currentLessonLength - 1) {
+        return {
+          ...prev,
+          slideIndex: prev.slideIndex + 1,
+          engagement: false,
+          answerRevealed: false,
+          imagePopup: false,
+        };
+      } else if (prev.lessonIndex < LESSONS.length - 1) {
+        return {
+          lessonIndex: prev.lessonIndex + 1,
+          slideIndex: 0,
+          engagement: false,
+          answerRevealed: false,
+          imagePopup: false,
+        };
+      }
+      return prev;
+    });
   };
 
   const prevSlide = () => {
-    if (currentSlideIndex > 0) {
-      setNavState((prev) => ({
-        ...prev,
-        slideIndex: prev.slideIndex - 1,
-        engagement: false,
-        answerRevealed: false,
-        imagePopup: false,
-      }));
-    }
+    setNavState((prev) => {
+      if (prev.slideIndex > 0) {
+        return {
+          ...prev,
+          slideIndex: prev.slideIndex - 1,
+          engagement: false,
+          answerRevealed: false,
+          imagePopup: false,
+        };
+      }
+      return prev;
+    });
   };
 
   const toggleFullscreen = () => {
@@ -448,27 +467,26 @@ export default function App() {
                 <div
                   ref={contentScrollRef}
                   onScroll={() => {
-                    if (!isIncomingChange.current) {
-                      const element = contentScrollRef.current;
-                      if (element) {
-                        const scrollRatio =
-                          element.scrollTop /
-                          (element.scrollHeight - element.clientHeight || 1);
-                        const syncData = {
-                          lesson: currentLessonIndex,
-                          slide: currentSlideIndex,
-                          engagement: showEngagement,
-                          answerRevealed: isAnswerRevealed,
-                          imagePopup: showImagePopup,
-                          scrollRatio: scrollRatio,
-                          timestamp: Date.now(),
-                        };
-                        syncChannelRef.current?.postMessage(syncData);
-                        localStorage.setItem(
-                          "presentation_sync_data",
-                          JSON.stringify(syncData),
-                        );
-                      }
+                    if (ignoreScroll.current || isIncomingChange.current) return;
+                    const element = contentScrollRef.current;
+                    if (element) {
+                      const scrollRatio =
+                        element.scrollTop /
+                        (element.scrollHeight - element.clientHeight || 1);
+                      const syncData = {
+                        lesson: stateRef.current.lesson,
+                        slide: stateRef.current.slide,
+                        engagement: showEngagement,
+                        answerRevealed: isAnswerRevealed,
+                        imagePopup: showImagePopup,
+                        scrollRatio: scrollRatio,
+                        timestamp: Date.now(),
+                      };
+                      syncChannelRef.current?.postMessage(syncData);
+                      localStorage.setItem(
+                        "presentation_sync_data",
+                        JSON.stringify(syncData),
+                      );
                     }
                   }}
                   className={`flex-1 flex flex-col min-h-0 overflow-y-auto pr-2 scroll-smooth touch-pan-y ${isTitleSlide || currentSlide.backgroundImage ? "items-center text-center justify-center" : isReferenceSlide ? "items-center text-center" : ""}`}
