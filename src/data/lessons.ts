@@ -57,7 +57,7 @@ export const LESSONS: Lesson[] = [
           answer: "Yes, let's explore this critical global topic.",
         },
         exampleImage: {
-          url: "https://www.usni.org/sites/default/files/Cobb-PRO-9-24-1%20Hero.jpg",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWAmZeguV1tsoeAyYV9qJ-AaJHC2NwN-wYaQ&s",
           caption: "The Rise of Mechanized Warfare",
           description:
             "A historical side view of an early 20th-century Soviet T-26 light tank, highlighting the evolution of armored vehicles and the mechanization of modern combat forces.",
@@ -299,7 +299,7 @@ export const LESSONS: Lesson[] = [
           answer: "Botulinum toxin.",
         },
         exampleImage: {
-          url: "https://www.dpi.nsw.gov.au/__data/assets/image/0009/798750/RiceBlast1.jpg",
+          url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl_5BPtefUOT94om1RIRjAWLIn_pHhzCFxVw&s",
           caption: "Rice Blast Lesions on Crop Leaf",
           description:
             "A close-up view of diamond-shaped lesions caused by Pyricularia oryzae (Rice Blast fungus) on a leaf blade, illustrating the physical manifestations of a major biological threat to global food security.",
